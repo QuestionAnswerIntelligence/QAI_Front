@@ -1,0 +1,31 @@
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  border-bottom: 1px solid gray;
+}
+
+.header-right {
+  display: flex;
+  gap: 10px; /* 로그인과 회원가입 사이에 간격을 추가 */
+  margin-right: 30px;
+}
+
+.login {
+  background-color: white;
+  border: 1px;
+}
+
+.register {
+  background-color: white;
+  border: 1px;
+}
+
+span {
+  font-size: 18px;
+}
