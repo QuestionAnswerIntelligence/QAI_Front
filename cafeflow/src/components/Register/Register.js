@@ -1,37 +1,83 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+import { API_URL } from "../Constant";
 
 import "./Register.css";
 
 const Register = () => {
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [age, setAge] = useState("");
+
+  const handleRegister = (event) => {
+    event.preventDefault();
+    axios
+      .post(`${API_URL}/sign-up`, {
+        email: email,
+        password: password,
+        name: name,
+        age: age,
+      })
+      .then((response) => {
+        console.log(response);
+        alert("회원가입이 완료되었습니다.");
+
+        /* 회원가입 성공 후 로그인 페이지로 이동 */
+        navigate("/login");
+      })
+      .catch((error) => {
+        /* console에 에러 찍어보기 */
+        console.log(error.response);
+        alert("회원가입에 실패했습니다.");
+      });
+  };
   return (
     <div className="login-container">
       <form className="login-form">
-        <input type="text" name="name" placeholder="이름" className="input" />
         <input
-          type="date"
-          name="birth"
-          placeholder="생년월일"
+          type="string"
+          name="name"
+          placeholder="이름"
           className="input"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
         />
         <input
-          type="text"
+          type="string"
+          name="birth"
+          placeholder="나이"
+          className="input"
+          value={age}
+          onChange={(e) => setAge(e.target.value)}
+        />
+        <input
+          type="string"
           name="id"
           placeholder="아이디 (2~10자의 영문과 숫자를 조합해주세요)"
           className="input"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
         <input
           type="password"
           name="password"
           placeholder="비밀번호"
           className="input"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
-        <input
+        {/* <input
           type="password"
           name="password"
           placeholder="비밀번호 확인"
           className="input"
-        />
-        <button type="submit" className="submit">
+        /> */}
+        <button type="submit" className="submit" onClick={handleRegister}>
           회원가입
         </button>
       </form>
