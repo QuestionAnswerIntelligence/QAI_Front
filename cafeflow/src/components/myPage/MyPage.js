@@ -1,14 +1,14 @@
 import React from "react";
 
 import { useRecoilValue } from "recoil";
-import { emailState, nameState } from "../../recoils/Recoil";
+import { emailState, nicknameState } from "../../recoils/Recoil";
 import "./MyPage.css";
 import { ageState } from "../../recoils/Recoil";
 
 const MyPage = () => {
-  const age = useRecoilValue(ageState);
-  const email = useRecoilValue(emailState);
-  const name = useRecoilValue(nameState);
+  const email = localStorage.getItem("email");
+  const nickname = localStorage.getItem("nickname");
+  const age = localStorage.getItem("age");
 
   return (
     <div className="container">
@@ -21,9 +21,9 @@ const MyPage = () => {
           </div>
         </h3>
         <h3>
-          이름
+          닉네임
           <div className="profileBox">
-            <span>{name}</span>
+            <span>{nickname}</span>
           </div>
         </h3>
         <h3>

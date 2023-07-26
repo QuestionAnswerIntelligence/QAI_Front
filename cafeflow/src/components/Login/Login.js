@@ -6,7 +6,7 @@ import {
   tokenState,
   ageState,
   emailState,
-  nameState,
+  nicknameState,
 } from "../../recoils/Recoil";
 import { API_URL } from "../Constant";
 
@@ -25,7 +25,7 @@ const Login = () => {
   const setToken = useSetRecoilState(tokenState);
   const setAge = useSetRecoilState(ageState);
   const setEmail1 = useSetRecoilState(emailState);
-  const setName = useSetRecoilState(nameState);
+  const setNickname = useSetRecoilState(nicknameState);
 
   const handleLogin = () => {
     axios
@@ -34,16 +34,18 @@ const Login = () => {
         password: password,
       })
       .then((response) => {
-        const { jwtToken, email, age, name } = response.data;
+        const { jwtToken, email, age, nickname } = response.data;
 
+        console.log(response.data);
         setToken(jwtToken);
         setAge(age);
         setEmail1(email);
-        setName(name);
+        setNickname(nickname);
 
         localStorage.setItem("jwtToken", jwtToken);
-        localStorage.setItem("age", age);
         localStorage.setItem("email", email);
+        localStorage.setItem("nickname", nickname);
+        localStorage.setItem("age", age);
 
         alert("로그인에 성공했습니다.");
         navigate("/");
@@ -60,7 +62,7 @@ const Login = () => {
           type="text"
           name="id"
           placeholder="아이디를 입력해주세요"
-          className="input"
+          className="input1"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
@@ -68,24 +70,14 @@ const Login = () => {
           type="password"
           name="password"
           placeholder="비밀번호를 입력해주세요"
-          className="input"
+          className="input1"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button
-          type="submit"
-          className="input"
-          onClick={handleLogin}
-          style={{ width: 416 }}
-        >
+        <button type="submit1" className="input2" onClick={handleLogin}>
           로그인
         </button>
-        <button
-          type="submit"
-          className="input"
-          onClick={moveToRegister}
-          style={{ width: 416 }}
-        >
+        <button type="submit1" className="input2" onClick={moveToRegister}>
           회원가입
         </button>
       </div>

@@ -20,7 +20,7 @@ export const emailState = atom({
   default: null,
 });
 
-export const nameState = atom({
-  key: "nameState",
+export const nicknameState = atom({
+  key: "nicknameState",
   default: null,
 });

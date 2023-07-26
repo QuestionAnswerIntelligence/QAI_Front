@@ -1,17 +1,20 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { FiMenu } from "react-icons/fi"; // 햄버거 메뉴 아이콘
+import { MdClose } from "react-icons/md"; // 메뉴 닫기 아이콘
 
-import { tokenState, usernameState } from "../../../recoils/Recoil";
+import { tokenState, nicknameState } from "../../../recoils/Recoil";
 
 import "./Header.css";
 
 const Header = () => {
   const navigate = useNavigate();
   const [jwtToken, setJwtToken] = useRecoilState(tokenState);
-  const [username, setUsername] = useRecoilState(usernameState);
+  const [nickname, setNickname] = useRecoilState(nicknameState);
 
-  const name = localStorage.getItem("name");
+  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+
   const moveToHome = () => {
     navigate("/");
   };
@@ -24,6 +27,9 @@ const Header = () => {
   const moveTomyPage = () => {
     navigate("/myPage");
   };
+  const moveToQnA = () => {
+    navigate("/qna");
+  };
 
   const handleLogout = () => {
     if (window.confirm("로그아웃 하시겠습니까?")) {
@@ -31,7 +37,7 @@ const Header = () => {
       setJwtToken("");
       localStorage.removeItem("jwtToken");
       // Also clear the username in state
-      setUsername("");
+      setNickname("");
       // Navigate back to the login page 로그인 화면으로 돌아감
       moveToLogin();
     }
@@ -42,12 +48,36 @@ const Header = () => {
     if (storedToken) {
       setJwtToken(storedToken);
       // 여기서는 username도 로컬스토리지에 저장되어 있고, 이를 불러올 수 있다고 가정합니다.
-      const storedUsername = localStorage.getItem("username");
-      if (storedUsername) {
-        setUsername(storedUsername);
+      const storedNickname = localStorage.getItem("nickname");
+      if (storedNickname) {
+        setNickname(storedNickname);
       }
     }
   }, []); // 빈 의존성 배열을 사용하여 이 훅이 컴포넌트가 마운트될 때만 실행되도록 합니다.
+
+  // 드롭다운 메뉴를 보여주거나 숨기는 함수
+  const toggleDropdown = () => {
+    setIsDropdownVisible(!isDropdownVisible);
+  };
+
+  const DropdownMenu = () => {
+    return (
+      <div className={`dropdown-menu ${isDropdownVisible ? "show" : ""}`}>
+        <button className="username">
+          <span>{nickname}</span>
+        </button>
+        <button onClick={moveTomyPage}>
+          <span>마이페이지</span>
+        </button>
+        <button onClick={moveToQnA}>
+          <span>Q&A</span>
+        </button>
+        <button className="login" onClick={handleLogout}>
+          <span>로그아웃</span>
+        </button>
+      </div>
+    );
+  };
 
   return (
     <div className="header">
@@ -56,13 +86,13 @@ const Header = () => {
         <button>
           <span>서비스 소개</span>
         </button>
-        <button>
+        <button onClick={moveToQnA}>
           <span>Q&A</span>
         </button>
         <button>
           <span>커뮤니티</span>
         </button>
-        <button>
+        <button onClick={moveTomyPage}>
           <span>마이페이지</span>
         </button>
       </div>
@@ -71,14 +101,18 @@ const Header = () => {
           <React.Fragment>
             <span>
               어서오세요!{" "}
-              <button className="username" onClick={moveTomyPage}>
-                <span>{name}</span>
+              <button className="username">
+                <span>{nickname}</span>
               </button>
               님
             </span>
             <button className="login" onClick={handleLogout}>
               <span>로그아웃</span>
             </button>
+            <button className="hamburger-icon" onClick={toggleDropdown}>
+              <FiMenu size={30} />
+            </button>
+            {isDropdownVisible && <DropdownMenu />}
           </React.Fragment>
         ) : (
           <React.Fragment>

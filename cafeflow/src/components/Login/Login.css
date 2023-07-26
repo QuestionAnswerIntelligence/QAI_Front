@@ -7,14 +7,38 @@
   height: calc(100vh - 100px); /* 100px는 header와 footer 높이의 합 */
 }
 
-.input {
+.input1 {
   width: 400px;
   height: 40px;
   padding-left: 10px;
 }
 
-.submit {
+.input2 {
+  width: 416px;
+  height: 40px;
+  padding-left: 10px;
+}
+
+.submit1 {
+  width: 400px;
   height: 40px;
   font-size: 16px;
   text-align: center;
+}
+
+@media (max-width: 768px) {
+  .input1 {
+    padding-left: 10px;
+    width: 300px;
+  }
+
+  .input2 {
+    width: 316px;
+  }
+  .submit1 {
+    width: 300px;
+    height: 40px;
+    font-size: 16px;
+    text-align: center;
+  }
 }

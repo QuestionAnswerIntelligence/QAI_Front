@@ -11,7 +11,7 @@ const Register = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
+  const [nickname, setNickname] = useState("");
   const [age, setAge] = useState("");
 
   const handleRegister = (event) => {
@@ -20,7 +20,7 @@ const Register = () => {
       .post(`${API_URL}/sign-up`, {
         email: email,
         password: password,
-        name: name,
+        nickname: nickname,
         age: age,
       })
       .then((response) => {
@@ -41,11 +41,11 @@ const Register = () => {
       <form className="login-form">
         <input
           type="string"
-          name="name"
-          placeholder="이름"
+          name="nickname"
+          placeholder="닉네임"
           className="input"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          value={nickname}
+          onChange={(e) => setNickname(e.target.value)}
         />
         <input
           type="string"
@@ -71,12 +71,6 @@ const Register = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        {/* <input
-          type="password"
-          name="password"
-          placeholder="비밀번호 확인"
-          className="input"
-        /> */}
         <button type="submit" className="submit" onClick={handleRegister}>
           회원가입
         </button>
