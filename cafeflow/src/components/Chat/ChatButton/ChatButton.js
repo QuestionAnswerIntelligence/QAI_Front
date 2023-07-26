@@ -1,8 +1,8 @@
 import React from "react";
 
-import "./Chat.css";
+import "./ChatButton.css";
 
-const Chat = () => {
+const ChatButton = () => {
   return (
     <div className="chat">
       <button className="chatButton"></button>
@@ -10,4 +10,4 @@ const Chat = () => {
   );
 };
 
-export default Chat;
+export default ChatButton;
