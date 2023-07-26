@@ -1,11 +1,7 @@
 # CafeFlow
 
 ## 프로젝트 소개 (about Project)
-카페 내 여석 및 혼잡도 확인 시스템입니다.
-<br>
-System to check the number of seats and congestion in the cafe using Arduino.
-<br>
-<br>
+AI 기술  Q&A 사이트
 
 
 ## 개발 기간 (Developmnet Period)
@@ -16,7 +12,6 @@ System to check the number of seats and congestion in the cafe using Arduino.
 * **팀원** 김주영 : Frontend
 * **팀원** 안리안 : Frontend
 * **팀원** 안희찬 : Backend
-* **팀원** 이지호 : Design
 
 ## FrameWork
 * Frontend : React
