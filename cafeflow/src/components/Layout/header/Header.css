@@ -10,12 +10,18 @@
   border-bottom: 1px solid gray;
 }
 
-.header-right {
+.header-right,.header-left {
   display: flex;
   gap: 10px; /* 로그인과 회원가입 사이에 간격을 추가 */
   margin-right: 30px;
 }
-
+.header-left button{
+  background-color:white;
+  border:none;
+}
+.header-left button:hover{
+  background-color:lightblue;
+}
 .login {
   background-color: white;
   border: none;

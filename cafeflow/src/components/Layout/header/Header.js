@@ -54,6 +54,12 @@ const Header = () => {
       <div className="title">
         <h2 onClick={moveToHome}>프로젝트 명</h2>
       </div>
+      <div className="header-left">
+        <button className="introduce"><span>소개</span></button>
+        <button className="qna"><span>Q&A</span></button>
+        <button className="community"><span>커뮤니티</span></button>
+        <button className="myPage"><span>MyPage</span></button>
+      </div>
       <div className="header-right">
         {jwtToken ? (
           <button className="login" onClick={handleLogout}>
