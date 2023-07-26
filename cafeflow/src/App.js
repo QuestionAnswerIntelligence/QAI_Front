@@ -6,7 +6,7 @@ import Footer from "./components/Layout/footer/Footer";
 import Home from "./components/Home/Home";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
-import MyPage from "./components/myPage/MyPage";
+import MyPage from "./components/myPage/MyPage";
 
 const App = () => {
   return (
