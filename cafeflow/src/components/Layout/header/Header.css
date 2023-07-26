@@ -5,23 +5,33 @@
   height: 50px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: center; /* Flex items를 수직 중앙에 배치 */
   padding: 0 10px;
   border-bottom: 1px solid gray;
 }
 
-.header-right,.header-left {
+.header-left {
   display: flex;
-  gap: 10px; /* 로그인과 회원가입 사이에 간격을 추가 */
+  align-items: center; /* 프로젝트 명과 버튼들을 수직 중앙에 배치 */
+  gap: 20px;
+}
+
+.header-left > button {
+  background-color: white;
+  border: none;
+}
+
+.header-left h2 {
+  margin-right: 40px; /* 프로젝트 명과 버튼들 사이의 여백을 추가 */
+}
+
+.header-right {
+  display: flex;
+  align-items: center; /* 로그인/로그아웃 버튼을 수직 중앙에 배치 */
+  gap: 10px;
   margin-right: 30px;
 }
-.header-left button{
-  background-color:white;
-  border:none;
-}
-.header-left button:hover{
-  background-color:lightblue;
-}
+
 .login {
   background-color: white;
   border: none;
