@@ -18,7 +18,8 @@
 
 .login {
   background-color: white;
-  border: 1px;
+  border: none;
+  text-decoration: underline;
 }
 
 .register {
@@ -28,4 +29,10 @@
 
 span {
   font-size: 18px;
+}
+
+.username {
+  background-color: white;
+  border: none;
+  text-decoration: underline;
 }
