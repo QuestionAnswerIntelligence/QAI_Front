@@ -51,37 +51,44 @@ const Header = () => {
 
   return (
     <div className="header">
-      <div className="title">
-        <h2 onClick={moveToHome}>프로젝트 명</h2>
-      </div>
       <div className="header-left">
-        <button className="introduce"><span>소개</span></button>
-        <button className="qna"><span>Q&A</span></button>
-        <button className="community"><span>커뮤니티</span></button>
-        <button className="myPage"><span>MyPage</span></button>
+        <h2 onClick={moveToHome}>프로젝트 명</h2>
+        <button>
+          <span>서비스 소개</span>
+        </button>
+        <button>
+          <span>Q&A</span>
+        </button>
+        <button>
+          <span>커뮤니티</span>
+        </button>
+        <button>
+          <span>마이페이지</span>
+        </button>
       </div>
       <div className="header-right">
         {jwtToken ? (
-          <button className="login" onClick={handleLogout}>
-            <span>로그아웃</span>
-          </button>
-        ) : (
-          <button className="login" onClick={moveToLogin}>
-            <span>로그인</span>
-          </button>
-        )}
-        {jwtToken ? (
-          <span>
-            어서오세요!{" "}
-            <button className="username" onClick={moveTomyPage}>
-              <span>{name}</span>
+          <React.Fragment>
+            <span>
+              어서오세요!{" "}
+              <button className="username" onClick={moveTomyPage}>
+                <span>{name}</span>
+              </button>
+              님
+            </span>
+            <button className="login" onClick={handleLogout}>
+              <span>로그아웃</span>
             </button>
-            님
-          </span>
+          </React.Fragment>
         ) : (
-          <button className="register" onClick={moveToRegister}>
-            <span>회원가입</span>
-          </button>
+          <React.Fragment>
+            <button className="login" onClick={moveToLogin}>
+              <span>로그인</span>
+            </button>
+            <button className="register" onClick={moveToRegister}>
+              <span>회원가입</span>
+            </button>
+          </React.Fragment>
         )}
       </div>
     </div>

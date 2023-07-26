@@ -2,7 +2,12 @@ import axios from "axios";
 import React, { useState } from "react";
 
 import { useSetRecoilState } from "recoil";
-import { tokenState, usernameState } from "../../recoils/Recoil";
+import {
+  tokenState,
+  ageState,
+  emailState,
+  nameState,
+} from "../../recoils/Recoil";
 import { API_URL } from "../Constant";
 
 import "./Login.css";
@@ -18,7 +23,9 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   const setToken = useSetRecoilState(tokenState);
-  const age = useSetRecoilState(usernameState);
+  const setAge = useSetRecoilState(ageState);
+  const setEmail1 = useSetRecoilState(emailState);
+  const setName = useSetRecoilState(nameState);
 
   const handleLogin = () => {
     axios
@@ -30,10 +37,9 @@ const Login = () => {
         const { jwtToken, email, age, name } = response.data;
 
         setToken(jwtToken);
-        console.log("email: ", email);
-        console.log("name: ", name);
-        console.log("age: ", age);
-        console.log("jwtToken: ", jwtToken);
+        setAge(age);
+        setEmail1(email);
+        setName(name);
 
         localStorage.setItem("jwtToken", jwtToken);
         localStorage.setItem("age", age);
