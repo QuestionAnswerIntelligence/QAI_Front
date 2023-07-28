@@ -1,0 +1,17 @@
+.container{
+    
+    position: absolute;
+    left: 5%; /* Adjust this to move the text along the x-axis */
+    top: 100px; /* Adjust this to move the text along the y-axis */
+    margin: 5%;
+    background-color: red;
+    height:60%;
+    width:70%;
+    text-align:center;
+}
+
+.boardList{
+   margin: 2%;
+}
+
+

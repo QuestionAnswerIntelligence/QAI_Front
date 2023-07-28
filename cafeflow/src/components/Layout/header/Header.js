@@ -30,7 +30,9 @@ const Header = () => {
   const moveToQnA = () => {
     navigate("/qnalist");
   };
-
+  const moveToCommunity=()=>{
+    navigate("/community");
+  }
   const handleLogout = () => {
     if (window.confirm("로그아웃 하시겠습니까?")) {
       // 로컬스토리지에서 Token 삭제
@@ -89,7 +91,7 @@ const Header = () => {
         <button onClick={moveToQnA}>
           <span>Q&A</span>
         </button>
-        <button>
+        <button onClick={moveToCommunity}>
           <span>커뮤니티</span>
         </button>
         <button onClick={moveTomyPage}>

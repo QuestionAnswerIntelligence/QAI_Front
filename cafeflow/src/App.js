@@ -10,6 +10,9 @@ import MyPage from "./components/myPage/MyPage";
 import ChatButton from "./components/Chat/ChatButton/ChatButton";
 import QnAForm from "./components/QnAForm/QnAForm";
 import QnAList from "./components/QnAList/QnAList";
+import Community from "./components/Community/Community";
+import FreeBoard from "./components/Community/FreeBoard/FreeBoard";
+import ShareBoard from "./components/Community/ShareBoard/ShareBoard";
 
 const App = () => {
   return (
@@ -23,6 +26,9 @@ const App = () => {
           <Route path="/myPage" element={<MyPage />} />
           <Route path="/qnalist" element={<QnAList />} />
           <Route path="/qnaform" element={<QnAForm />} />
+          <Route path="/community" element={<Community />} />
+          <Route path="/freeboard" element={<FreeBoard />} />
+          <Route path="/shareboard" element={<ShareBoard />} />
         </Routes>
         <ChatButton />
         <Footer />
