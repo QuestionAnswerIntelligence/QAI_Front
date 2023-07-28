@@ -7,8 +7,9 @@ import Home from "./components/Home/Home";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import MyPage from "./components/myPage/MyPage";
-import QnAPage from "./components/QnA/QnAPage";
 import ChatButton from "./components/Chat/ChatButton/ChatButton";
+import QnAForm from "./components/QnAForm/QnAForm";
+import QnAList from "./components/QnAList/QnAList";
 
 const App = () => {
   return (
@@ -20,7 +21,8 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/myPage" element={<MyPage />} />
-          <Route path="/qna" element={<QnAPage />} />
+          <Route path="/qnalist" element={<QnAList />} />
+          <Route path="/qnaform" element={<QnAForm />} />
         </Routes>
         <ChatButton />
         <Footer />
