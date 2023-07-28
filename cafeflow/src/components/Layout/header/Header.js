@@ -28,7 +28,7 @@ const Header = () => {
     navigate("/myPage");
   };
   const moveToQnA = () => {
-    navigate("/qna");
+    navigate("/qnalist");
   };
 
   const handleLogout = () => {
