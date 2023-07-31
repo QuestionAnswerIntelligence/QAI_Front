@@ -2,10 +2,10 @@
   bottom: 100px;
   right: 50px;
   position: fixed;
-  width: 50px;
-  height: 50px;
-  background-color: white;
-  background-image: url("../../../icons/chaticon.png");
+  width: 70px;
+  height: 70px;
+  background-color: transparent;
+  background-image: url("../../../icons/chat.png");
   background-size: cover;
   background-repeat: no-repeat;
   border: none;
