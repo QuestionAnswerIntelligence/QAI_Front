@@ -65,38 +65,46 @@ const Register = () => {
                 onChange={(e) => setNickname(e.target.value)}
               />
             </div>
-            <input
-              type="string"
-              name="nickname"
-              placeholder="닉네임"
-              className="input"
-              value={nickname}
-              onChange={(e) => setNickname(e.target.value)}
-            />
-            <input
-              type="string"
-              name="birth"
-              placeholder="나이"
-              className="input"
-              value={age}
-              onChange={(e) => setAge(e.target.value)}
-            />
-            <input
-              type="string"
-              name="id"
-              placeholder="아이디 (2~10자의 영문과 숫자를 조합해주세요)"
-              className="input"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
-              type="password"
-              name="password"
-              placeholder="비밀번호"
-              className="input"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+            <div className="input-container">
+              <span for="nickname" className="input-label">
+                나이
+              </span>
+              <input
+                type="string"
+                name="birth"
+                placeholder="나이"
+                className="input"
+                value={age}
+                onChange={(e) => setAge(e.target.value)}
+              />
+            </div>
+            <div className="input-container">
+              <span for="id" className="input-label">
+                아이디
+              </span>
+              <input
+                type="string"
+                name="id"
+                placeholder="아이디 (2~10자의 영문과 숫자를 조합해주세요)"
+                className="input"
+                value={age}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div className="input-container">
+              <span for="id" className="input-label">
+                비밀번호
+              </span>
+              <input
+                type="password"
+                name="password"
+                placeholder="비밀번호"
+                className="input"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+
             <button
               style={{ width: "500px" }}
               type="submit"
@@ -108,7 +116,6 @@ const Register = () => {
           </form>
         </div>
       </div>
-      <div className="example1"></div>
     </div>
   );
 };
