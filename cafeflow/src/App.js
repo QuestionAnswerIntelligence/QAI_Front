@@ -33,7 +33,6 @@ const App = () => {
           <Route path="/questions/:questionId" element={<QnAPage />} />
         </Routes>
         <ChatButton />
-        <Footer />
       </Router>
     </RecoilRoot>
   );
