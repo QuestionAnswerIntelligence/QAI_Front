@@ -3,8 +3,6 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 import { API_URL } from "../Constant";
-
-import Divider from "@mui/material/Divider";
 import logo from "../../icons/Logo.png";
 import "./Register.css";
 
@@ -39,60 +37,78 @@ const Register = () => {
       });
   };
   return (
-    <div className="back">
-      <div className="login-container1">
-        <div className="image-container">
-          {/* <img src="../../icons/yourImage.png" alt="Description" /> */}
+    <div>
+      <div className="back">
+        <div className="register-container">
+          <form className="register-form">
+            <img src={logo}></img>
+            <h2>회원가입 하기</h2>
+            <div className="button-container">
+              <button className="naver"></button>
+              <button className="kakao"></button>
+              <button className="google"></button>
+            </div>
+            <div className="divider">
+              <span>OR</span>
+            </div>
+            <div className="input-container">
+              <span for="nickname" className="input-label">
+                닉네임
+              </span>
+              <input
+                type="string"
+                id="nickname"
+                name="nickname"
+                placeholder="닉네임"
+                className="input"
+                value={nickname}
+                onChange={(e) => setNickname(e.target.value)}
+              />
+            </div>
+            <input
+              type="string"
+              name="nickname"
+              placeholder="닉네임"
+              className="input"
+              value={nickname}
+              onChange={(e) => setNickname(e.target.value)}
+            />
+            <input
+              type="string"
+              name="birth"
+              placeholder="나이"
+              className="input"
+              value={age}
+              onChange={(e) => setAge(e.target.value)}
+            />
+            <input
+              type="string"
+              name="id"
+              placeholder="아이디 (2~10자의 영문과 숫자를 조합해주세요)"
+              className="input"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="비밀번호"
+              className="input"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <button
+              style={{ width: "500px" }}
+              type="submit"
+              className="submit"
+              onClick={handleRegister}
+            >
+              회원가입
+            </button>
+          </form>
         </div>
-        <form className="login-form">
-          <img src={logo}></img>
-          <h2>회원가입 하기</h2>
-          <button>Sign up with Facebook</button>
-          <button>Sign up with Google</button>
-          <button>Sign up with Kakao</button>
-          <Divider>OR</Divider>
-          <input
-            type="string"
-            name="nickname"
-            placeholder="닉네임"
-            className="input"
-            value={nickname}
-            onChange={(e) => setNickname(e.target.value)}
-          />
-          <input
-            type="string"
-            name="birth"
-            placeholder="나이"
-            className="input"
-            value={age}
-            onChange={(e) => setAge(e.target.value)}
-          />
-          <input
-            type="string"
-            name="id"
-            placeholder="아이디 (2~10자의 영문과 숫자를 조합해주세요)"
-            className="input"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <input
-            type="password"
-            name="password"
-            placeholder="비밀번호"
-            className="input"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <button
-            style={{ width: "416px" }}
-            type="submit"
-            className="submit"
-            onClick={handleRegister}
-          >
-            회원가입
-          </button>
-        </form>
       </div>
+      <div className="example1"></div>
     </div>
   );
 };

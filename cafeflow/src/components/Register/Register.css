@@ -1,49 +1,78 @@
-.back {
-  background-image: url("../../icons/backgroundRegister.png");
+/* .back {
+  background-image: url("../../icons/backgroundRegisterLogin.png");
   background-size: cover;
   background-repeat: no-repeat;
   padding-top: 100px;
-}
+} */
 
-.login-container1 {
+.register-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   height: calc(100vh - 100px);
+  background-image: url("../../icons/backgroundRegisterLogin.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center 100px; /* x축은 가운데, y축은 100px만큼 움직임 */
+  padding-top: 100px;
 }
 
-.image-container {
-  width: 50%; /* 원하는 너비 비율로 조정하세요. */
-}
-
-.login-form {
+.register-form {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  padding: 10px;
   align-items: center;
   gap: 10px;
-  width: 50%; /* 원하는 너비 비율로 조정하세요. */
+  width: 40%; /* 원하는 너비 비율로 조정하세요. */
   background-color: white;
-  height: 100%;
+  /* height: 95%; */
+  border-radius: 10px;
 }
 
-.login-form > h2 {
+.register-form > div.button-container {
+  display: flex;
+  justify-content: space-around;
+  width: 80%; /* 너비를 100%로 설정하여 가능한 모든 공간을 차지 */
+}
+
+.register-form > div.button-container > button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.register-form > h2 {
   margin: 10px;
 }
 
-.login-form > div > img {
+.register-form > div > img {
   width: 50px;
   height: 50px;
 }
-.login-form > button {
-  width: 500px;
+
+.register-form > div > button {
+  width: 50px;
   height: 50px;
+  border-radius: 50%;
+  background-color: white;
 }
+
+.register-form > button {
+  width: 500px;
+  height: 60px;
+  border-radius: 32px;
+  border: 1px solid lightgray;
+  background-color: white;
+}
+
 .input {
-  width: 400px;
+  width: 484px;
   height: 40px;
   padding-left: 10px;
+  border-radius: 12px;
+  border: 1px solid lightgray;
+  background-color: white;
 }
 
 .submit {
@@ -58,4 +87,68 @@
     height: 40px;
     padding-left: 10px;
   }
+}
+
+.example1 {
+  width: 100%;
+  height: 500px;
+  background-color: aqua;
+}
+
+.hr {
+  border: none;
+  border-top: 1px solid #333;
+  color: #333;
+  overflow: visible;
+  text-align: center;
+  height: 1px;
+}
+
+.divider {
+  height: 1px;
+  width: 80%;
+  background-color: lightgray;
+  margin: 30px;
+  position: relative;
+}
+
+.divider > span {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff;
+  color: lightgray;
+  padding: 0 10px;
+}
+
+.naver {
+  background-image: url("../../icons/naver.png");
+  background-size: contain;
+  border: none;
+}
+
+.kakao {
+  background-image: url("../../icons/kakao.png");
+  background-size: contain;
+  border: none;
+}
+
+.google {
+  background-image: url("../../icons/google.png");
+  background-size: contain;
+  border: 1px solid lightgray;
+}
+
+.input-container {
+  position: relative;
+}
+
+.input-label {
+  position: absolute;
+  top: -25px;
+  font-size: 14px;
+  padding: 0 5px;
+  color: #666666;
+  font-family: "poppins";
 }
