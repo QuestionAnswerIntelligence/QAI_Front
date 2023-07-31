@@ -3,7 +3,20 @@
   left: 35%;
   top: 100px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+table {
+  text-align: center;
+  border-spacing: 20px;
+}
+
+th {
+  text-decoration: underline;
+  background-color: lightgray;
+}
+.title:hover {
+  text-decoration: underline;
 }
