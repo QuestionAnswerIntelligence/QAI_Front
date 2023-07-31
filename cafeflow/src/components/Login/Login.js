@@ -28,8 +28,23 @@ const Login = () => {
   const setAge = useSetRecoilState(ageState);
   const setEmail1 = useSetRecoilState(emailState);
   const setNickname = useSetRecoilState(nicknameState);
+  const isFormFilled=email && password;
+
+
+
+  const SatisfyPassword=(e)=>{
+    setPassword(e.target.value);
+    
+  }
 
   const handleLogin = () => {
+    if(!email){
+      alert("아이디가 입력되지 않았습니다!");
+    }
+    else if(!password){
+      alert("비밀번호가 입력되지 않았습니다!");
+    }
+    else{
     axios
       .post(`${API_URL}/login`, {
         email: email,
@@ -56,12 +71,13 @@ const Login = () => {
         console.log(error.response);
         alert("로그인에 실패했습니다.");
       });
+    }
   };
   return (
     <div>
       <div className="login-container">
           <img src={logo}></img>
-          <h2>로그인 하기</h2>
+          <h2>로그인</h2>
           <div className="button-container">
             <button className="button-icon naver"></button>
             <button className="button-icon kakao"></button>
@@ -69,45 +85,25 @@ const Login = () => {
           </div>
          
           <div className="divider"><span>OR</span></div>
-          <label className="login-label">Email</label>
-          <input type="text" name="id" placeholder="Email을 입력하세요" className="input1" value={email}
+
+          <div class="login-input-container">
+          <label for="email" className="login-label">Email</label>
+          <input id="email" type="text" name="id" placeholder="Email을 입력하세요" className="input1" value={email}
             onChange={(e)=>setEmail(e.target.value)}
           />
+          </div>
+          <div class="login-input-container">
+          <label for="password" className="login-label">Password</label>
+          <input id="password" type="password" name="password" placeholder="" className="input1" value={password}
+            onChange={SatisfyPassword}/>
+          </div>
           
-          <label className="login-label">Password</label>
-          <input type="password" name="password" placeholder="" className="input1" value={password}
-          onChange={(e)=>{setPassword(e.target.value)}}/>
-
-          <button type="submit" className="submmit-button" onClick={handleLogin}>로그인하기</button>
+          <button style={{backgroundColor: isFormFilled? "#564e97": "gray" }} type="submit" className="submmit-button" onClick={handleLogin}>로그인하기</button>
         
-        <p style={{fontSize:"12px"}}>계정이 없나요? <button style={{textDecoration:"underline"}}className="register-button" onClick={moveToRegister}>회원가입</button>하기</p>
+        <p style={{fontSize:"12px"}}>계정이 없나요? <button style={{textDecoration:"underline", margin:"0"}}className="register-button" onClick={moveToRegister}>회원가입</button>하기</p>
       </div>
 
       
-      {/* <div className="login-container">
-        <input
-          type="text"
-          name="id"
-          placeholder="아이디를 입력해주세요"
-          className="input1"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="비밀번호를 입력해주세요"
-          className="input1"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit" className="input2" onClick={handleLogin}>
-          로그인
-        </button>
-        <button type="submit" className="input2" onClick={moveToRegister}>
-          회원가입
-        </button>
-      </div> */}
     </div>
   );
 };
