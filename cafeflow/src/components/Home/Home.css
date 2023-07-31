@@ -4,8 +4,74 @@
   justify-content: center;
   align-items: center;
   height: calc(100vh - 100px);
+  background-color: #0d0d2b;
+  background-image: url("../../icons/blur.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
-.aa{
-  height:500px;
-  background-color:beige;
+
+.explain {
+  display: flex;
+  flex-direction: column;
+}
+
+.explain > h1 {
+  color: white;
+  font-size: 50px;
+  position: relative;
+  bottom: 20px;
+  margin: 0;
+}
+
+.explain > span {
+  color: white;
+}
+
+.goLogin {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 230px;
+  height: 50px;
+  background-color: #0d0d2b;
+  color: white;
+  box-shadow: 0 16px 64px 0 rgba(104, 1, 255, 0.12);
+  border: double 1px transparent;
+  border-radius: 36px; /* 버튼의 모서리를 둥글게 만드는 속성 */
+  background-image: linear-gradient(#0d0d2b, #0d0d2b),
+    /* 글자 배경 */
+      conic-gradient(
+        #fff 0.2turn,
+        #6700ff 0.5turn,
+        rgba(255, 255, 255, 0.07) 0.7turn,
+        #6700ff
+      );
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
+.aa {
+  height: 500px;
+  background-color: #362f66;
+}
+
+.char {
+  position: relative;
+  object-fit: contain;
+  mix-blend-mode: lighten;
+  left: 14%;
+}
+
+.layer-left {
+  position: absolute;
+  top: 40%;
+  right: 25%;
+}
+
+.layer-right {
+  position: absolute;
+  top: 60%;
+  left: 40%;
 }

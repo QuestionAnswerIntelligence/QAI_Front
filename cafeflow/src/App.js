@@ -13,6 +13,7 @@ import QnAList from "./components/QnAList/QnAList";
 import Community from "./components/Community/Community";
 import FreeBoard from "./components/Community/FreeBoard/FreeBoard";
 import ShareBoard from "./components/Community/ShareBoard/ShareBoard";
+import QnAPage from "./QnAPage/QnAPage";
 
 const App = () => {
   return (
@@ -29,6 +30,7 @@ const App = () => {
           <Route path="/community" element={<Community />} />
           <Route path="/freeboard" element={<FreeBoard />} />
           <Route path="/shareboard" element={<ShareBoard />} />
+          <Route path="/questions/:questionId" element={<QnAPage />} />
         </Routes>
         <ChatButton />
         <Footer />

@@ -7,6 +7,8 @@ import { MdClose } from "react-icons/md"; // 메뉴 닫기 아이콘
 import { tokenState, nicknameState } from "../../../recoils/Recoil";
 
 import "./Header.css";
+import Logo from "../../../icons/Logo.png";
+import divider from "../../../icons/Divider.png";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -30,9 +32,9 @@ const Header = () => {
   const moveToQnA = () => {
     navigate("/qnalist");
   };
-  const moveToCommunity=()=>{
+  const moveToCommunity = () => {
     navigate("/community");
-  }
+  };
   const handleLogout = () => {
     if (window.confirm("로그아웃 하시겠습니까?")) {
       // 로컬스토리지에서 Token 삭제
@@ -84,18 +86,21 @@ const Header = () => {
   return (
     <div className="header">
       <div className="header-left">
-        <h2 onClick={moveToHome}>프로젝트 명</h2>
+        <img src={Logo} style={{ width: "40px", height: "40px" }}></img>
+        <h2 onClick={moveToHome}>AIConnectia</h2>
+      </div>
+      <div className="header-center">
         <button>
-          <span>서비스 소개</span>
+          <span style={{ color: "#564E97" }}>New technology</span>
         </button>
         <button onClick={moveToQnA}>
           <span>Q&A</span>
         </button>
         <button onClick={moveToCommunity}>
-          <span>커뮤니티</span>
+          <span>Community</span>
         </button>
         <button onClick={moveTomyPage}>
-          <span>마이페이지</span>
+          <span>Mypage</span>
         </button>
       </div>
       <div className="header-right">
@@ -103,7 +108,7 @@ const Header = () => {
           <React.Fragment>
             <span>
               어서오세요!{" "}
-              <button className="username">
+              <button className="username" onClick={moveTomyPage}>
                 <span>{nickname}</span>
               </button>
               님
@@ -119,10 +124,14 @@ const Header = () => {
         ) : (
           <React.Fragment>
             <button className="login" onClick={moveToLogin}>
-              <span>로그인</span>
+              <span>Login</span>
             </button>
+            <img
+              src={divider}
+              style={{ marginLeft: "10px", marginRight: "10px" }}
+            ></img>
             <button className="register" onClick={moveToRegister}>
-              <span>회원가입</span>
+              <span>Register</span>
             </button>
           </React.Fragment>
         )}

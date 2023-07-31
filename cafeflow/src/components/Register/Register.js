@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 
 import { API_URL } from "../Constant";
 
+import Divider from "@mui/material/Divider";
+import logo from "../../icons/Logo.png";
 import "./Register.css";
 
 const Register = () => {
@@ -37,44 +39,60 @@ const Register = () => {
       });
   };
   return (
-    <div className="login-container">
-      <form className="login-form">
-        <input
-          type="string"
-          name="nickname"
-          placeholder="닉네임"
-          className="input"
-          value={nickname}
-          onChange={(e) => setNickname(e.target.value)}
-        />
-        <input
-          type="string"
-          name="birth"
-          placeholder="나이"
-          className="input"
-          value={age}
-          onChange={(e) => setAge(e.target.value)}
-        />
-        <input
-          type="string"
-          name="id"
-          placeholder="아이디 (2~10자의 영문과 숫자를 조합해주세요)"
-          className="input"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="비밀번호"
-          className="input"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit" className="submit" onClick={handleRegister}>
-          회원가입
-        </button>
-      </form>
+    <div className="back">
+      <div className="login-container1">
+        <div className="image-container">
+          {/* <img src="../../icons/yourImage.png" alt="Description" /> */}
+        </div>
+        <form className="login-form">
+          <img src={logo}></img>
+          <h2>회원가입 하기</h2>
+          <button>Sign up with Facebook</button>
+          <button>Sign up with Google</button>
+          <button>Sign up with Kakao</button>
+          <Divider>OR</Divider>
+          <input
+            type="string"
+            name="nickname"
+            placeholder="닉네임"
+            className="input"
+            value={nickname}
+            onChange={(e) => setNickname(e.target.value)}
+          />
+          <input
+            type="string"
+            name="birth"
+            placeholder="나이"
+            className="input"
+            value={age}
+            onChange={(e) => setAge(e.target.value)}
+          />
+          <input
+            type="string"
+            name="id"
+            placeholder="아이디 (2~10자의 영문과 숫자를 조합해주세요)"
+            className="input"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="비밀번호"
+            className="input"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button
+            style={{ width: "416px" }}
+            type="submit"
+            className="submit"
+            onClick={handleRegister}
+          >
+            회원가입
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

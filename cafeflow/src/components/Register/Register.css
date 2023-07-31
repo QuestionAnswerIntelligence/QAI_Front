@@ -1,16 +1,45 @@
-.login-container {
+.back {
+  background-image: url("../../icons/backgroundRegister.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding-top: 100px;
+}
+
+.login-container1 {
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   height: calc(100vh - 100px);
 }
 
+.image-container {
+  width: 50%; /* 원하는 너비 비율로 조정하세요. */
+}
+
 .login-form {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 10px;
+  width: 50%; /* 원하는 너비 비율로 조정하세요. */
+  background-color: white;
+  height: 100%;
 }
 
+.login-form > h2 {
+  margin: 10px;
+}
+
+.login-form > div > img {
+  width: 50px;
+  height: 50px;
+}
+.login-form > button {
+  width: 500px;
+  height: 50px;
+}
 .input {
   width: 400px;
   height: 40px;
