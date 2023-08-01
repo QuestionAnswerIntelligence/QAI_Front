@@ -74,8 +74,8 @@ const Login = () => {
     }
   };
   return (
-    <div>
-      <div className="login-container">
+    <div className="login-outer-container">
+      <div className="login-inner-container">
           <img src={logo}></img>
           <h2>로그인</h2>
           <div className="button-container">
@@ -96,11 +96,12 @@ const Login = () => {
           <label for="password" className="login-label">Password</label>
           <input id="password" type="password" name="password" placeholder="" className="input1" value={password}
             onChange={SatisfyPassword}/>
+          <p style={{fontSize:"12px",color:"gray"}}>Password 조건을 적는 부분입니다.(특수문자 포함, 10자 이상)</p>
           </div>
           
-          <button style={{backgroundColor: isFormFilled? "#564e97": "gray" }} type="submit" className="submmit-button" onClick={handleLogin}>로그인하기</button>
+          <button style={{backgroundColor: isFormFilled? "#564e97": "#cecdd9" }} type="submit" className="submmit-button" onClick={handleLogin}>로그인하기</button>
         
-        <p style={{fontSize:"12px"}}>계정이 없나요? <button style={{textDecoration:"underline", margin:"0"}}className="register-button" onClick={moveToRegister}>회원가입</button>하기</p>
+        <p style={{fontSize:"12px"}}>계정이 없나요? <button style={{textDecoration:"underline"}}className="register-button" onClick={moveToRegister}>회원가입</button>하기</p>
       </div>
 
       
