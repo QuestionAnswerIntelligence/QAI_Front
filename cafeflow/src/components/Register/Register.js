@@ -127,8 +127,8 @@ const Register = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <div style={{ marginTop: "20px" }}>
-          <p style={{ margin: "0px", fontSize: "13px", color: "gray" }}>
+        <div>
+          <p style={{ margin: "0px", fontSize: "11px", color: "gray" }}>
             By creating an account, you agree to the Terms of use and Privacy
             Policy.
           </p>
@@ -137,9 +137,7 @@ const Register = () => {
           {errorMessage}
           <button
             style={{
-              width: "500px",
               backgroundColor: isFormFilled ? "#564e97" : "lightgray", // 모든 필드가 채워졌을 때 버튼 색상을 초록색으로 변경
-              color: "white",
             }}
             type="submit"
             className="submit"

@@ -32,7 +32,7 @@ const App = () => {
           <Route path="/shareboard" element={<ShareBoard />} />
           <Route path="/questions/:questionId" element={<QnAPage />} />
         </Routes>
-        <ChatButton />
+        {/* <ChatButton /> */}
       </Router>
     </RecoilRoot>
   );

@@ -9,6 +9,7 @@ const QnAList = () => {
   const token = localStorage.getItem("jwtToken");
   const [questions, setQuestions] = useState([]);
   const [pageNum, setPageNum] = useState(0);
+  const [size, setSize] = useState(10);
 
   const navigate = useNavigate();
 
@@ -19,19 +20,19 @@ const QnAList = () => {
   // page
   useEffect(() => {
     axios
-      .get(`${API_URL}/questions?page=${pageNum}`, {
+      .get(`${API_URL}/questions?page=${pageNum}&size=${size}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
       .then((response) => {
-        setQuestions(response.data);
-        console.log(response.data);
+        setQuestions(response.data.data.questionList);
+        console.log(response.data.data.questionList);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, [token, pageNum]);
+  }, [token, pageNum, size]);
 
   // 날짜 형식을 YYYY-MM-DD로 변환해주는 함수
   function formatDate(isoDateString) {

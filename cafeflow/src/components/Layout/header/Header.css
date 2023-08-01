@@ -63,16 +63,19 @@
 
 span {
   font-size: 18px;
+  color: white;
 }
 
 .username {
-  background-color: white;
   border: none;
+  color: white;
+  background-color: #0d0d2b;
   text-decoration: underline;
 }
 
 .hamburger-icon {
-  background-color: white;
+  color: white;
+  background-color: #0d0d2b;
   border: none;
 }
 
@@ -89,6 +92,15 @@ span {
 
   .header-right > .hamburger-icon {
     display: inline-block;
+  }
+  .header-center {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .header-center > button > span {
+    font-size: 11px;
   }
 }
 
