@@ -1,4 +1,16 @@
-.login-container {
+.login-outer-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../../icons/backgroundRegisterLogin.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center 100px; /* x축은 가운데, y축은 100px만큼 움직임 */
+    min-height: 100vh;
+  
+}
+.login-inner-container {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -6,7 +18,11 @@
   gap: 10px;
   height: calc(100vh - 100px); /* 100px는 header와 footer 높이의 합 */
   margin-bottom:100px;
-  padding-top:100px;
+  margin-top:100px;
+  background-color:white;
+  border-radius:10px;
+  width:60vw;
+  
 
 }
 .button-container{
@@ -16,17 +32,12 @@
 }
 
 .input1 {
-  width: 400px;
+  /* width: 400px; */
+  width:50vw;
   height: 40px;
   padding-left: 10px;
   border-radius:10px;
   border: 1px solid lightgray;
-}
-
-.input2 {
-  width: 416px;
-  height: 40px;
-  padding-left: 10px;
 }
 
 .submit1 {
@@ -79,13 +90,13 @@
 }
 
 .submmit-button{
-  width:400px;
+  width:40vw;
   height:50px;
-  background-color:rgb(185, 185, 185);
   color:white;
   border:none;
   border-radius:50px;
   margin-top:100px;
+  /* background-color:#cecdd9; */
 }
 
 
