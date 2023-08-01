@@ -15,7 +15,7 @@ const Home = () => {
   };
 
   return (
-    <div className="background">
+    <div>
       <div className="main">
         <div className="explain">
           <h1>
@@ -40,18 +40,18 @@ const Home = () => {
         </div>
         <div className="character">
           <img src={character} className="char"></img>
-          <div className="layer-left">
-            <img src={layer2}></img>
-          </div>
-          <div className="layer-right">
-            <img src={layer2}></img>
-          </div>
+          {/* 메인 화면 밑에 구현 완료하면 주석 풀 예정 */}
+          {/* <div className="layer-left">
+          <img src={layer2}></img>
+        </div>
+        <div className="layer-right">
+          <img src={layer2}></img>
+        </div> */}
         </div>
       </div>
-      <div className="aa"></div>
-      <div className="aa"></div>
-      <button onClick={moveToLogin}>자세히 알아보기</button>
-      <div className="aa"></div>
+      <div className="aa" style={{ backgroundColor: "white" }}></div>
+      <div className="aa" style={{ backgroundColor: "yellow" }}></div>
+      <div className="aa" style={{ backgroundColor: "green" }}></div>
     </div>
   );
 };

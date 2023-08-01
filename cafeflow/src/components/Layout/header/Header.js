@@ -86,7 +86,11 @@ const Header = () => {
   return (
     <div className="header">
       <div className="header-left">
-        <img src={Logo} style={{ width: "40px", height: "40px" }}></img>
+        <img
+          src={Logo}
+          style={{ width: "40px", height: "40px" }}
+          onClick={moveToHome}
+        ></img>
         <h2 onClick={moveToHome}>AIConnectia</h2>
       </div>
       <div className="header-center">

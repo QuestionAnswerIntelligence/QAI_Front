@@ -44,7 +44,7 @@
 }
 
 .input {
-  width: 484px;
+  width: 30vw;
   height: 40px;
   padding-left: 10px;
   border-radius: 12px;
@@ -54,19 +54,12 @@
 
 .submit {
   height: 40px;
+  width: 32vw;
   font-size: 16px;
   border-radius: 40px;
   border: 1px solid lightgray;
   margin-top: 10px;
   text-align: center;
-}
-
-@media (max-width: 768px) {
-  .input {
-    width: 300px;
-    height: 40px;
-    padding-left: 10px;
-  }
 }
 
 .example1 {
@@ -132,4 +125,141 @@
   padding: 0 3px;
   color: #666666;
   font-family: "poppins";
+}
+
+/* 모바일 버전 */
+@media (max-width: 768px) {
+  .register-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    background-image: url("../../icons/backgroundRegisterLogin.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center 100px; /* x축은 가운데, y축은 100px만큼 움직임 */
+    min-height: 100vh;
+  }
+
+  .register-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%; /* 원하는 너비 비율로 조정하세요. */
+    background-color: white;
+    border-radius: 10px;
+    margin-top: 100px;
+  }
+
+  .register-form > div.button-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%; /* 너비를 100%로 설정하여 가능한 모든 공간을 차지 */
+  }
+
+  .register-form > div.button-container > button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+
+  .register-form > button {
+    width: 300px;
+    height: 60px;
+    border-radius: 32px;
+    border: 1px solid lightgray;
+    background-color: white;
+  }
+
+  .register-button {
+    width: 50vw;
+    color: white;
+  }
+
+  .submit {
+    width: 75vw;
+    height: 40px;
+    font-size: 16px;
+    border-radius: 40px;
+    border: 1px solid lightgray;
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  .example1 {
+    width: 100%;
+    height: 500px;
+    background-color: aqua;
+  }
+
+  .register-form > h2 {
+    margin: 0px;
+  }
+
+  .hr {
+    border: none;
+    border-top: 1px solid #333;
+    color: #333;
+    overflow: visible;
+    text-align: center;
+    height: 1px;
+  }
+
+  .divider {
+    height: 1px;
+    width: 80%;
+    background-color: lightgray;
+    margin: 15px;
+    position: relative;
+  }
+
+  .divider > span {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    color: lightgray;
+    padding: 0 10px;
+  }
+
+  .naver {
+    background-image: url("../../icons/naver.png");
+    background-size: contain;
+    border: none;
+  }
+
+  .kakao {
+    background-image: url("../../icons/kakao.png");
+    background-size: contain;
+    border: none;
+  }
+
+  .google {
+    background-image: url("../../icons/google.png");
+    background-size: contain;
+    border: 1px solid lightgray;
+  }
+
+  .input-container {
+    position: relative;
+    margin: 10px 0;
+  }
+
+  .input-label {
+    position: absolute;
+    top: -20px;
+    font-size: 14px;
+    padding: 0 3px;
+    color: #666666;
+    font-family: "poppins";
+  }
+
+  .input {
+    width: 70vw;
+    height: 4.5vh;
+    padding-left: 10px;
+  }
 }

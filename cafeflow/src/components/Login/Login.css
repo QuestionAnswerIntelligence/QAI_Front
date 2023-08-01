@@ -1,4 +1,116 @@
-.login-outer-container{
+.login-outer-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../../icons/backgroundRegisterLogin.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center 100px; /* x축은 가운데, y축은 100px만큼 움직임 */
+  min-height: 100vh;
+}
+
+.login-inner-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  align-items: center;
+  gap: 10px;
+  width: 40%; /* 원하는 너비 비율로 조정하세요. */
+  background-color: white;
+  border-radius: 10px;
+  margin-top: 100px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-around;
+  width: 80%; /* 너비를 100%로 설정하여 가능한 모든 공간을 차지 */
+}
+
+.button-container > button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.input1 {
+  width: 484px;
+  height: 40px;
+  padding-left: 10px;
+  border-radius: 12px;
+  border: 1px solid lightgray;
+  background-color: white;
+}
+
+.submit-button {
+  height: 40px;
+  width: 30vw;
+  font-size: 16px;
+  border-radius: 40px;
+  border: 1px solid lightgray;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.button-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 36px;
+  border: none;
+  margin: 50px;
+}
+.naver {
+  background-image: url("../../icons/naver.png");
+  background-size: contain;
+}
+
+.kakao {
+  background-image: url("../../icons/kakao.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.google {
+  background-image: url("../../icons/google.png");
+  background-size: contain;
+}
+
+.register-button {
+  border: none;
+  background-color: white;
+}
+.divider {
+  height: 1px;
+  width: 80%;
+  background-color: lightgray;
+  margin: 30px;
+  position: relative;
+}
+
+.divider > span {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.login-input-container {
+  position: relative;
+  margin: 20px 0;
+}
+
+.login-label {
+  position: absolute;
+  top: -20px;
+  font-size: 14px;
+  padding: 0 3px;
+  color: #666666;
+  font-family: "poppins";
+}
+
+@media (max-width: 768px) {
+  .login-outer-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -8,127 +120,101 @@
     background-repeat: no-repeat;
     background-position: center 100px; /* x축은 가운데, y축은 100px만큼 움직임 */
     min-height: 100vh;
-  
-}
-.login-inner-container {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  height: calc(100vh - 100px); /* 100px는 header와 footer 높이의 합 */
-  margin-bottom:100px;
-  margin-top:100px;
-  background-color:white;
-  border-radius:10px;
-  width:60vw;
-  
-
-}
-.button-container{
-  display:flex;
-  flex-direction:row;
-  justify-content: space-between;
-}
-
-.input1 {
-  /* width: 400px; */
-  width:50vw;
-  height: 40px;
-  padding-left: 10px;
-  border-radius:10px;
-  border: 1px solid lightgray;
-}
-
-.submit1 {
-  width: 400px;
-  height: 40px;
-  font-size: 16px;
-  text-align: center;
-}
-
-@media (max-width: 768px) {
-  .input1 {
-    padding-left: 10px;
-    width: 300px;
-    
   }
 
-  .input2 {
-    width: 316px;
+  .login-inner-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%; /* 원하는 너비 비율로 조정 */
+    background-color: white;
+    border-radius: 10px;
+    margin-top: 100px;
   }
-  .submit1 {
-    width: 300px;
+
+  .button-container {
+    display: flex;
+    justify-content: space-around;
+    width: 80%; /* 너비를 100%로 설정하여 가능한 모든 공간을 차지 */
+  }
+
+  .button-container > button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+
+  .button-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 36px;
+    border: none;
+    margin: 50px;
+  }
+  .naver {
+    background-image: url("../../icons/naver.png");
+    background-size: contain;
+  }
+
+  .kakao {
+    background-image: url("../../icons/kakao.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  .google {
+    background-image: url("../../icons/google.png");
+    background-size: contain;
+  }
+
+  .submit-button {
+    width: 75vw;
     height: 40px;
     font-size: 16px;
+    border-radius: 40px;
+    border: 1px solid lightgray;
+    margin-top: 10px;
     text-align: center;
   }
-}
 
-.button-icon{
-  width: 50px;
-  height: 50px;
-  border-radius: 36px;
-  border: none;
-  margin:50px;
-}
-.naver {
-  background-image: url("../../icons/naver.png");
-  background-size: contain;
-  
-}
+  .register-button {
+    border: none;
+    background-color: white;
+  }
+  .divider {
+    height: 1px;
+    width: 80%;
+    background-color: lightgray;
+    margin: 30px;
+    position: relative;
+  }
 
-.kakao {
-  background-image: url("../../icons/kakao.png");
-  background-size: contain;
+  .divider > span {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 
-}
+  .login-input-container {
+    position: relative;
+    margin: 20px 0;
+  }
 
-.google {
-  background-image: url("../../icons/google.png");
-  background-size: contain;
-}
+  .login-label {
+    position: absolute;
+    top: -20px;
+    font-size: 14px;
+    padding: 0 3px;
+    color: #666666;
+    font-family: "poppins";
+  }
 
-.submmit-button{
-  width:40vw;
-  height:50px;
-  color:white;
-  border:none;
-  border-radius:50px;
-  margin-top:100px;
-  /* background-color:#cecdd9; */
-}
-
-
-.register-button{
-  border:none;
-  background-color: white; 
-}
-.divider{
-  height:1px;
-  width:80%;
-  background-color:lightgray;
-  margin:30px;
-  position:relative;
-}
-
-.divider>span{
-  position:absolute;
-  top:-10px;
-  left:50%;
-  transform:translateX(-50%);
-}
-
-.login-input-container{
-  position:relative;
-  margin:20px 0;
-}
-
-.login-label{
-  position:absolute;
-  top:-20px;
-  font-size:14px;
-  padding: 0 3px;
-  color:#666666;
-  font-family:"poppins";
+  .input1 {
+    width: 70vw;
+    height: 4.5vh;
+    padding-left: 10px;
+  }
 }

@@ -67,6 +67,21 @@ const QnAPage = () => {
     }
   };
 
+  const handleDeleteComment = () => {
+    axios
+      .delete(`${API_URL}/questions/answer/${questionId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   // 수정 상태를 활성화하는 함수
   const handleEdit = () => {
     setEditing(true);
@@ -199,6 +214,11 @@ const QnAPage = () => {
               <p>
                 <b>{comment.nickname}</b>: {comment.content}
               </p>
+              {currentUser === question.nickname && (
+                <>
+                  <button onClick={handleDeleteComment}>삭제</button>
+                </>
+              )}
             </div>
           ))}
       </div>
