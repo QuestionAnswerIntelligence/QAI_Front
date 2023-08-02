@@ -45,45 +45,54 @@ const QnAList = () => {
   }
 
   return (
-    <div className="container1">
-      <button onClick={moveToMakeQuestion}>글 작성하기</button>
-      <table>
-        <thead>
-          <tr>
-            <th>번호</th>
-            <th>제목</th>
-            <th>작성자</th>
-            <th>조회수</th>
-            <th>작성일자</th>
-          </tr>
-        </thead>
-        <tbody>
-          {/* map 함수를 이용하여 questions에 들어가있는 배열 가져오기 */}
-          {questions.map((question) => (
-            <tr key={question.questionId}>
-              <td>{question.questionId}</td>
-              <td className="title">
-                <Link to={`/questions/${question.questionId}`}>
-                  {question.title}
-                </Link>
-              </td>
-              <td>{question.nickname}</td>
-              <td>{question.viewCount}</td>
-              <td>{formatDate(question.createdAt)}</td>
+    <div className="a">
+      <div className="container1">
+        <div className="post">
+          <h1>Q & A</h1>
+          <button className="postbutton" onClick={moveToMakeQuestion}>
+            글쓰기
+          </button>
+        </div>
+        <span>질문하세요! </span>
+        <input class="search" type="text" placeholder="Search"></input>
+        <table>
+          <thead>
+            <tr>
+              <th>번호</th>
+              <th>제목</th>
+              <th>작성자</th>
+              <th>조회수</th>
+              <th>작성일자</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-      <div>
-        <button
-          onClick={() => setPageNum((prevPageNum) => prevPageNum - 1)}
-          disabled={pageNum === 0}
-        >
-          이전 페이지
-        </button>
-        <button onClick={() => setPageNum((prevPageNum) => prevPageNum + 1)}>
-          다음페이지
-        </button>
+          </thead>
+          <tbody>
+            {/* map 함수를 이용하여 questions에 들어가있는 배열 가져오기 */}
+            {questions.map((question) => (
+              <tr key={question.questionId}>
+                <td>{question.questionId}</td>
+                <td className="title">
+                  <Link to={`/questions/${question.questionId}`}>
+                    {question.title}
+                  </Link>
+                </td>
+                <td>{question.nickname}</td>
+                <td>{question.viewCount}</td>
+                <td>{formatDate(question.createdAt)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <div className="pageNum">
+          <button
+            onClick={() => setPageNum((prevPageNum) => prevPageNum - 1)}
+            disabled={pageNum === 0}
+          >
+            이전 페이지
+          </button>
+          <button onClick={() => setPageNum((prevPageNum) => prevPageNum + 1)}>
+            다음페이지
+          </button>
+        </div>
       </div>
     </div>
   );
