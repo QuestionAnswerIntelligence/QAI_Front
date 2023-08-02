@@ -13,7 +13,7 @@ import QnAList from "./components/QnAList/QnAList";
 import Community from "./components/Community/Community";
 import FreeBoard from "./components/Community/FreeBoard/FreeBoard";
 import ShareBoard from "./components/Community/ShareBoard/ShareBoard";
-import QnAPage from "./QnAPage/QnAPage";
+import QnAPage from "./components/QnAPage/QnAPage";
 
 const App = () => {
   return (
