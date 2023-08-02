@@ -1,0 +1,4 @@
+FROM nginx:latest
+LABEL maintainer "ahc700@gmail.com"
+
+COPY ./build /usr/share/nginx/html
