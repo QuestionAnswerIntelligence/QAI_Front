@@ -1,0 +1,30 @@
+name: CD
+
+on:
+  push:
+    # main 브랜치에 푸시하면 작동
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: self-hosted
+    defaults:
+      run:
+        working-directory: "cafeflow"
+    steps:    
+      # 제공하는 checkout 액션을 이용해 리포지토리 가져오기
+      - uses: actions/checkout@v3
+      
+
+
+      - run: pwd
+      - run: ls -al
+      
+      # 노드 액션을 통해 npm 명령어 사용
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+        
+      
+      - run: npm install
+      - run: CI='' npm run build
