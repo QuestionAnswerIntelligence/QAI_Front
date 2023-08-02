@@ -15,8 +15,9 @@ jobs:
       - run: pwd
       - run: ls -al
       - run: cd cafeflow
-      
-        
+      - run: pwd
+      - run: cd cafeflow
+        working-directory: cafeflow
       # 노드 액션을 통해 npm 명령어 사용
       - uses: actions/setup-node@v3
         with:
