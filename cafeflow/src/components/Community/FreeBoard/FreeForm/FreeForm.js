@@ -56,7 +56,7 @@ const FreeForm = () => {
   };
 
   return (
-    <div className="container1">
+    <div className="freeform-container">
       <form onSubmit={handleSubmit}>
         <label>
           제목:
