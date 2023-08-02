@@ -16,6 +16,8 @@ const QnAPage = () => {
   const [point, setPoint] = useState(""); // 포인트를 저장하는 상태 변수
   const [comment, setComment] = useState(""); // 댓글을 저장하는 상태 변수
   const [comments, setComments] = useState([]); // 댓글 리스트를 저장하는 상태 변수
+  const [editingCommentId, setEditingCommentId] = useState(null); // 수정 중인 댓글의 ID를 저장하는 상태
+  const [editingComment, setEditingComment] = useState(""); // 수정할 댓글의 내용을 저장하는 상태
 
   const token = localStorage.getItem("jwtToken"); // JWT 토큰
   const currentUser = localStorage.getItem("nickname"); // 현재 로그인한 유저의 닉네임
@@ -49,7 +51,7 @@ const QnAPage = () => {
     return `${year}-${month}-${day}`;
   }
 
-  // 삭제 기능 : 현재 로그인 중인 유저의 정보와 질문 작성자의 정보가 일치해야함 보임
+  // QnA 글 삭제 기능 : 현재 로그인 중인 유저의 정보와 질문 작성자의 정보가 일치해야함 보임
   const handleDelete = () => {
     if (window.confirm("글을 삭제하시겠습니까?")) {
       axios
@@ -59,6 +61,8 @@ const QnAPage = () => {
           },
         })
         .then((response) => {
+          console.log(response);
+          console.log("QnA 글 삭제 완료!");
           navigate("/qnalist");
         })
         .catch((error) => {
@@ -67,19 +71,61 @@ const QnAPage = () => {
     }
   };
 
-  const handleDeleteComment = () => {
-    axios
-      .delete(`${API_URL}/questions/answer/${questionId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+  // QnA 댓글 삭제 기능
+  const handleDeleteComment = (id) => {
+    if (window.confirm("댓글을 삭제하시겠습니까?")) {
+      axios
+        .delete(`${API_URL}/questions/answer/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+          console.log("댓글 삭제 완료!");
+          setComments(comments.filter((comment) => comment.id !== id)); // 삭제된 댓글을 제외하고 댓글 리스트를 업데이트
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  };
+
+  const handleEditComment = (comment) => {
+    setEditingCommentId(comment.id);
+    setEditingComment(comment.content);
+  };
+
+  // QnA 댓글 수정 기능
+  const handleCommentUpdate = () => {
+    if (window.confirm("댓글을 수정하시겠습니까?")) {
+      axios
+        .patch(
+          `${API_URL}/questions/answer/${editingCommentId}`, // 댓글을 수정하는 API의 경로
+          {
+            content: editingComment,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
+        .then((response) => {
+          // 서버로부터 응답을 받았을 때의 처리
+          setComments(
+            comments.map((comment) =>
+              comment.id === editingCommentId ? response.data.data : comment
+            )
+          ); // 수정된 댓글을 업데이트
+          setEditingCommentId(null); // 수정 모드 종료
+          setEditingComment(""); // 수정 필드 초기화
+          console.log("QnA 댓글 수정 완료!");
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
   };
 
   // 수정 상태를 활성화하는 함수
@@ -87,58 +133,64 @@ const QnAPage = () => {
     setEditing(true);
   };
 
-  // 수정 기능 : 현재 로그인 중인 유저의 정보와 질문 작성자의 정보가 일치해야함 보임
+  // QnA 질문 수정 기능 : 현재 로그인 중인 유저의 정보와 질문 작성자의 정보가 일치해야함 보임
   const handleUpdate = () => {
-    axios
-      .patch(
-        `${API_URL}/questions/${questionId}`,
-        {
-          title: title,
-          content: content,
-          point: point,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
+    if (window.confirm("질문을 수정하시겠습니까?")) {
+      axios
+        .patch(
+          `${API_URL}/questions/${questionId}`,
+          {
+            title: title,
+            content: content,
+            point: point,
           },
-        }
-      )
-      .then((response) => {
-        setEditing(false); // 수정 모드 종료
-        setQuestion(response.data.data); // 수정된 질문 데이터를 설정
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
+        .then((response) => {
+          setEditing(false); // 수정 모드 종료
+          setQuestion(response.data.data); // 수정된 질문 데이터를 설정
+          console.log("QnA 질문 수정 완료!");
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
   };
 
   // 댓글 기능 : 댓글 입력 완료 후 사용자의 닉네임과 함께 보이도록 설정
   const handleComment = () => {
-    if (comment.trim() === "") {
-      alert("내용을 입력해주세요!");
-      return;
-    }
-    axios
-      .post(
-        `${API_URL}/questions/${questionId}`, // 댓글을 등록하는 API의 경로
-        {
-          content: comment,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
+    if (window.confirm("댓글을 입력하시겠습니까?")) {
+      if (comment.trim() === "") {
+        alert("내용을 입력해주세요!");
+        return;
+      }
+      axios
+        .post(
+          `${API_URL}/questions/${questionId}`, // 댓글을 등록하는 API의 경로
+          {
+            content: comment,
           },
-        }
-      )
-      .then((response) => {
-        // 서버로부터 응답을 받았을 때의 처리
-        setComment(""); // 댓글 입력 필드를 초기화
-        console.log("댓글 입력 성공!");
-        setComments((prevComments) => [...prevComments, response.data.data]); // 새로운 댓글 추가
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
+        .then((response) => {
+          // 서버로부터 응답을 받았을 때의 처리
+          setComment(""); // 댓글 입력 필드를 초기화
+          console.log("댓글 입력 성공!");
+          console.log(response.data.data);
+          setComments((prevComments) => [...prevComments, response.data.data]); // 새로운 댓글 추가
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
   };
 
   // question 데이터가 아직 로드되지 않았다면 로딩 메시지를 표시
@@ -214,9 +266,28 @@ const QnAPage = () => {
               <p>
                 <b>{comment.nickname}</b>: {comment.content}
               </p>
-              {currentUser === question.nickname && (
+              {currentUser === comment.nickname && (
                 <>
-                  <button onClick={handleDeleteComment}>삭제</button>
+                  <button onClick={() => handleDeleteComment(comment.id)}>
+                    삭제
+                  </button>
+                  {editingCommentId === comment.id ? ( // [NEW CODE]
+                    <>
+                      <input
+                        value={editingComment}
+                        onChange={(e) => setEditingComment(e.target.value)}
+                        placeholder="수정할 내용을 입력하세요..."
+                      />
+                      <button onClick={handleCommentUpdate}>수정 완료</button>
+                      <button onClick={() => setEditingCommentId(null)}>
+                        취소
+                      </button>
+                    </>
+                  ) : (
+                    <button onClick={() => handleEditComment(comment)}>
+                      수정
+                    </button>
+                  )}
                 </>
               )}
             </div>

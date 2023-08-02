@@ -112,7 +112,6 @@ const Login = () => {
             Password 조건을 적는 부분입니다.(특수문자 포함, 10자 이상)
           </p>
         </div>
-
         <button
           style={{ backgroundColor: isFormFilled ? "#564e97" : "#cecdd9" }}
           type="submit"
