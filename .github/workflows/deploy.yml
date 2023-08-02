@@ -1,3 +1,27 @@
+name: Change Working Directory
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Show current working directory (Before)
+        run: pwd
+
+      # 작업 디렉토리 변경
+      - name: Change working directory to 'cafeflow'
+        run: cd cafeflow
+
+      - name: Show current working directory (After)
+        run: pwd
+
 name: CD
 
 on:
@@ -14,10 +38,7 @@ jobs:
       
       - run: pwd
       - run: ls -al
-      - run: cd cafeflow
-      - run: pwd
-      - run: cd cafeflow
-        working-directory: cafeflow
+      
       # 노드 액션을 통해 npm 명령어 사용
       - uses: actions/setup-node@v3
         with:
