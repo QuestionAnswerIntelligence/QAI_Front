@@ -1,11 +1,64 @@
-.container1 {
-  position: absolute;
-  left: 35%;
-  top: 100px;
+.a {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100vw;
+  height: 100vh;
+  flex-direction: column;
+  background-color: #0d0d2b;
+}
+
+.post {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.5vw;
+}
+
+.postbutton {
+  width: 10vw;
+  height: 5vh;
+  background-color: #7267c8;
+  color: white;
+  border-radius: 20px;
+  border: none;
+  font-size: 18px;
+  position: relative;
+  top: 26px;
+}
+
+.container1 {
+  display: flex;
+  align-items: stretch;
+  width: 90vw;
+  height: 80vh;
+  flex-direction: column;
+  border: 1px solid black;
+  margin-top: 4vh;
+  background-color: white;
+  border-radius: 20px;
+}
+
+.container1 > span {
+  color: gray;
+  padding: 0 1.5vw;
+  margin-top: -1.5vh;
+  margin-bottom: -1.5vh;
+}
+
+input.search {
+  padding-left: 30px; /* Adjust based on the size of your image */
+  width: 30vw;
+  height: 3.5vh;
+  margin-top: 3vh;
+  margin-left: 1.5vw;
+  border-radius: 5px;
+  border: 1px solid gray;
+  background-image: url("../../icons/search.png");
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: 20px; /* Adjust based on the size of your image */
 }
 
 table {
@@ -19,4 +72,10 @@ th {
 }
 .title:hover {
   text-decoration: underline;
+}
+
+.pageNum {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
