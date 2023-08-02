@@ -28,3 +28,6 @@ jobs:
       
       - run: npm install
       - run: CI='' npm run build
+      - run: rm /etc/nginx/conf.d/default.conf
+      - run: mv default.conf /etc/nginx/conf.d/
+      - run: service nginx reload
