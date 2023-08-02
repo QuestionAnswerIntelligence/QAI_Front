@@ -39,10 +39,17 @@ const Header = () => {
     if (window.confirm("로그아웃 하시겠습니까?")) {
       // 로컬스토리지에서 Token 삭제
       setJwtToken("");
-      localStorage.removeItem("jwtToken");
-      // Also clear the username in state
       setNickname("");
-      // Navigate back to the login page 로그인 화면으로 돌아감
+
+      // 로컬스토리지에 저장된 정보들을 삭제하여 로그인 상태가 아님에도 불구하고
+      // 삭제 및 수정 버튼이 나타나는 버그를 해결
+      localStorage.removeItem("nickname");
+      localStorage.removeItem("age");
+      localStorage.removeItem("id");
+      localStorage.removeItem("email");
+      localStorage.removeItem("jwtToken");
+
+      // 로그인 화면으로 돌아감
       moveToLogin();
     }
   };
@@ -67,13 +74,13 @@ const Header = () => {
   const DropdownMenu = () => {
     return (
       <div className={`dropdown-menu ${isDropdownVisible ? "show" : ""}`}>
-        <button className="username">
+        <button className="login">
           <span>{nickname}</span>
         </button>
-        <button onClick={moveTomyPage}>
+        <button className="login" onClick={moveTomyPage}>
           <span>마이페이지</span>
         </button>
-        <button onClick={moveToQnA}>
+        <button className="login" onClick={moveToQnA}>
           <span>Q&A</span>
         </button>
         <button className="login" onClick={handleLogout}>
@@ -103,15 +110,15 @@ const Header = () => {
         <button onClick={moveToCommunity}>
           <span>Community</span>
         </button>
-        <button onClick={moveTomyPage}>
+        {/* <button onClick={moveTomyPage}>
           <span>Mypage</span>
-        </button>
+        </button> */}
       </div>
       <div className="header-right">
         {jwtToken ? (
           <React.Fragment>
+            <button className="user" onClick={moveTomyPage}></button>
             <span>
-              어서오세요!{" "}
               <button className="username" onClick={moveTomyPage}>
                 <span>{nickname}</span>
               </button>

@@ -13,7 +13,7 @@
 .login-inner-container {
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 65px;
   align-items: center;
   gap: 10px;
   width: 40%; /* 원하는 너비 비율로 조정하세요. */
@@ -51,6 +51,7 @@
   border: 1px solid lightgray;
   margin-top: 10px;
   text-align: center;
+  color: white;
 }
 
 .button-icon {
@@ -177,6 +178,7 @@
     border: 1px solid lightgray;
     margin-top: 10px;
     text-align: center;
+    color: white;
   }
 
   .register-button {

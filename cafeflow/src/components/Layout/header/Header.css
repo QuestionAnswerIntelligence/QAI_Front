@@ -79,6 +79,15 @@ span {
   border: none;
 }
 
+.user {
+  background-image: url("../../../icons/user100.png");
+  background-color: #0d0d2b;
+  background-size: cover;
+  border: none;
+  width: 50px;
+  height: 50px;
+}
+
 /* 모바일 화면에서 헤더의 컨텐츠를 숨깁니다. */
 @media (max-width: 768px) {
   .header-left > button,
@@ -100,7 +109,12 @@ span {
   }
 
   .header-center > button > span {
-    font-size: 11px;
+    font-size: 14px;
+  }
+  .login {
+    background-color: #564e97;
+    color: white;
+    border: none;
   }
 }
 
@@ -122,12 +136,14 @@ span {
   flex-direction: column;
   background-color: white;
   border: 1px solid gray;
+  border-radius: 10px;
   padding: 10px;
-  gap: 40px;
+  gap: 20px;
+  background-color: #564e97;
   z-index: 100; /* 다른 요소들 위에 나타나도록 z-index를 높게 설정 */
-  transition: top 0.5s ease-in-out; /* 애니메이션 효과 추가 */
+  transition: top 1s ease-in-out; /* 애니메이션 효과 추가 */
 }
 
 .dropdown-menu.show {
-  top: 50px;
+  top: 70px;
 }

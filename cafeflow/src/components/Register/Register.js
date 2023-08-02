@@ -65,7 +65,7 @@ const Register = () => {
     <div className="register-container">
       <form className="register-form">
         <img src={logo}></img>
-        <h2>회원가입 하기</h2>
+        <h2>회원가입</h2>
         <div className="button-container">
           <button className="naver"></button>
           <button className="kakao"></button>
@@ -143,7 +143,7 @@ const Register = () => {
             className="submit"
             onClick={handleRegister}
           >
-            회원가입 하기
+            회원가입
           </button>
         </div>
         <div>
