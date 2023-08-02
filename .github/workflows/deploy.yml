@@ -14,7 +14,7 @@ jobs:
     steps:    
       # 제공하는 checkout 액션을 이용해 리포지토리 가져오기
       - uses: actions/checkout@v3
-      - run: echo "NODE_OPTIONS=--no-warnings" >> $GITHUB_ENV
+      
 
 
       - run: pwd
@@ -24,8 +24,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-        env:
-          NODE_OPTIONS: ${{ env.NODE_OPTIONS }}
+        
       
       - run: npm install
-      - run: npm run build
+      - run: CI='' npm run build
