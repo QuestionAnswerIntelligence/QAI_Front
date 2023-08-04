@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { API_URL } from "../../../Constant";
-//import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 import "./FreeForm.css";
@@ -12,18 +12,21 @@ const FreeForm = () => {
     title: "",
     content: "",
   });
-
+  const [boardType,setBoardType]=useState();
   const [errors, setErrors] = useState({});
 
   const nickname = localStorage.getItem("nickname");
   const token = localStorage.getItem("jwtToken");
 
- // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
+  const valueChange=(e)=>{
+    setBoardType(e.target.value);
+  }
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -47,7 +50,7 @@ const FreeForm = () => {
         console.log(response);
         console.log(response.data);
         alert("게시물이 성공적으로 등록되었습니다!");
-        //navigate("/freelist");
+        navigate("/freelist");
       })
       .catch((error) => {
         console.log(error);
@@ -70,6 +73,10 @@ const FreeForm = () => {
           {errors.content && <p>{errors.content}</p>}
         </label>
         <br/>
+        <label>
+          type:
+          <input type="text" onChange={valueChange} value={boardType} />
+        </label>
         <label>작성자: {nickname}</label>
         <br />
         <button type="submit">Submit</button>
