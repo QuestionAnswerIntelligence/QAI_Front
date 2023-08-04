@@ -5,29 +5,30 @@ import { API_URL } from "../../../Constant";
 
 import "./FreeList.css";
 
-const QnAList = () => {
+const FreeList = () => {
   const token = localStorage.getItem("jwtToken");
-  const [questions, setQuestions] = useState([]);
+  const [posts, setposts] = useState([]);
   const [pageNum, setPageNum] = useState(0);
   const [size, setSize] = useState(10);
 
   const navigate = useNavigate();
 
   const moveToMakeQuestion = () => {
-    navigate("/qnaform");
+    navigate("/freeform");
   };
-
+  const type='freeBoard';
   // page
   useEffect(() => {
     axios
-      .get(`${API_URL}/questions?page=${pageNum}&size=${size}`, {
+      .get(`${API_URL}/boards?page=${pageNum}&size=${size}&boardType=${type}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
       .then((response) => {
-        setQuestions(response.data.data.questionList);
-        console.log(response.data.data.questionList);
+        setposts(response.data.data.boardList);
+        console.log("자유게시파아아안");
+        console.log(response.data.data.boardList);
       })
       .catch((error) => {
         console.log(error);
@@ -48,12 +49,11 @@ const QnAList = () => {
     <div className="a">
       <div className="container1">
         <div className="post">
-          <h1>Q & A</h1>
+          <h1>자유 게시판</h1>
           <button className="postbutton" onClick={moveToMakeQuestion}>
             글쓰기
           </button>
         </div>
-        <span>질문하세요! </span>
         <input class="search" type="text" placeholder="Search"></input>
         <table>
           <thead>
@@ -67,17 +67,18 @@ const QnAList = () => {
           </thead>
           <tbody>
             {/* map 함수를 이용하여 questions에 들어가있는 배열 가져오기 */}
-            {questions.map((question) => (
-              <tr key={question.questionId}>
-                <td>{question.questionId}</td>
+            {posts.map((post) => (
+              <tr key={post.boardId}>
+                <td>{post.boardId}</td>
                 <td className="title">
-                  <Link to={`/questions/${question.questionId}`}>
-                    {question.title}
-                  </Link>
+                  {/* <Link to={`/posts/${post.boardId}`}>
+                    {post.title}
+                  </Link> */}
+                  {post.title}
                 </td>
-                <td>{question.nickname}</td>
-                <td>{question.viewCount}</td>
-                <td>{formatDate(question.createdAt)}</td>
+                <td>{post.nickname}</td>
+                <td>{post.viewCount}</td>
+                <td>{formatDate(post.createdAt)}</td>
               </tr>
             ))}
           </tbody>
@@ -98,4 +99,4 @@ const QnAList = () => {
   );
 };
 
-export default QnAList;
+export default FreeList;

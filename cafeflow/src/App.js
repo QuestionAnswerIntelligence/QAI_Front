@@ -11,9 +11,10 @@ import ChatButton from "./components/Chat/ChatButton/ChatButton";
 import QnAForm from "./components/QnAForm/QnAForm";
 import QnAList from "./components/QnAList/QnAList";
 import Community from "./components/Community/Community";
-import ShareBoard from "./components/Community/ShareBoard/ShareBoard";
+
 import QnAPage from "./components/QnAPage/QnAPage";
 import FreeForm from "./components/Community/FreeBoard/FreeForm/FreeForm";
+import FreeList from "./components/Community/FreeBoard/FreeList/FreeList";
 
 const App = () => {
   return (
@@ -29,9 +30,8 @@ const App = () => {
           <Route path="/qnaform" element={<QnAForm />} />
           <Route path="/community" element={<Community />} />
           <Route path="/freeform" element={<FreeForm />} />
-          {/* <Route path="/freelist" element={<FreeList />} />
-          <Route path="/freepage" element={<FreeBoard />} /> */}
-          <Route path="/shareboard" element={<ShareBoard />} />
+          <Route path="/freelist" element={<FreeList />} />
+          {/* <Route path="/shareboard" element={<ShareBoard />} /> */}
           <Route path="/questions/:questionId" element={<QnAPage />} />
 
         </Routes>
