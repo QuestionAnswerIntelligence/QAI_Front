@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import { API_URL } from "../Constant";
 import { useHistory, useNavigate } from "react-router-dom";
-import QnAList from "../QnAList/QnAList";
+
+import "./QnAForm.css";
 
 const QnAForm = () => {
   const [formData, setFormData] = useState({
@@ -51,30 +52,32 @@ const QnAForm = () => {
   };
 
   return (
-    <div className="container1">
-      <form onSubmit={handleSubmit}>
-        <label>
-          Title:
-          <input type="text" name="title" onChange={handleChange} />
-          {errors.title && <p>{errors.title}</p>}
-        </label>
-        <br/>
-        <label>
-          Content:
-          <input type="text" name="content" onChange={handleChange} />
-          {errors.content && <p>{errors.content}</p>}
-        </label>
-        <br/>
-        <label>
-          Point:
-          <input type="text" name="point" onChange={handleChange} />
-          {errors.point && <p>{errors.point}</p>}
-        </label>
-        <br />
-        <label>Nickname: {nickname}</label>
-        <br />
-        <button type="submit">Submit</button>
-      </form>
+    <div className="a">
+      <div className="QnAFormContainer">
+        <form onSubmit={handleSubmit}>
+          <label>
+            Title:
+            <input type="text" name="title" onChange={handleChange} />
+            {errors.title && <p>{errors.title}</p>}
+          </label>
+          <br />
+          <label>
+            Content:
+            <input type="text" name="content" onChange={handleChange} />
+            {errors.content && <p>{errors.content}</p>}
+          </label>
+          <br />
+          <label>
+            Point:
+            <input type="text" name="point" onChange={handleChange} />
+            {errors.point && <p>{errors.point}</p>}
+          </label>
+          <br />
+          <label>Nickname: {nickname}</label>
+          <br />
+          <button type="submit">Submit</button>
+        </form>
+      </div>
     </div>
   );
 };

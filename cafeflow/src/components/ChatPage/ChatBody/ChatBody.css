@@ -1,0 +1,48 @@
+.messageRight {
+  text-align: right;
+}
+
+.messageLeft {
+  text-align: left;
+}
+
+.messageBox {
+  max-width: 60%; /* adjust as needed */
+  word-wrap: break-word;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 10px 0;
+}
+
+.messageRight .messageBox {
+  background-color: #dcf8c6; /* light green */
+  text-align: right;
+}
+
+.messageLeft .messageBox {
+  background-color: #e7c9c9; /* white */
+  text-align: left;
+}
+
+.messageSender {
+  font-weight: bold;
+}
+
+.bodyContainer {
+  flex-grow: 1;
+  overflow: auto;
+  height: calc(100vh - 16vh);
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 8vh 20px;
+}
+
+.messageRight {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.messageLeft {
+  display: flex;
+  justify-content: flex-start;
+}

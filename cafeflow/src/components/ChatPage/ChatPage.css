@@ -1,0 +1,19 @@
+.chatpage {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+}
+
+.chatContainer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 60px;
+  height: calc(100vh - 100px);
+  width: 30vw;
+  height: 84vh;
+  /* background-color: black; */
+  border-radius: 20px;
+}

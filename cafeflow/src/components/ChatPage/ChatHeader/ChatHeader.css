@@ -1,0 +1,22 @@
+.headerContainer {
+  background-color: rgb(86, 78, 151);
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  position: fixed;
+  width: 30vw;
+  height: 8vh;
+  display: flex;
+  align-items: center;
+}
+
+.goBack {
+  background-image: url("../../../icons/goback.png");
+  width: 3vw;
+  height: 6vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: rgb(86, 78, 151);
+  border: none;
+  margin-left: 10px;
+  margin-right: 20px;
+}

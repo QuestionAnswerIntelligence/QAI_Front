@@ -2,19 +2,33 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { API_URL } from "../Constant";
-
+import db from "../firebase";
 import "./QnAList.css";
 
-const QnAList = () => {
+const QnAList = ({ chatId }) => {
+  const navigate = useNavigate();
+
+  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const token = localStorage.getItem("jwtToken");
   const [questions, setQuestions] = useState([]);
   const [pageNum, setPageNum] = useState(0);
   const [size, setSize] = useState(10);
+  const nickname = localStorage.getItem("nickname");
 
-  const navigate = useNavigate();
+  // 시간 순 체크박스
+  const [isChecked, setIsChecked] = useState(false);
 
+  const handleChange = () => {
+    setIsChecked(!isChecked);
+  };
+
+  // Q&A 작성페이지로 이동
   const moveToMakeQuestion = () => {
     navigate("/qnaform");
+  };
+
+  const moveToChat = () => {
+    navigate("/chatpage");
   };
 
   // page
@@ -26,6 +40,12 @@ const QnAList = () => {
         },
       })
       .then((response) => {
+        let questionList = response.data.data.questionList;
+        if (isChecked) {
+          questionList.sort(
+            (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+          ); // 시간 순으로 정렬
+        }
         setQuestions(response.data.data.questionList);
         console.log(response.data.data.questionList);
       })
@@ -44,6 +64,47 @@ const QnAList = () => {
     return `${year}-${month}-${day}`;
   }
 
+  // 드롭다운 메뉴를 보여주거나 숨기는 함수
+  const toggleDropdown = () => {
+    setIsDropdownVisible(!isDropdownVisible);
+  };
+
+  const handleAuthorClick = (createdBy) => {
+    if (nickname !== createdBy) {
+      toggleDropdown();
+    }
+  };
+
+  const startChat = (nickname, question) => {
+    // 현재 로그인한 유저와 게시글 작성자의 ID를 합쳐서 채팅방 ID를 생성. 항상 동일한 순서로 합침
+    const chatId = [nickname, question.createdBy].sort().join("_");
+
+    // 채팅방 조회
+    db.collection("chats")
+      .doc(chatId)
+      .get()
+      .then((docSnapshot) => {
+        if (docSnapshot.exists) {
+          // 채팅방이 존재하면, 그 채팅방으로 이동
+          console.log("기존 채팅방으로 이동합니다!");
+          navigate(`/chats/${chatId}`);
+        } else {
+          // 채팅방이 존재하지 않으면, 새로운 채팅방을 생성
+          db.collection("chats")
+            .doc(chatId)
+            .set({
+              users: [nickname, question.createdBy],
+              messages: [],
+            })
+            .then(() => {
+              console.log("새 채팅방으로 이동합니다!");
+              // 새로운 채팅방으로 이동
+              navigate(`/chats/${chatId}`);
+            });
+        }
+      });
+  };
+
   return (
     <div className="a">
       <div className="container1">
@@ -52,36 +113,68 @@ const QnAList = () => {
           <button className="postbutton" onClick={moveToMakeQuestion}>
             글쓰기
           </button>
+          <button onClick={moveToChat}></button>
         </div>
-        <span>질문하세요! </span>
-        <input class="search" type="text" placeholder="Search"></input>
+        <span style={{ fontWeight: "bold" }}>질문하세요! </span>
+        <div className="searchBox">
+          <input class="search" type="text" placeholder="Search"></input>
+          <div
+            style={{
+              position: "relative",
+              marginTop: "3vh",
+              display: "flex",
+            }}
+          >
+            <button type="checkbox"></button>
+            <span style={{ color: "black" }}>시간 순</span>
+          </div>
+        </div>
+        {/* <div className="divider1"></div> */}
         <table>
-          <thead>
-            <tr>
-              <th>번호</th>
-              <th>제목</th>
-              <th>작성자</th>
-              <th>조회수</th>
-              <th>작성일자</th>
-            </tr>
-          </thead>
           <tbody>
             {/* map 함수를 이용하여 questions에 들어가있는 배열 가져오기 */}
             {questions.map((question) => (
+              // console.log(question),
               <tr key={question.questionId}>
-                <td>{question.questionId}</td>
-                <td className="title">
-                  <Link to={`/questions/${question.questionId}`}>
-                    {question.title}
-                  </Link>
-                </td>
-                <td>{question.nickname}</td>
-                <td>{question.viewCount}</td>
-                <td>{formatDate(question.createdAt)}</td>
+                <div className="oneTr">
+                  <div className="leftside">
+                    <td className="questionId">{question.questionId}</td>
+                    <div className="titleBox">
+                      <td className="title">
+                        <Link to={`/questions/${question.questionId}`}>
+                          {question.title}
+                        </Link>
+                      </td>
+                      <td>{question.content}</td>
+                    </div>
+                  </div>
+                  <div className="rightside">
+                    <div className="nicknameBox">
+                      <td
+                        className="nickname"
+                        onClick={() => handleAuthorClick(question.createdBy)}
+                      >
+                        작성자 : {question.createdBy}
+                      </td>
+                      {isDropdownVisible && nickname !== question.createdBy && (
+                        <div className="dropdown">
+                          <button onClick={() => startChat(nickname, question)}>
+                            1:1 채팅하기
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                    <td className="createdAt">
+                      작성 날짜: {formatDate(question.createdAt)}
+                    </td>
+                    <td className="viewCount">{question.viewCount}</td>
+                  </div>
+                </div>
               </tr>
             ))}
           </tbody>
         </table>
+        {/* <div className="divider1"></div> */}
         <div className="pageNum">
           <button
             onClick={() => setPageNum((prevPageNum) => prevPageNum - 1)}
