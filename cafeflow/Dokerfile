@@ -1,4 +1,11 @@
-FROM nginx:latest
-LABEL maintainer "ahc700@gmail.com"
+FROM node:16
+WORKDIR /app
+COPY package.json .
 
-COPY ./build /usr/share/nginx/html
+RUN npm install
+
+COPY . .
+
+EXPOSE 3000
+
+CMD["npm","start"]
