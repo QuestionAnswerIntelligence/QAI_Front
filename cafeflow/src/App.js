@@ -11,16 +11,16 @@ import ChatButton from "./components/Chat/ChatButton/ChatButton";
 import QnAForm from "./components/QnAForm/QnAForm";
 import QnAList from "./components/QnAList/QnAList";
 import Community from "./components/Community/Community";
-
 import QnAPage from "./components/QnAPage/QnAPage";
 import FreeForm from "./components/Community/FreeBoard/FreeForm/FreeForm";
 import FreeList from "./components/Community/FreeBoard/FreeList/FreeList";
+import ChatPage from "./components/ChatPage/ChatPage";
 
 const App = () => {
   return (
     <RecoilRoot>
       <Router>
-        <Header/>
+        <Header />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
@@ -33,7 +33,7 @@ const App = () => {
           <Route path="/freelist" element={<FreeList />} />
           {/* <Route path="/shareboard" element={<ShareBoard />} /> */}
           <Route path="/questions/:questionId" element={<QnAPage />} />
-
+          <Route path="/chats/:chatId" element={<ChatPage />} />
         </Routes>
         {/* <ChatButton /> */}
       </Router>
