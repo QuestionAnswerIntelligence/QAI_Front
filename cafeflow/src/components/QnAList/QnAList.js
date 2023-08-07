@@ -4,6 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { API_URL } from "../Constant";
 import db from "../firebase";
 import "./QnAList.css";
+import ViewCount from "../../icons/ViewCount.png";
 
 const QnAList = ({ chatId }) => {
   const navigate = useNavigate();
@@ -25,10 +26,6 @@ const QnAList = ({ chatId }) => {
   // Q&A 작성페이지로 이동
   const moveToMakeQuestion = () => {
     navigate("/qnaform");
-  };
-
-  const moveToChat = () => {
-    navigate("/chatpage");
   };
 
   // page
@@ -76,7 +73,7 @@ const QnAList = ({ chatId }) => {
   };
 
   const startChat = (nickname, question) => {
-    // 현재 로그인한 유저와 게시글 작성자의 ID를 합쳐서 채팅방 ID를 생성. 항상 동일한 순서로 합침
+    // 현재 로그인한 유저와 게시글 작성자의 ID를 합쳐서 채팅방 ID를 생성. 항상 동일한 순서로 합침.'_' 으로 구분
     const chatId = [nickname, question.createdBy].sort().join("_");
 
     // 채팅방 조회
@@ -113,20 +110,26 @@ const QnAList = ({ chatId }) => {
           <button className="postbutton" onClick={moveToMakeQuestion}>
             글쓰기
           </button>
-          <button onClick={moveToChat}></button>
         </div>
         <span style={{ fontWeight: "bold" }}>질문하세요! </span>
-        <div className="searchBox">
-          <input class="search" type="text" placeholder="Search"></input>
-          <div
-            style={{
-              position: "relative",
-              marginTop: "3vh",
-              display: "flex",
-            }}
-          >
-            <button type="checkbox"></button>
-            <span style={{ color: "black" }}>시간 순</span>
+        <div className="asd">
+          <a>asd</a>
+          <div className="searchBox">
+            <input className="search" type="text" placeholder="Search"></input>
+            <div
+              style={{
+                position: "relative",
+                marginTop: "3vh",
+                display: "flex",
+              }}
+            >
+              <button className="checkbox" type="checkbox"></button>
+              <span
+                style={{ color: "black", fontSize: "16px", marginLeft: "5px" }}
+              >
+                시간 순
+              </span>
+            </div>
           </div>
         </div>
         {/* <div className="divider1"></div> */}
@@ -165,9 +168,12 @@ const QnAList = ({ chatId }) => {
                       )}
                     </div>
                     <td className="createdAt">
-                      작성 날짜: {formatDate(question.createdAt)}
+                      작성 일자: {formatDate(question.createdAt)}
                     </td>
-                    <td className="viewCount">{question.viewCount}</td>
+                    <td className="viewCount">
+                      <img src={ViewCount}></img>
+                      {question.viewCount}
+                    </td>
                   </div>
                 </div>
               </tr>
