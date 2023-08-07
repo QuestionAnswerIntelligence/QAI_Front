@@ -20,13 +20,15 @@
   border-radius: 20px;
 }
 
-.board_list {
+
+.board_list{
   width: 200px;
   height: 5vh;
   background-color: #ffffff;
   color: rgb(0, 0, 0);
   border: none;
   font-size: 18px;
+  margin-top:1vh;
 }
 
 .mycontainer {
@@ -34,39 +36,38 @@
   flex-direction: row;
   justify-content: left;
 }
-.board-container {
-  width: 700px;
-  height: 300px;
-  /* background-color:yellow; */
+
+.board-container{
+  width:88vw;
+  height:40vh;
 }
 
 .divider1 {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  height: 1px;
+  height: 3px;
   width: 88vw;
   background-color: lightgray;
   margin: 12px;
   position: relative;
 }
 
-.freeboard {
-  width: 150px;
-  height: 5px;
+
+
+.freeboard{
+  width:170px;
+  height:3px;
   background-color: #7267c8;
-  position: relative;
-  bottom: 2px;
-  position: relative;
-  right: 12vw;
+  position:relative;
+  left:10px;
 }
-.shareboard {
-  width: 150px;
-  height: 5px;
+.shareboard{
+  width:170px;
+  height:3px;
   background-color: #7267c8;
-  position: relative;
-  bottom: 2px;
-  right: 34vw;
+  position:relative;
+  left:205px;
 }
 
 .more {
@@ -84,4 +85,13 @@
 .moreButton_container {
   display: flex;
   justify-content: flex-end;
+}
+
+
+.community-table{
+  width:88vw;
+}
+
+.tbody tr{
+  height:8vh;
 }
