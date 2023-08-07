@@ -3,9 +3,9 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { API_URL } from "../../../Constant";
 
-import "./FreeList.css";
+import "./ShareList.css";
 
-const FreeList = () => {
+const ShareList = () => {
   const token = localStorage.getItem("jwtToken");
   const [posts, setposts] = useState([]);
   const [pageNum, setPageNum] = useState(0);
@@ -14,9 +14,9 @@ const FreeList = () => {
   const navigate = useNavigate();
 
   const moveToMakeQuestion = () => {
-    navigate("/freeform");
+    navigate("/shareform");
   };
-  const type='freeBoard';
+  const type='shareBoard';
   // page
   useEffect(() => {
     axios
@@ -27,7 +27,7 @@ const FreeList = () => {
       })
       .then((response) => {
         setposts(response.data.data.boardList);
-        console.log("자유게시파아아안");
+        console.log("공유게시파아아안");
         console.log(response.data.data.boardList);
       })
       .catch((error) => {
@@ -49,7 +49,7 @@ const FreeList = () => {
     <div className="a">
       <div className="container1">
         <div className="post">
-          <h1>자유 게시판</h1>
+          <h1>공유 게시판</h1>
           <button className="postbutton" onClick={moveToMakeQuestion}>
             글쓰기
           </button>
@@ -99,4 +99,4 @@ const FreeList = () => {
   );
 };
 
-export default FreeList;
+export default ShareList;
