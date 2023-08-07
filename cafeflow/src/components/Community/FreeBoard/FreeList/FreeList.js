@@ -16,7 +16,7 @@ const FreeList = () => {
   const moveToMakeQuestion = () => {
     navigate("/freeform");
   };
-  const type='freeBoard';
+  const type = "freeBoard";
   // page
   useEffect(() => {
     axios
@@ -71,10 +71,7 @@ const FreeList = () => {
               <tr key={post.boardId}>
                 <td>{post.boardId}</td>
                 <td className="title">
-                  {/* <Link to={`/posts/${post.boardId}`}>
-                    {post.title}
-                  </Link> */}
-                  {post.title}
+                  <Link to={`/freepage/${post.boardId}`}>{post.title}</Link>
                 </td>
                 <td>{post.createdBy}</td>
                 <td>{post.viewCount}</td>

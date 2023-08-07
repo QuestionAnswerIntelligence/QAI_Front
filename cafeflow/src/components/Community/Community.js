@@ -50,7 +50,6 @@ const Community = () => {
     if (isFreeBoardClick) {
       setType("shareboard");
       SetIsFreeBoardClick(false);
-      
     }
   };
 
@@ -129,9 +128,7 @@ const Community = () => {
                 <tr key={post.boardId}>
                   <td>{post.boardId}</td>
                   <td className="community-title">
-                    {/* <Link to={`/posts/${post.boardId}`}>
-                            {post.title}
-                        </Link> */}
+                    {/* {<Link to={`/posts/${post.boardId}`}>{post.title}</Link>} */}
                     {post.title}
                   </td>
                   <td>{post.createdBy}</td>
