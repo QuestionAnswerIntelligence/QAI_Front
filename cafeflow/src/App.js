@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { RecoilRoot } from "recoil";
 import Header from "./components/Layout/header/Header";
-import Footer from "./components/Layout/footer/Footer";
 import Home from "./components/Home/Home";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
@@ -17,7 +16,7 @@ import FreeList from "./components/Community/FreeBoard/FreeList/FreeList";
 import ChatPage from "./components/ChatPage/ChatPage";
 import ShareForm from "./components/Community/ShareBoard/ShareForm/ShareForm";
 import ShareList from "./components/Community/ShareBoard/ShareList/ShareList";
-
+import ChatList from "./components/ChatList/ChatList";
 
 const App = () => {
   return (
@@ -38,6 +37,7 @@ const App = () => {
           <Route path="/sharelist" element={<ShareList />} />
           <Route path="/questions/:questionId" element={<QnAPage />} />
           <Route path="/chats/:chatId" element={<ChatPage />} />
+          <Route path="/chats" element={<ChatList />} />
         </Routes>
         {/* <ChatButton /> */}
       </Router>

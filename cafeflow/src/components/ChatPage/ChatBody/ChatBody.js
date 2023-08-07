@@ -16,6 +16,7 @@ const ChatBody = () => {
       .doc(chatId)
       .onSnapshot((snapshot) => {
         if (snapshot.exists) {
+          console.log(snapshot.data().messages); // Add this line
           setMessages(snapshot.data().messages);
         } else {
           console.log(`No document found for chatId: ${chatId}`);
@@ -25,6 +26,20 @@ const ChatBody = () => {
     // cleanup function
     return () => unsubscribe();
   }, [chatId]);
+
+  const formatTime = (timestamp) => {
+    const date = timestamp.toDate();
+    const hours = date.getHours();
+    const minutes = "0" + date.getMinutes();
+    const formattedTime =
+      (hours >= 12 ? "오후" : "오전") +
+      " " +
+      (hours % 12 || 12) +
+      ":" +
+      minutes.substr(-2) +
+      " ";
+    return formattedTime;
+  };
 
   return (
     <div className="bodyContainer">
@@ -39,6 +54,7 @@ const ChatBody = () => {
             <div className="messageSender">{message.sender}</div>
             <div className="messageContent">{message.content}</div>
           </div>
+          <div className="timestamp">{formatTime(message.timestamp)}</div>
         </div>
       ))}
     </div>

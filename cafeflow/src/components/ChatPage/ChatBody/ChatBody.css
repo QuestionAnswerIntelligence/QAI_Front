@@ -46,3 +46,10 @@
   display: flex;
   justify-content: flex-start;
 }
+
+.timestamp {
+  position: relative;
+  top: 55px;
+  left: 10px;
+  font-size: 13px;
+}

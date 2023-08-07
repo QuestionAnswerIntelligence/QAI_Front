@@ -36,7 +36,10 @@ const Header = () => {
     navigate("/community");
     //navigate("/freelist");
     //navigate("/sharelist");
-   
+  };
+
+  const moveToChat = () => {
+    navigate("/chats");
   };
   const handleLogout = () => {
     if (window.confirm("로그아웃 하시겠습니까?")) {
@@ -56,7 +59,7 @@ const Header = () => {
       moveToLogin();
     }
   };
-  
+
   useEffect(() => {
     const storedToken = localStorage.getItem("jwtToken");
     if (storedToken) {
@@ -113,9 +116,9 @@ const Header = () => {
         <button onClick={moveToCommunity}>
           <span>Community</span>
         </button>
-        {/* <button onClick={moveTomyPage}>
-          <span>Mypage</span>
-        </button> */}
+        <button onClick={moveToChat}>
+          <span>Chat</span>
+        </button>
       </div>
       <div className="header-right">
         {jwtToken ? (
@@ -127,7 +130,11 @@ const Header = () => {
               </button>
               님
             </span>
-            <button className="login" onClick={handleLogout}>
+            <img
+              src={divider}
+              style={{ marginLeft: "10px", marginRight: "10px" }}
+            ></img>
+            <button className="register" onClick={handleLogout}>
               <span>로그아웃</span>
             </button>
             <button className="hamburger-icon" onClick={toggleDropdown}>
