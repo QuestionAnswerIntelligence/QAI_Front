@@ -17,6 +17,8 @@ import ChatPage from "./components/ChatPage/ChatPage";
 import ShareForm from "./components/Community/ShareBoard/ShareForm/ShareForm";
 import ShareList from "./components/Community/ShareBoard/ShareList/ShareList";
 import ChatList from "./components/ChatList/ChatList";
+import FreePage from "./components/Community/FreeBoard/FreePage/FreePage";
+import SharePage from "./components/Community/ShareBoard/SharePage/SharePage";
 
 const App = () => {
   return (
@@ -33,11 +35,12 @@ const App = () => {
           <Route path="/community" element={<Community />} />
           <Route path="/freeform" element={<FreeForm />} />
           <Route path="/freelist" element={<FreeList />} />
+          {/* <Route path="/shareboard" element={<ShareBoard />} /> */}
+          <Route path="/questions/:questionId" element={<QnAPage />} />
+          <Route path="/freepage/:boardId" element={<FreePage />} />
+          <Route path="/sharepage/:boardId" element={<SharePage />} />
           <Route path="/shareform" element={<ShareForm />} />
           <Route path="/sharelist" element={<ShareList />} />
-          <Route path="/questions/:questionId" element={<QnAPage />} />
-          <Route path="/chats/:chatId" element={<ChatPage />} />
-          <Route path="/chats" element={<ChatList />} />
         </Routes>
         {/* <ChatButton /> */}
       </Router>
