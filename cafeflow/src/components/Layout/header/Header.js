@@ -33,8 +33,10 @@ const Header = () => {
     navigate("/qnalist");
   };
   const moveToCommunity = () => {
-    //navigate("/community");
-    navigate("/freelist");
+    navigate("/community");
+    //navigate("/freelist");
+    //navigate("/sharelist");
+   
   };
   const handleLogout = () => {
     if (window.confirm("로그아웃 하시겠습니까?")) {
@@ -54,7 +56,7 @@ const Header = () => {
       moveToLogin();
     }
   };
-
+  
   useEffect(() => {
     const storedToken = localStorage.getItem("jwtToken");
     if (storedToken) {
