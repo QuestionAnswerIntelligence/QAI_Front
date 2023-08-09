@@ -3,8 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { API_URL } from "../Constant";
-
+import ViewCount from "../../icons/ViewCount.png";
 import "./Community.css";
+
+
 
 const Community = () => {
   const token = localStorage.getItem("jwtToken");
@@ -12,8 +14,9 @@ const Community = () => {
   const [posts, setposts] = useState([]);
   const [isFreeBoardClick, SetIsFreeBoardClick] = useState(true);
   const [pageNum, setPageNum] = useState(0);
-  const [size, setSize] = useState(10);
-
+  const [size, setSize] = useState(8);
+  const [keyword,setKeyword]=useState("");
+  const [option,setOption]=useState("제목");
   const navigate = useNavigate();
 
   const moveToBoard = () => {
@@ -53,6 +56,14 @@ const Community = () => {
     }
   };
 
+  const moveToMakeQuestion = () => {
+    if (isFreeBoardClick) {
+      navigate("/freeform");
+    } else {
+      navigate("/shareform");
+    }
+  };
+
   function formatDate(isoDateString) {
     const date = new Date(isoDateString);
     const year = date.getFullYear();
@@ -62,29 +73,70 @@ const Community = () => {
     return `${year}-${month}-${day}`;
   }
 
-  function setPost() {
-    axios
-      .get(`${API_URL}/boards?page=${pageNum}&size=${size}&boardType=${type}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((response) => {
-        setposts(response.data.data.boardList);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  const handleSubmit=(e)=>{
+      // e.preventDefault();
+      // axios
+      // .get(`${API_URL}/boards?page=${pageNum}&size=${size}&boardType=${type}&option=${option}&searchKeyword=${keyword}`, {
+      //   headers: {
+      //     Authorization: `Bearer ${token}`,
+      //   },
+      // })
+      // .then((response) => {
+      //   setposts(response.data.data.boardList);
+      // })
+      // .catch((error) => {
+      //   console.log(error);
+      // });
+  }
+
+  const handleKeyDown=(e)=>{
+    e.preventDefault();
+    console.log(e.key);
+    // if(e.key=='enter'){
+    //   
+    //   axios
+    //   .get(`${API_URL}/boards?page=${pageNum}&size=${size}&boardType=${type}&option=${option}&searchKeyword=${keyword}`, {
+    //     headers: {
+    //       Authorization: `Bearer ${token}`,
+    //     },
+    //   })
+    //   .then((response) => {
+    //     setposts(response.data.data.boardList);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+    // }
+  }
+
+  const handleInputChange=(event)=>{
+    setKeyword(event.target.value);
+  }
+  const handleSelect=(event)=>{
+    setOption(event.target.value);
   }
   return (
     <div className="a">
       <div className="community-container">
         <div className="post">
           <h1>커뮤니티</h1>
+          <button className="postbutton" onClick={moveToMakeQuestion}>
+            글쓰기
+          </button>
         </div>
-        <span style={{ fontWeight: "bold" }}>개발자들과 소통해 보아요! </span>
+        <span className="community-span" style={{ fontWeight: "bold" }}>개발자들과 소통해 보아요! </span>
         <div className="searchBox">
-          <input class="search" type="text" placeholder="Search"></input>
+          <form onSubmit={handleSubmit}>
+          <select className="select-box" onChange={handleSelect}>
+              <option value="제목">제목</option>
+              <option value="내용">내용</option>
+              <option value="제목+내용">제목+내용</option>
+            </select>
+            <input class="search" type="text" placeholder="Search" onChange={handleInputChange} onKeyUp={handleKeyDown}></input>
+            
+            <button>검색</button>
+          </form>
+          
           <div
             style={{
               position: "relative",
@@ -92,10 +144,10 @@ const Community = () => {
               display: "flex",
             }}
           >
-            <button type="checkbox"></button>
-            <span style={{ color: "black" }}>최신순</span>
-            <button type="checkbox"></button>
-            <span style={{ color: "black" }}>인기순</span>
+            <button type="checkbox"  style={{marginRight:"5px"}}></button>
+            <span style={{ color: "black" , marginRight:"5px"}}>최신순</span>
+            <button type="checkbox" style={{marginRight:"5px"}}></button>
+            <span style={{ color: "black" , marginRight:"5px"}}>인기순</span>
           </div>
         </div>
         <div className="mycontainer">
@@ -113,36 +165,49 @@ const Community = () => {
         </div>
         <div className="board-container">
           <table className="community-table">
-            {/* <thead>
-              <tr>
-                <th>번호</th>
-                <th>제목</th>
-                <th>작성자</th>
-                <th>작성일자</th>
-                <th>조회수</th>
-              </tr>
-            </thead> */}
             <tbody>
               {/* map 함수를 이용하여 questions에 들어가있는 배열 가져오기 */}
               {posts.map((post) => (
                 <tr key={post.boardId}>
-                  <td>{post.boardId}</td>
-                  <td className="community-title">
-                    {/* {<Link to={`/posts/${post.boardId}`}>{post.title}</Link>} */}
-                    {post.title}
-                  </td>
-                  <td>{post.createdBy}</td>
-                  <td>{formatDate(post.createdAt)}</td>
-                  <td>{post.viewCount}</td>
+                  <div className="community-tr">
+                    <div className="community-left">
+                      <td>{post.boardId}</td>
+                      <div className="community-title">
+                        <td >
+                          {/* {<Link to={`/posts/${post.boardId}`}>{post.title}</Link>} */}
+                          {post.title}
+                        </td>
+                        <td className="community-content">{post.content}</td>
+                      </div>
+                    </div>
+                    <div className="community-right">
+                      <div className="createdBy-box">
+                          <td className="community-createdBy">작성자 : {post.createdBy}</td>
+                      </div>
+                      <td className="createdAt">
+                        작성 일자 : {formatDate(post.createdAt)}
+                      </td>
+                      <td className="viewCount">
+                        <img src={ViewCount}></img>
+                        {post.viewCount}
+                      </td>
+                    </div>
+                  </div>
                 </tr>
               ))}
             </tbody>
           </table>
-        </div>
-        <div className="moreButton_container">
-          <button className="more" onClick={moveToBoard}>
-            +더보기
+
+          <div className="pageNum">
+          <button
+            className="preButton" onClick={() => setPageNum((prevPageNum) => prevPageNum - 1)}
+            disabled={pageNum === 0}
+          >
           </button>
+          <span className="pageNumber">{pageNum+1}/300</span>
+          <button className="nextButton" onClick={() => setPageNum((prevPageNum) => prevPageNum + 1)}>
+          </button>
+        </div>
         </div>
       </div>
     </div>
