@@ -44,7 +44,7 @@ const QnAList = ({ chatId }) => {
           ); // 시간 순으로 정렬
         }
         setQuestions(response.data.data.questionList);
-        console.log(response.data.data.questionList);
+        //console.log(response.data.data.questionList);
       })
       .catch((error) => {
         console.log(error);
@@ -180,7 +180,6 @@ const QnAList = ({ chatId }) => {
             ))}
           </tbody>
         </table>
-        {/* <div className="divider1"></div> */}
         <div className="pageNum">
           <button
             onClick={() => setPageNum((prevPageNum) => prevPageNum - 1)}

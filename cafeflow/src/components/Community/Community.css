@@ -87,11 +87,91 @@
   justify-content: flex-end;
 }
 
-
 .community-table{
-  width:88vw;
+  width:80vw;
+  margin-left:5vw;
 }
 
-.tbody tr{
-  height:8vh;
+
+.preButton{
+  background-image: url("../../icons/pre_arrow1.png");
+  background-color: transparent;
+  background-size: cover;
+  border: none;
+  width: 40px;
+  height: 40px;
+}
+
+.nextButton{
+  background-image: url("../../icons/next_arrow1.png");
+  background-color: transparent;
+  background-size: cover;
+  border: none;
+  width: 40px;
+  height: 40px;
+}
+
+.pageNumber{
+  color:black;
+  font-size:20px;
+  background-color: transparent;
+}
+
+
+.community-tr{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid lightgray;
+  height:4wh;
+}
+
+.community-left{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 5vw;
+}
+
+.community-title{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+  margin-left: 5vw;
+}
+
+.community-right{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 3vw;
+}
+
+.createdBy-box{
+  position: relative;
+}
+
+.community-span{
+  color:gray;
+  font-size:20px;
+  margin-left:15px;
+}
+
+.community-content{
+  font-size:12px;
+}
+
+.community-createdBy{
+  font-size:12px;
+}
+
+.createdBy-box,.viewCount,.createdAt{
+  margin-right: 5vw;
+}
+
+.select-box{
+  padding:10px;
+  font-size:15px;
+  /* width:10vw; */
 }

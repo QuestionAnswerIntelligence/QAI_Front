@@ -41,6 +41,8 @@ const App = () => {
           <Route path="/sharepage/:boardId" element={<SharePage />} />
           <Route path="/shareform" element={<ShareForm />} />
           <Route path="/sharelist" element={<ShareList />} />
+          <Route path="/chats/:chatId" element={<ChatPage />} />
+          <Route path="/chats" element={<ChatList />} />
         </Routes>
         {/* <ChatButton /> */}
       </Router>

@@ -44,7 +44,7 @@ const ShareForm = () => {
         console.log(response);
         console.log(response.data);
         alert("게시물이 성공적으로 등록되었습니다!");
-        navigate("/sharelist");
+        navigate("/community");
       })
       .catch((error) => {
         console.log(error);

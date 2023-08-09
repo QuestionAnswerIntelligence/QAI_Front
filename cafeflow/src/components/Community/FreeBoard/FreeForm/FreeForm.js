@@ -4,15 +4,13 @@ import { API_URL } from "../../../Constant";
 import { useNavigate } from "react-router-dom";
 
 import "./FreeForm.css";
-
 const FreeForm = () => {
   const [formData, setFormData] = useState({
     title: "",
     content: "",
   });
   const [errors, setErrors] = useState({});
-
-  const createdBy = localStorage.getItem("nickName");
+  const createdBy = localStorage.getItem("nickname");
   const token = localStorage.getItem("jwtToken");
 
   const navigate = useNavigate();
@@ -23,17 +21,7 @@ const FreeForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    // if (!formData.title || !formData.content || !formData.point) {
-    //   setErrors({
-    //     ...errors,
-    //     title: !formData.title ? alert("제목이 입력되지 않았습니다!") : "",
-    //     content: !formData.content ? alert("내용이 입력되지 않았습니다!") : "",
-
-    //   });
-    //   return;
-    // }
-    const type = "freeBoard";
+    const type="freeBoard";
     axios
       .post(`${API_URL}/boards/create?boardType=${type}`, formData, {
         headers: {
@@ -44,7 +32,7 @@ const FreeForm = () => {
         console.log(response);
         console.log(response.data);
         alert("게시물이 성공적으로 등록되었습니다!");
-        navigate("/freelist");
+        navigate("/community");
       })
       .catch((error) => {
         console.log(error);
@@ -66,7 +54,6 @@ const FreeForm = () => {
           <input type="text" name="content" onChange={handleChange} />
           {errors.content && <p>{errors.content}</p>}
         </label>
-        <br />
 
         <label>작성자: {createdBy}</label>
         <br />
