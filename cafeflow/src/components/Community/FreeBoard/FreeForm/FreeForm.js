@@ -3,9 +3,7 @@ import axios from "axios";
 import { API_URL } from "../../../Constant";
 import { useNavigate } from "react-router-dom";
 
-
 import "./FreeForm.css";
-
 
 const FreeForm = () => {
   const [formData, setFormData] = useState({
@@ -14,7 +12,7 @@ const FreeForm = () => {
   });
   const [errors, setErrors] = useState({});
 
-  const nickname = localStorage.getItem("nickname");
+  const createdBy = localStorage.getItem("nickName");
   const token = localStorage.getItem("jwtToken");
 
   const navigate = useNavigate();
@@ -23,7 +21,6 @@ const FreeForm = () => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
-  
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -32,11 +29,11 @@ const FreeForm = () => {
     //     ...errors,
     //     title: !formData.title ? alert("제목이 입력되지 않았습니다!") : "",
     //     content: !formData.content ? alert("내용이 입력되지 않았습니다!") : "",
-       
+
     //   });
     //   return;
     // }
-    const type="freeBoard";
+    const type = "freeBoard";
     axios
       .post(`${API_URL}/boards/create?boardType=${type}`, formData, {
         headers: {
@@ -52,7 +49,7 @@ const FreeForm = () => {
       .catch((error) => {
         console.log(error);
         alert("에러 발생");
-    });
+      });
   };
 
   return (
@@ -63,18 +60,19 @@ const FreeForm = () => {
           <input type="text" name="title" onChange={handleChange} />
           {errors.title && <p>{errors.title}</p>}
         </label>
-        <br/>
+        <br />
         <label>
           내용:
           <input type="text" name="content" onChange={handleChange} />
           {errors.content && <p>{errors.content}</p>}
         </label>
-        <br/>
-        
-        <label>작성자: {nickname}</label>
+        <br />
+
+        <label>작성자: {createdBy}</label>
         <br />
         <button type="submit">Submit</button>
       </form>
+      s
     </div>
   );
 };
