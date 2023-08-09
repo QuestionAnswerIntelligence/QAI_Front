@@ -9,7 +9,7 @@ const FreePage = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  const [freepagestate, setCommunity] = useState(null); // 자게 글 내용 데이터를 저장하는 상태 변수
+  const [freepagestate, setFreepagestate] = useState(null); // 자게 글 내용 데이터를 저장하는 상태 변수
   const [editing, setEditing] = useState(false); // 편집 모드 상태 변수. 수정할 때 사용
   const [title, setTitle] = useState(""); // 제목을 저장하는 상태 변수
   const [content, setContent] = useState(""); // 내용을 저장하는 상태 변수
@@ -20,7 +20,7 @@ const FreePage = () => {
   const [editingComment, setEditingComment] = useState(""); // 수정할 댓글의 내용을 저장하는 상태
 
   const token = localStorage.getItem("jwtToken"); // JWT 토큰
-  const currentUser = localStorage.getItem("createdBy"); // 현재 로그인한 유저의 닉네임
+  const currentUser = localStorage.getItem("nickname"); // 현재 로그인한 유저의 닉네임
 
   // 페이지가 렌더링될 때, 현재 questionId에 해당하는 질문의 데이터를 가져옴
   useEffect(() => {
@@ -31,15 +31,14 @@ const FreePage = () => {
         },
       })
       .then((response) => {
-        setCommunity(response.data.data);
+        setFreepagestate(response.data.data);
         setTitle(response.data.data.title);
         setContent(response.data.data.content);
-        console.log("아무거나");
         setPoint(response.data.data.point);
-        setComments(response.data.data.answers); // 댓글 데이터 설정
+        setComments(response.data.data.comments || []); // 댓글 데이터 설정
       })
       .catch((error) => {
-        setError("데이터를 가져오는 중 오류 발생티비");
+        setError("데이터를 가져오는 중 오류 발생");
         console.log(error);
       });
   }, [boardId, token]);
@@ -80,7 +79,7 @@ const FreePage = () => {
   const handleDeleteComment = (id) => {
     if (window.confirm("댓글을 삭제하시겠습니까?")) {
       axios
-        .delete(`${API_URL}/boards/answer/${id}`, {
+        .delete(`${API_URL}/boards/comment/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -106,7 +105,7 @@ const FreePage = () => {
     if (window.confirm("댓글을 수정하시겠습니까?")) {
       axios
         .patch(
-          `${API_URL}/boards/answer/${editingCommentId}`, // 댓글을 수정하는 API의 경로
+          `${API_URL}/boards/comment/${editingCommentId}`, // 댓글을 수정하는 API의 경로
           {
             content: editingComment,
           },
@@ -143,7 +142,7 @@ const FreePage = () => {
     if (window.confirm("질문을 수정하시겠습니까?")) {
       axios
         .patch(
-          `${API_URL}/boards/${boardId}`,
+          `${API_URL}/boards/comment/${boardId}`,
           {
             title: title,
             content: content,
@@ -157,7 +156,7 @@ const FreePage = () => {
         )
         .then((response) => {
           setEditing(false); // 수정 모드 종료
-          setCommunity(response.data.data); // 수정된 질문 데이터를 설정
+          setFreepagestate(response.data.data); // 수정된 질문 데이터를 설정
           console.log("QnA 질문 수정 완료!");
         })
         .catch((error) => {
@@ -175,7 +174,7 @@ const FreePage = () => {
       }
       axios
         .post(
-          `${API_URL}/boards/${boardId}`, // 댓글을 등록하는 API의 경로
+          `${API_URL}/boards/comment/${boardId}`, // 댓글을 등록하는 API의 경로
           {
             content: comment,
           },
@@ -190,18 +189,13 @@ const FreePage = () => {
           setComment(""); // 댓글 입력 필드를 초기화
           console.log("댓글 입력 성공!");
           console.log(response.data.data);
-          setComments((prevComments) => [...prevComments, response.data.data]); // 새로운 댓글 추가
+          setComments((prevComments) => [...prevComments, response.data.data]); // 댓글을 배열에 추가
         })
         .catch((error) => {
           console.error(error);
         });
     }
   };
-
-  // // question 데이터가 아직 로드되지 않았다면 로딩 메시지를 표시
-  // if (!freepagestate) {
-  //   return <div>Loading...</div>;
-  // }
 
   return (
     <div className="container">
@@ -229,9 +223,9 @@ const FreePage = () => {
           <p>
             <b>내용 </b>: {freepagestate?.content}
           </p>
-          {/* <p>
+          <p>
             <b>닉네임 또는 게시글 작성자</b> : {freepagestate?.createdBy}
-          </p> */}
+          </p>
           <p>
             <b>조회수</b> : {freepagestate?.viewCount}
           </p>
@@ -241,7 +235,9 @@ const FreePage = () => {
           <p>
             <b>작성일자 </b>: {formatDate(freepagestate?.createdAt)}
           </p>
-          {currentUser === freepagestate.createdBy && (
+          {/* 현재 로그인 한 유저의 정보(currentUser)와 댓글 작성자(createdBy)의 정보를 */}
+          {/* 비교하여 삭제 및 수정 버튼이 보이게 함 */}
+          {currentUser === freepagestate?.createdBy && (
             <>
               <button onClick={handleDelete}>삭제</button>
               <button onClick={handleEdit}>수정</button>
@@ -269,9 +265,9 @@ const FreePage = () => {
           comments.map((comment) => (
             <div key={comment.id}>
               <p>
-                <b>{comment.nickname}</b>: {comment.content}
+                <b>{comment.createdBy}</b>: {comment.content}
               </p>
-              {currentUser === comment.nickname && (
+              {currentUser === comment.createdBy && (
                 <>
                   <button onClick={() => handleDeleteComment(comment.id)}>
                     삭제
