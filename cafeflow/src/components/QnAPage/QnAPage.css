@@ -19,6 +19,25 @@
   width: 100%;
 }
 
+.divider {
+  height: 0.1vh;
+  width: 50vw;
+  background-color: lightgray;
+}
+
+.container12 {
+  display: flex;
+  align-items: stretch;
+  width: 90vw;
+  height: 80vh;
+  flex-direction: column;
+  border: 1px solid black;
+  margin-top: 4vh;
+  background-color: white;
+  border-radius: 20px;
+  overflow: scroll;
+}
+
 .dropdown-menu {
   position: fixed;
   top: 50px; /* 헤더의 바로 아래에 위치하도록 설정 */
@@ -37,4 +56,77 @@
 
 .dropdown-menu.show1 {
   top: 70px;
+}
+
+.a1 {
+  display: flex;
+  flex-direction: column;
+  margin-left: 1.5vw;
+  /* position: fixed; */
+}
+
+.a2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.a3 {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  width: 50vw;
+  border: 1px solid gray;
+  border-radius: 15px;
+  padding: 30px;
+}
+
+.a4 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1vw;
+}
+
+.a5 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.a6 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 0px;
+}
+
+.a7 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+}
+
+.pointSpan {
+  margin-bottom: 0px;
+  background-color: #564e97;
+  width: 3vw;
+  height: 2.5vh;
+  color: white;
+  text-align: center;
+  align-items: center;
+  margin-left: 1vw;
+}
+
+.button {
+  margin-right: 1vw;
+  background-color: none;
+  border: none;
+  border-radius: 5px;
+  width: 5vw;
+  height: 3vh;
 }

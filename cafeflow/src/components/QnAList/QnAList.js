@@ -44,7 +44,8 @@ const QnAList = ({ chatId }) => {
           ); // 시간 순으로 정렬
         }
         setQuestions(response.data.data.questionList);
-        //console.log(response.data.data.questionList);
+        console.log(response.data.data.questionList);
+        console.log(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -103,17 +104,16 @@ const QnAList = ({ chatId }) => {
   };
 
   return (
-    <div className="a">
-      <div className="container1">
+    <div className="aaa">
+      <div className="container11">
         <div className="post">
           <h1>Q & A</h1>
-          <button className="postbutton" onClick={moveToMakeQuestion}>
+          <button className="postbutton1" onClick={moveToMakeQuestion}>
             글쓰기
           </button>
         </div>
         <span style={{ fontWeight: "bold" }}>질문하세요! </span>
         <div className="asd">
-          <a>asd</a>
           <div className="searchBox">
             <input className="search" type="text" placeholder="Search"></input>
             <div
@@ -153,22 +153,26 @@ const QnAList = ({ chatId }) => {
                   </div>
                   <div className="rightside">
                     <div className="nicknameBox">
-                      <td
-                        className="nickname"
-                        onClick={() => handleAuthorClick(question.createdBy)}
-                      >
-                        작성자 : {question.createdBy}
+                      <td onClick={() => handleAuthorClick(question.createdBy)}>
+                        <h2 className="createdBy">{question.createdBy}</h2>
                       </td>
-                      {isDropdownVisible && nickname !== question.createdBy && (
-                        <div className="dropdown">
-                          <button onClick={() => startChat(nickname, question)}>
-                            1:1 채팅하기
-                          </button>
-                        </div>
-                      )}
+                      {token &&
+                        isDropdownVisible &&
+                        nickname !== question.createdBy && (
+                          <div className="dropdown">
+                            <button
+                              className="chatbutton123"
+                              onClick={() => startChat(nickname, question)}
+                            >
+                              1:1 채팅하기
+                            </button>
+                          </div>
+                        )}
                     </div>
                     <td className="createdAt">
-                      작성 일자: {formatDate(question.createdAt)}
+                      <span className="createdBy">
+                        {formatDate(question.createdAt)}
+                      </span>
                     </td>
                     <td className="viewCount">
                       <img src={ViewCount}></img>

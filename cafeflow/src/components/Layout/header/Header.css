@@ -1,6 +1,6 @@
 .header {
   position: fixed;
-  height: 100px;
+  height: 11vh;
   width: 100%;
   display: flex;
   justify-content: space-around;
@@ -131,21 +131,19 @@ span {
 .dropdown-menu {
   position: fixed;
   top: 50px; /* 헤더의 바로 아래에 위치하도록 설정 */
-  right: 500px; /* 오른쪽에서 50px 떨어져 위치하도록 설정 */
+  right: 20px; /* 오른쪽에서 50px 떨어져 위치하도록 설정 */
   display: flex;
   flex-direction: column;
-  background-color: rgb(255, 255, 255);
+  background-color: white;
   border: 1px solid gray;
   border-radius: 10px;
   padding: 10px;
   gap: 20px;
-  background-color:  #564e97;
+  background-color: #564e97;
   z-index: 100; /* 다른 요소들 위에 나타나도록 z-index를 높게 설정 */
   transition: top 1s ease-in-out; /* 애니메이션 효과 추가 */
 }
 
 .dropdown-menu.show {
   top: 70px;
-  position:fixed;
-  z-index:100;
 }

@@ -17,3 +17,25 @@
   /* background-color: black; */
   border-radius: 20px;
 }
+
+@media (max-width: 768px) {
+  .chatpage {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .chatContainer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    height: calc(100vh - 100px);
+    width: 100vw;
+    height: 80vh;
+    /* background-color: black; */
+    border-radius: 20px;
+  }
+}

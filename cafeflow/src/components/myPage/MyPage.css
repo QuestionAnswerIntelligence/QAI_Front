@@ -1,15 +1,21 @@
 .container {
   position: absolute;
-  left: 35%; /* Adjust this to move the text along the x-axis */
-  top: 100px; /* Adjust this to move the text along the y-axis */
+  left: 35%;
+  top: 100px;
 }
 
 .profileBox {
-  width: 200px;
-  height: 30px;
+  width: 30vw;
+  height: 5vh;
   border: 1px solid gray;
   border-radius: 5px;
   text-align: center;
   margin-top: 10px;
-  padding-top: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profileBox > span {
+  color: black;
 }

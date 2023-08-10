@@ -6,7 +6,6 @@ import Home from "./components/Home/Home";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import MyPage from "./components/myPage/MyPage";
-import ChatButton from "./components/Chat/ChatButton/ChatButton";
 import QnAForm from "./components/QnAForm/QnAForm";
 import QnAList from "./components/QnAList/QnAList";
 import Community from "./components/Community/Community";
@@ -19,6 +18,9 @@ import ShareList from "./components/Community/ShareBoard/ShareList/ShareList";
 import ChatList from "./components/ChatList/ChatList";
 import FreePage from "./components/Community/FreeBoard/FreePage/FreePage";
 import SharePage from "./components/Community/ShareBoard/SharePage/SharePage";
+import NaverCallback from "./components/SocialLogin/NaverCallback";
+import KakaoCallback from "./components/SocialLogin/KakaoCallback";
+import GoogleCallback from "./components/SocialLogin/GoogleCallback";
 
 const App = () => {
   return (
@@ -43,6 +45,18 @@ const App = () => {
           <Route path="/sharelist" element={<ShareList />} />
           <Route path="/chats/:chatId" element={<ChatPage />} />
           <Route path="/chats" element={<ChatList />} />
+          <Route
+            path="/login/oauth2/callback/naver"
+            element={<NaverCallback />}
+          />
+          <Route
+            path="/login/oauth2/callback/kakao"
+            element={<KakaoCallback />}
+          />
+          <Route
+            path="/login/oauth2/callback/google"
+            element={<GoogleCallback />}
+          />
         </Routes>
         {/* <ChatButton /> */}
       </Router>
