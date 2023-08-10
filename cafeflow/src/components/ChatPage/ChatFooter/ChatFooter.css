@@ -31,3 +31,39 @@
   width: 23vw;
   height: 5vh;
 }
+
+@media (max-width: 768px) {
+  .footerContainer {
+    background-color: rgb(86, 78, 151);
+    height: 8vh;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    height: 8vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5vw;
+  }
+
+  /* 메세지 보내기 버튼 */
+  .send {
+    width: 2vw;
+    height: 5vh;
+    background-size: contain;
+    background-position: center;
+    background-image: url("../../../icons/send.png");
+    background-color: rgb(86, 78, 151);
+    background-repeat: no-repeat;
+    border: 1px solid white;
+    border: none;
+  }
+
+  /* 메세지 입력 칸 */
+  .msgBox {
+    width: 23vw;
+    height: 5vh;
+  }
+}

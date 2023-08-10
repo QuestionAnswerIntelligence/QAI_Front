@@ -2,6 +2,9 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { API_URL } from "../Constant";
+import writer1 from "../../icons/writer1.png";
+import ViewCount from "../../icons/ViewCount.png";
+import divider from "../../icons/Divider.png";
 import "./QnAPage.css";
 
 const QnAPage = () => {
@@ -36,6 +39,7 @@ const QnAPage = () => {
         setContent(response.data.data.content);
         setPoint(response.data.data.point);
         setComments(response.data.data.answers); // 댓글 데이터 설정
+        console.log(response.data.data);
       })
       .catch((error) => {
         console.log(error);
@@ -170,7 +174,7 @@ const QnAPage = () => {
       }
       axios
         .post(
-          `${API_URL}/questions/${questionId}`, // 댓글을 등록하는 API의 경로
+          `${API_URL}/questions/answer/${questionId}`, // 댓글을 등록하는 API의 경로
           {
             content: comment,
           },
@@ -184,7 +188,8 @@ const QnAPage = () => {
           // 서버로부터 응답을 받았을 때의 처리
           setComment(""); // 댓글 입력 필드를 초기화
           console.log("댓글 입력 성공!");
-          console.log(response.data.data);
+          console.log(response.data);
+          console.log(response.data.data.createdBy);
           setComments((prevComments) => [...prevComments, response.data.data]); // 새로운 댓글 추가
         })
         .catch((error) => {
@@ -198,100 +203,178 @@ const QnAPage = () => {
     return <div>Loading...</div>;
   }
 
-  return (
-    <div className="QnA">
-      {editing ? (
-        <div>
-          <input value={title} onChange={(e) => setTitle(e.target.value)} />
-          <textarea
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-          />
-          <input
-            type="number"
-            value={point}
-            onChange={(e) => setPoint(e.target.value)}
-            placeholder="내공 점수"
-          />
+  const formattedDate = (createdAt) => {
+    const date = new Date(createdAt);
 
-          <button onClick={handleUpdate}>수정 완료</button>
-        </div>
-      ) : (
-        <div>
-          <h2>
-            <b>제목 </b>: {question.title}
-          </h2>
-          <p>
-            <b>내용 </b>: {question.content}
-          </p>
-          <p>
-            <b>닉네임 또는 게시글 작성자</b> : {question.nickname}
-          </p>
-          <p>
-            <b>조회수</b> : {question.viewCount}
-          </p>
-          <p>
-            <b>내공 점수 </b>: {question.point}
-          </p>
-          <p>
-            <b>작성일자 </b>: {formatDate(question.createdAt)}
-          </p>
-          {currentUser === question.nickname && (
-            <>
-              <button onClick={handleDelete}>삭제</button>
-              <button onClick={handleEdit}>수정</button>
-            </>
-          )}
-          <hr />
-        </div>
-      )}
-      <div>
-        {token ? (
+    // 시간대 차이를 고려해야 하기 때문에 getUTC 메서드 대신 일반 메서드를 사용합니다.
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // 월은 0부터 시작하기 때문에 +1을 합니다.
+    const day = String(date.getDate()).padStart(2, "0");
+    const hours = String(date.getHours()).padStart(2, "0"); // 24시간 형식으로 변환합니다.
+    const minutes = String(date.getMinutes()).padStart(2, "0");
+    return `${year}.${month}.${day} ${hours}:${minutes}`;
+  };
+
+  return (
+    <div className="a">
+      <div className="container12">
+        {editing ? (
           <div>
-            <input
-              value={comment}
-              onChange={(e) => setComment(e.target.value)}
-              placeholder="댓글을 입력하세요..."
+            <input value={title} onChange={(e) => setTitle(e.target.value)} />
+            <textarea
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
             />
-            <button onClick={handleComment}>입력 완료</button>
+            <input
+              type="number"
+              value={point}
+              onChange={(e) => setPoint(e.target.value)}
+              placeholder="내공 점수"
+            />
+
+            <button onClick={handleUpdate}>수정 완료</button>
           </div>
         ) : (
-          <p>
-            <Link to="/login">로그인</Link>을 해야합니다.
-          </p>
-        )}
-        {comments &&
-          comments.map((comment) => (
-            <div key={comment.id}>
-              <p>
-                <b>{comment.nickname}</b>: {comment.content}
-              </p>
-              {currentUser === comment.nickname && (
-                <>
-                  <button onClick={() => handleDeleteComment(comment.id)}>
-                    삭제
-                  </button>
-                  {editingCommentId === comment.id ? ( // [NEW CODE]
-                    <>
-                      <input
-                        value={editingComment}
-                        onChange={(e) => setEditingComment(e.target.value)}
-                        placeholder="수정할 내용을 입력하세요..."
-                      />
-                      <button onClick={handleCommentUpdate}>수정 완료</button>
-                      <button onClick={() => setEditingCommentId(null)}>
-                        취소
-                      </button>
-                    </>
-                  ) : (
-                    <button onClick={() => handleEditComment(comment)}>
-                      수정
-                    </button>
-                  )}
-                </>
-              )}
+          <div>
+            <div className="a1">
+              <h1 style={{ marginBottom: "10px" }}>Q & A</h1>
+              <span style={{ color: "gray" }}>질문하세요!</span>
             </div>
-          ))}
+            <div className="a2">
+              <div className="a3">
+                <div className="a4">
+                  <div className="a5">
+                    <h1 style={{ margin: "0px" }}>{question.title}</h1>
+                    <span className="pointSpan">{question.point}</span>
+                  </div>
+                  <div className="a5">
+                    {currentUser == question.createdBy && (
+                      <>
+                        <button className="button" onClick={handleDelete}>
+                          삭제
+                        </button>
+                        {/* <img
+                          src={divider}
+                          style={{ marginLeft: "10px", marginRight: "10px" }}
+                        ></img> */}
+                        <button className="button" onClick={handleEdit}>
+                          수정
+                        </button>
+                      </>
+                    )}
+                  </div>
+                </div>
+                <div className="a6">
+                  <img
+                    src={writer1}
+                    style={{
+                      width: "30px",
+                      height: "30px",
+                    }}
+                  ></img>
+                  <p style={{ color: "#64748B" }}>{question.createdBy}</p>
+                  <p>{formatDate(question.createdAt)}</p>
+                  <div className="a7">
+                    <img
+                      style={{ width: "1.3vw", height: "1.8vh" }}
+                      src={ViewCount}
+                    ></img>
+                    <p>{question.viewCount}</p>
+                  </div>
+                </div>
+                <div>
+                  <p>
+                    <b>내용 </b>: {question.content}
+                  </p>
+                </div>
+                <hr />
+                <div>
+                  {token ? (
+                    <div>
+                      <input
+                        value={comment}
+                        onChange={(e) => setComment(e.target.value)}
+                        placeholder="댓글을 입력하세요..."
+                      />
+                      <button onClick={handleComment}>입력 완료</button>
+                    </div>
+                  ) : (
+                    <p>
+                      <Link to="/login">로그인</Link>을 해야합니다.
+                    </p>
+                  )}
+                  {comments &&
+                    comments.map((comment) => (
+                      <div
+                        style={{
+                          display: "flex",
+                          gap: "0.8vw",
+                          marginTop: "2vh",
+                          justifyContent: "space-between",
+                          border: "1px solid gray",
+                          padding: "10px",
+                          borderRadius: "10px",
+                        }}
+                        key={comment.id}
+                      >
+                        <span style={{ color: "black", fontSize: "15px" }}>
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                              gap: "0.1vw",
+                            }}
+                          >
+                            <b>{comment.createdBy}</b>
+                            {comment.content}
+                            <span style={{ color: "gray", fontSize: "11px" }}>
+                              {formattedDate(comment.createdAt)}
+                            </span>
+                          </div>
+                        </span>
+                        {currentUser === comment.createdBy && (
+                          <div>
+                            <button
+                              className="button"
+                              onClick={() => handleDeleteComment(comment.id)}
+                            >
+                              삭제
+                            </button>
+                            {editingCommentId === comment.id ? (
+                              <div>
+                                <input
+                                  value={editingComment}
+                                  onChange={(e) =>
+                                    setEditingComment(e.target.value)
+                                  }
+                                  placeholder="수정할 내용을 입력하세요..."
+                                />
+                                <button onClick={handleCommentUpdate}>
+                                  수정 완료
+                                </button>
+                                <button
+                                  onClick={() => setEditingCommentId(null)}
+                                >
+                                  취소
+                                </button>
+                              </div>
+                            ) : (
+                              <button
+                                className="button"
+                                onClick={() => handleEditComment(comment)}
+                              >
+                                수정
+                              </button>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
