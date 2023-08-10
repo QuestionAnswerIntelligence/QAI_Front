@@ -74,19 +74,20 @@ const Community = () => {
   }
 
   const handleSubmit=(e)=>{
-      // e.preventDefault();
-      // axios
-      // .get(`${API_URL}/boards?page=${pageNum}&size=${size}&boardType=${type}&option=${option}&searchKeyword=${keyword}`, {
-      //   headers: {
-      //     Authorization: `Bearer ${token}`,
-      //   },
-      // })
-      // .then((response) => {
-      //   setposts(response.data.data.boardList);
-      // })
-      // .catch((error) => {
-      //   console.log(error);
-      // });
+      e.preventDefault();
+      axios
+      .get(`${API_URL}/boards?page=${pageNum}&size=${size}&boardType=${type}&option=${option}&searchKeyword=${keyword}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        setposts(response.data.data.boardList);
+        e.target.value="";
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   const handleKeyDown=(e)=>{
@@ -111,6 +112,7 @@ const Community = () => {
 
   const handleInputChange=(event)=>{
     setKeyword(event.target.value);
+    
   }
   const handleSelect=(event)=>{
     setOption(event.target.value);
@@ -118,22 +120,21 @@ const Community = () => {
   return (
     <div className="a">
       <div className="community-container">
-        <div className="post">
+        <div className="post-container">
           <h1>커뮤니티</h1>
-          <button className="postbutton" onClick={moveToMakeQuestion}>
+          <button className="postbutton1" onClick={moveToMakeQuestion}>
             글쓰기
           </button>
         </div>
         <span className="community-span" style={{ fontWeight: "bold" }}>개발자들과 소통해 보아요! </span>
         <div className="searchBox">
           <form onSubmit={handleSubmit}>
-          <select className="select-box" onChange={handleSelect}>
-              <option value="제목">제목</option>
-              <option value="내용">내용</option>
-              <option value="제목+내용">제목+내용</option>
+            <select className="select-box" onChange={handleSelect}>
+                <option value="제목">제목</option>
+                <option value="내용">내용</option>
+                <option value="제목+내용">제목+내용</option>
             </select>
-            <input class="search" type="text" placeholder="Search" onChange={handleInputChange} onKeyUp={handleKeyDown}></input>
-            
+            <input className="community-search" type="text" placeholder="Search" onChange={handleInputChange}></input>
             <button>검색</button>
           </form>
           
@@ -144,10 +145,11 @@ const Community = () => {
               display: "flex",
             }}
           >
-            <button type="checkbox"  style={{marginRight:"5px"}}></button>
-            <span style={{ color: "black" , marginRight:"5px"}}>최신순</span>
-            <button type="checkbox" style={{marginRight:"5px"}}></button>
-            <span style={{ color: "black" , marginRight:"5px"}}>인기순</span>
+
+            <button className="community-checkbox" type="checkbox"  style={{marginRight:"5px"}}></button>
+            <span className="community-checkbox-span" style={{ color: "black" , marginRight:"5px"}}>최신순</span>
+            <button className="community-checkbox" type="checkbox" style={{marginRight:"5px"}}></button>
+            <span className="community-checkbox-span" style={{ color: "black" , marginRight:"5px"}}>인기순</span>
           </div>
         </div>
         <div className="mycontainer">
@@ -173,7 +175,7 @@ const Community = () => {
                     <div className="community-left">
                       <td>{post.boardId}</td>
                       <div className="community-title">
-                        <td >
+                        <td className="community-post-title">
                           {/* {<Link to={`/posts/${post.boardId}`}>{post.title}</Link>} */}
                           {post.title}
                         </td>
