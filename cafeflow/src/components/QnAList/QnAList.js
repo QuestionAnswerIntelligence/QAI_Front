@@ -45,6 +45,7 @@ const QnAList = ({ chatId }) => {
         }
         setQuestions(response.data.data.questionList);
         console.log(response.data.data.questionList);
+        console.log(response.data);
       })
       .catch((error) => {
         console.log(error);

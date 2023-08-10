@@ -77,7 +77,8 @@
   flex-direction: column;
   text-align: left;
   width: 50vw;
-  border: 1px solid lightgray;
+  border: 1px solid gray;
+  border-radius: 15px;
   padding: 30px;
 }
 
