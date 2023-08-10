@@ -7,7 +7,6 @@ import ViewCount from "../../icons/ViewCount.png";
 import "./Community.css";
 
 
-
 const Community = () => {
   const token = localStorage.getItem("jwtToken");
   const [type, setType] = useState("freeBoard");
@@ -117,6 +116,8 @@ const Community = () => {
   const handleSelect=(event)=>{
     setOption(event.target.value);
   }
+
+
   return (
     <div className="a">
       <div className="community-container">
@@ -166,49 +167,45 @@ const Community = () => {
           ></span>
         </div>
         <div className="board-container">
-          <table className="community-table">
-            <tbody>
-              {/* map 함수를 이용하여 questions에 들어가있는 배열 가져오기 */}
-              {posts.map((post) => (
-                <tr key={post.boardId}>
-                  <div className="community-tr">
-                    <div className="community-left">
-                      <td>{post.boardId}</td>
-                      <div className="community-title">
-                        <td className="community-post-title">
-                          {/* {<Link to={`/posts/${post.boardId}`}>{post.title}</Link>} */}
-                          {post.title}
-                        </td>
-                        <td className="community-content">{post.content}</td>
-                      </div>
+            {/* map 함수를 이용하여 questions에 들어가있는 배열 가져오기 */}
+            {posts.map((post) => (
+              <div>
+              <ul className="post-list" key={post.boardId}>
+                <li className="community-post-list">
+                  
+                  <div className="community-post-list-up">
+                    <div><span className="community-createdBy">{post.createdBy}</span>
+                      <span className="community-createdAt"> 작성 일자 : {formatDate(post.createdAt)}</span>
                     </div>
-                    <div className="community-right">
-                      <div className="createdBy-box">
-                          <td className="community-createdBy">작성자 : {post.createdBy}</td>
-                      </div>
-                      <td className="createdAt">
-                        작성 일자 : {formatDate(post.createdAt)}
-                      </td>
-                      <td className="viewCount">
-                        <img src={ViewCount}></img>
-                        {post.viewCount}
-                      </td>
+                    <div>
+                      <img className="viewCountImg" src={ViewCount}></img>
+                       <span className="viewCountSpan">{post.viewCount}</span>
                     </div>
+                    
                   </div>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                  <div  className="community-post-list-middle">
+                    <div className="community-title">{post.title}</div>
+                  </div>
+                  <div  className="community-post-list-down">
 
+                  </div>
+                </li>
+                
+              </ul>
+              <div className="divider2">
+              </div>  
+              </div>
+              
+            ))}
           <div className="pageNum">
-          <button
+          {/* <button
             className="preButton" onClick={() => setPageNum((prevPageNum) => prevPageNum - 1)}
             disabled={pageNum === 0}
           >
           </button>
           <span className="pageNumber">{pageNum+1}/300</span>
           <button className="nextButton" onClick={() => setPageNum((prevPageNum) => prevPageNum + 1)}>
-          </button>
+          </button> */}
         </div>
         </div>
       </div>

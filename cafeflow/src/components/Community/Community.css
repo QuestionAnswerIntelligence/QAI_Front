@@ -5,13 +5,13 @@
   width: 100vw;
   height: 100vh;
   flex-direction: column;
-  background-color: #0d0d2b;
+  background-color: #ffffff;
 }
 
 .community-container {
   display: flex;
   align-items: stretch;
-  width: 90vw;
+  width: 60vw;
   height: 80vh;
   flex-direction: column;
   border: 1px solid black;
@@ -47,7 +47,7 @@
   justify-content: flex-start;
   align-items: center;
   height: 3px;
-  width: 88vw;
+  width: 57vw;
   background-color: lightgray;
   margin: 12px;
   position: relative;
@@ -133,13 +133,13 @@
   margin-left: 5vw;
 }
 
-.community-title{
+/* .community-title{
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 5px;
   margin-left: 5vw;
-}
+} */
 
 .community-right{
   display: flex;
@@ -162,16 +162,14 @@
   font-size:12px;
 }
 
-.community-createdBy{
-  font-size:12px;
-}
+
 
 .createdBy-box,.viewCount,.createdAt{
   margin-right: 5vw;
 }
 
 .select-box{
-  padding:10px;
+  padding:8px;
   font-size:15px;
   /* width:10vw; */
 }
@@ -195,11 +193,62 @@
   font-size: 18px;
   position: relative;
   top: 26px;
-  
 }
 .community-search{
   height:30px;
 }
+/* 리스트 추가 */
+
+
+
+.community-post-list{
+  list-style:none;
+}
+
+.community-createdBy{
+  color:black;
+  font-size:15px;
+}
+
+.community-createdAt{
+  color:black;
+  margin:3vw;
+  font-size:15px;
+}
+
+.community-post-list-up{
+  display:flex;
+  justify-content: space-between;
+  margin-bottom:2px;
+  width:50vw;
+}
+.viewCountImg{
+  margin-right:10px;
+  width:15px;
+  height:15px;
+}
+
+.community-title{
+  color:black;
+  font-size:17px;
+}
+
+.divider2{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 1px;
+  width: 57vw;
+  background-color: lightgray;
+  margin: 12px;
+  position: relative;
+  
+}
+.viewCountSpan{
+  color:black;
+}
+
+
 @media (max-width: 768px) {
   .a {
     display: flex;
@@ -208,7 +257,7 @@
     width: 100vw;
     height: 100vh;
     flex-direction: column;
-    background-color: #0d0d2b;
+    background-color: #ffffff;
   }
   
   .community-container {
@@ -243,8 +292,8 @@
   .board-container{
     width:88vw;
     height:40vh;
-    
   }
+
   
   .divider1 {
     display: flex;
@@ -345,13 +394,13 @@
     margin-left: 5vw;
   }
   
-  .community-title{
+  /* .community-title{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 5px;
     margin-left: 5vw;
-  }
+  } */
   .community-post-title{
     font-size:4vw;
   }
@@ -376,9 +425,9 @@
   .community-content{
     font-size:12px;
   }
-  
-  .community-createdBy{
-    font-size:12px;
+
+  .community-createdAt{
+    font-size:4vw;
   }
   
   .createdBy-box,.viewCount,.createdAt{
@@ -422,4 +471,54 @@
     width:10vh;
     height:2vh;
   }
+  /* 리스트 추가 */
+  .community-post-list{
+    list-style:none;
+  }
+  
+  .community-createdBy{
+    color:black;
+    font-size:4vw;
+  }
+  
+  .community-createdAt{
+    color:black;
+    margin:3vw;
+    font-size:1.5vh;
+  }
+  
+  .community-post-list-up{
+    display:flex;
+    justify-content: space-between;
+    margin-bottom:2px;
+  }
+  .viewCountImg{
+    margin-right:5px;
+    width:15px;
+    height:15px;
+  }
+  
+  .community-title{
+    color:black;
+    font-size:17px;
+  }
+  
+  .divider2{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 1px;
+    width: 83vw;
+    background-color: lightgray;
+    margin: 12px;
+    position: relative;
+    
+  }
+  .viewCountSpan{
+    color:black;
+    margin-right:5vw;
+    font-size:15px;
+  }
 }
+
+
