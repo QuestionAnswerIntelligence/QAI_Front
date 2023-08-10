@@ -84,7 +84,7 @@ const Header = () => {
           <span>{nickname}</span>
         </button>
         <button className="login" onClick={moveTomyPage}>
-          <span>마이페이지</span>
+         <span>마이페이지</span>
         </button>
         <button className="login" onClick={moveToQnA}>
           <span>Q&A</span>

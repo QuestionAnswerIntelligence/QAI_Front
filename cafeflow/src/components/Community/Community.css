@@ -175,3 +175,251 @@
   font-size:15px;
   /* width:10vw; */
 }
+
+
+.post-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.5vw;
+  
+}
+.postbutton1{
+  width: 10vw;
+  height: 5vh;
+  background-color: #7267c8;
+  color: white;
+  border-radius: 20px;
+  border: none;
+  font-size: 18px;
+  position: relative;
+  top: 26px;
+  
+}
+.community-search{
+  height:30px;
+}
+@media (max-width: 768px) {
+  .a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    flex-direction: column;
+    background-color: #0d0d2b;
+  }
+  
+  .community-container {
+    display: flex;
+    align-items: stretch;
+    width: 90vw;
+    height: 80vh;
+    flex-direction: column;
+    border: 1px solid black;
+    margin-top: 4vh;
+    background-color: white;
+    border-radius: 20px;
+  }
+  
+  
+  .board_list{
+    width: 30vw;
+    height: 5vh;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    border: none;
+    font-size: 4vw;
+    margin-top:1vh;
+  }
+  
+  .mycontainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+  }
+  
+  .board-container{
+    width:88vw;
+    height:40vh;
+    
+  }
+  
+  .divider1 {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 3px;
+    width: 83vw;
+    background-color: lightgray;
+    margin: 12px;
+    position: relative;
+  }
+  
+  
+  
+  .freeboard{
+    width:26vw;
+    height:3px;
+    background-color: #7267c8;
+    position:relative;
+    left:1vw;
+  }
+  .shareboard{
+    width:26vw;
+    height:3px;
+    background-color: #7267c8;
+    position:relative;
+    left:29vw;
+  }
+  
+  .more {
+    width: 10vw;
+    height: 5vh;
+    background-color: #7267c8;
+    color: white;
+    border-radius: 20px;
+    border: none;
+    font-size: 18px;
+    position: relative;
+    right: 50px;
+  }
+  
+  .moreButton_container {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .community-table{
+    width:80vw;
+    margin-left:5vw;
+    /* background-color: red; */
+  }
+  
+  
+  .preButton{
+    background-image: url("../../icons/pre_arrow1.png");
+    background-color: transparent;
+    background-size: cover;
+    border: none;
+    width: 40px;
+    height: 40px;
+    position:relative;
+    right:5vw;
+  }
+  
+  .nextButton{
+    background-image: url("../../icons/next_arrow1.png");
+    background-color: transparent;
+    background-size: cover;
+    border: none;
+    width: 40px;
+    height: 40px;
+    position:relative;
+    right:5vw;
+  }
+  
+  .pageNumber{
+    color:black;
+    font-size:20px;
+    background-color: transparent;
+    position:relative;
+    right:5vw;
+  }
+  
+  
+  .community-tr{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid lightgray;
+    height:5vh;
+    width:50vw;
+  }
+  
+  .community-left{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5vw;
+  }
+  
+  .community-title{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    margin-left: 5vw;
+  }
+  .community-post-title{
+    font-size:4vw;
+  }
+  
+  .community-right{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 3vw;
+  }
+  
+  .createdBy-box{
+    position: relative;
+  }
+  
+  .community-span{
+    color:gray;
+    font-size:2vh;
+    margin-left:15px;
+  }
+  
+  .community-content{
+    font-size:12px;
+  }
+  
+  .community-createdBy{
+    font-size:12px;
+  }
+  
+  .createdBy-box,.viewCount,.createdAt{
+    margin-right: 5vw;
+  }
+  
+  .select-box{
+    padding:1px;
+    font-size:1.5vh;
+    /* width:10vw; */
+  }
+  .post-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.5vw;
+    
+  }
+
+  .postbutton1{
+    width: 15vw;
+    height: 5vh;
+    background-color: #7267c8;
+    color: white;
+    border-radius: 20px;
+    border: none;
+    font-size: 1.5vh;
+    
+  }
+
+  .post-container>h1{
+    font-size:5vh;
+  }
+
+  .community-checkbox-span{
+    font-size:1.5vh;
+  }
+
+  .community-search{
+    width:10vh;
+    height:2vh;
+  }
+}

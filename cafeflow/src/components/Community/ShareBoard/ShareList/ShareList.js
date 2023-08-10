@@ -71,10 +71,11 @@ const ShareList = () => {
               <tr key={post.boardId}>
                 <td>{post.boardId}</td>
                 <td className="title">
-                  {/* <Link to={`/posts/${post.boardId}`}>
+                {/* <Link to={`/freepage/${post.boardId}`}>{post.title}</Link> */}
+                  <Link to={`/sharepage/${post.boardId}`}>
                     {post.title}
-                  </Link> */}
-                  {post.title}
+                  </Link>
+                  
                 </td>
                 <td>{post.createdBy}</td>
                 <td>{post.viewCount}</td>
