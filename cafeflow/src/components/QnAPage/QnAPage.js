@@ -4,7 +4,8 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { API_URL } from "../Constant";
 import writer1 from "../../icons/writer1.png";
 import ViewCount from "../../icons/ViewCount.png";
-import divider from "../../icons/Divider.png";
+import check from "../../icons/check.png";
+
 import "./QnAPage.css";
 
 const QnAPage = () => {
@@ -21,7 +22,7 @@ const QnAPage = () => {
   const [comments, setComments] = useState([]); // 댓글 리스트를 저장하는 상태 변수
   const [editingCommentId, setEditingCommentId] = useState(null); // 수정 중인 댓글의 ID를 저장하는 상태
   const [editingComment, setEditingComment] = useState(""); // 수정할 댓글의 내용을 저장하는 상태
-
+  const [isChecked, setIsChecked] = useState(false); // 채택하기 버튼
   const token = localStorage.getItem("jwtToken"); // JWT 토큰
   const currentUser = localStorage.getItem("nickname"); // 현재 로그인한 유저의 닉네임
 
@@ -135,6 +136,19 @@ const QnAPage = () => {
   // 수정 상태를 활성화하는 함수
   const handleEdit = () => {
     setEditing(true);
+  };
+
+  // 컴포넌트가 마운트되면 로컬 스토리지에서 상태를 불러옴
+  useEffect(() => {
+    const savedState = localStorage.getItem(`isChecked_${questionId}`);
+    if (savedState) {
+      setIsChecked(JSON.parse(savedState));
+    }
+  }, [questionId]);
+
+  const handleAdoptionClick = () => {
+    setIsChecked(true);
+    localStorage.setItem(`isChecked_${questionId}`, "true"); // 상태를 로컬 스토리지에 저장
   };
 
   // QnA 질문 수정 기능 : 현재 로그인 중인 유저의 정보와 질문 작성자의 정보가 일치해야함 보임
@@ -264,23 +278,53 @@ const QnAPage = () => {
                     )}
                   </div>
                 </div>
-                <div className="a6">
-                  <img
-                    src={writer1}
-                    style={{
-                      width: "30px",
-                      height: "30px",
-                    }}
-                  ></img>
-                  <p style={{ color: "#64748B" }}>{question.createdBy}</p>
-                  <p>{formatDate(question.createdAt)}</p>
-                  <div className="a7">
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
+                  <div className="a6">
                     <img
-                      style={{ width: "1.3vw", height: "1.8vh" }}
-                      src={ViewCount}
+                      src={writer1}
+                      style={{
+                        width: "30px",
+                        height: "30px",
+                      }}
                     ></img>
-                    <p>{question.viewCount}</p>
+                    <p style={{ color: "#64748B" }}>{question.createdBy}</p>
+                    <p>{formatDate(question.createdAt)}</p>
+                    <div className="a7">
+                      <img
+                        style={{ width: "1.3vw", height: "1.8vh" }}
+                        src={ViewCount}
+                      ></img>
+                      <p>{question.viewCount}</p>
+                    </div>
                   </div>
+                  {currentUser == question.createdBy && isChecked ? (
+                    // isChecked가 true일 때 체크 이미지와 "채택 완료" 텍스트를 보여줌
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        border: "1px solid gray",
+                        borderRadius: "10px",
+                        padding: "5px",
+                      }}
+                    >
+                      <img
+                        src={check} // 체크 이미지 경로
+                        style={{ width: "25px", height: "25px" }}
+                        alt="체크"
+                      />
+                      <span style={{ color: "gray" }}>채택 완료</span>
+                    </div>
+                  ) : (
+                    // isChecked가 false일 때 "채택하기" 버튼을 보여줌
+                    <button onClick={handleAdoptionClick}>채택하기</button>
+                  )}
                 </div>
                 <div>
                   <p>

@@ -1,0 +1,26 @@
+.wrapper-class {
+  display: flex;
+  width: 80%;
+
+  flex-direction: row;
+}
+
+.editor-class {
+  /* Styles for the editor input area */
+  border: 1px solid black;
+  padding: 5px;
+  min-height: 200px;
+}
+
+.toolbar-class {
+  /* Styles for the toolbar */
+  width: 80%;
+}
+
+.Draft_Container {
+  display: flex;
+}
+
+.rdw-option-wrapper {
+  color: black !important;
+}

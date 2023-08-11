@@ -26,6 +26,7 @@ const Login = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [point, setPoint] = useState("");
 
   const setToken = useSetRecoilState(tokenState);
   const setAge = useSetRecoilState(ageState);
@@ -49,7 +50,7 @@ const Login = () => {
           password: password,
         })
         .then((response) => {
-          const { jwtToken, email, age, nickname } = response.data;
+          const { jwtToken, email, age, nickname, point } = response.data;
 
           console.log(response.data);
           setToken(jwtToken);
@@ -61,6 +62,9 @@ const Login = () => {
           localStorage.setItem("email", email);
           localStorage.setItem("nickname", nickname);
           localStorage.setItem("age", age);
+          localStorage.setItem("point", point);
+
+          console.log(point);
 
           alert("로그인에 성공했습니다.");
           navigate("/");

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { API_URL } from "../Constant";
-import { useHistory, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Draft from "../Editor/Draft";
 
 import "./QnAForm.css";
 
@@ -52,28 +53,32 @@ const QnAForm = () => {
   };
 
   return (
-    <div className="a">
+    <div className="QnaForm_Container">
       <div className="QnAFormContainer">
+        <h1>AI 궁금증 해결하기</h1>
         <form onSubmit={handleSubmit}>
-          <label>
-            Title:
-            <input type="text" name="title" onChange={handleChange} />
-            {errors.title && <p>{errors.title}</p>}
-          </label>
+          <h2>제목</h2>
+          <input
+            type="text"
+            name="title"
+            onChange={handleChange}
+            placeholder="제목을 입력하세요!"
+          />
+          {errors.title && <p>{errors.title}</p>}
           <br />
-          <label>
-            Content:
-            <input type="text" name="content" onChange={handleChange} />
-            {errors.content && <p>{errors.content}</p>}
-          </label>
+          <h2>본문</h2>
+          <input
+            className="QnAInput"
+            type="text"
+            name="content"
+            onChange={handleChange}
+          />
+          {errors.content && <p>{errors.content}</p>}
           <br />
-          <label>
-            Point:
-            <input type="text" name="point" onChange={handleChange} />
-            {errors.point && <p>{errors.point}</p>}
-          </label>
-          <br />
-          <label>Nickname: {nickname}</label>
+          <h2>포인트 입력</h2>
+          <input type="text" name="point" onChange={handleChange} />
+          {errors.point && <p>{errors.point}</p>}
+
           <br />
           <button type="submit">Submit</button>
         </form>
