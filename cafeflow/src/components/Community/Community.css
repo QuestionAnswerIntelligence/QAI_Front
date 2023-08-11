@@ -70,28 +70,6 @@
   left:205px;
 }
 
-.more {
-  width: 10vw;
-  height: 5vh;
-  background-color: #7267c8;
-  color: white;
-  border-radius: 20px;
-  border: none;
-  font-size: 18px;
-  position: relative;
-  right: 50px;
-}
-
-.moreButton_container {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.community-table{
-  width:80vw;
-  margin-left:5vw;
-}
-
 
 .preButton{
   background-image: url("../../icons/pre_arrow1.png");
@@ -116,30 +94,6 @@
   font-size:20px;
   background-color: transparent;
 }
-
-
-.community-tr{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid lightgray;
-  height:4wh;
-}
-
-.community-left{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: 5vw;
-}
-
-/* .community-title{
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 5px;
-  margin-left: 5vw;
-} */
 
 .community-right{
   display: flex;
@@ -171,7 +125,6 @@
 .select-box{
   padding:8px;
   font-size:15px;
-  /* width:10vw; */
 }
 
 
@@ -197,10 +150,9 @@
 .community-search{
   height:30px;
 }
+
+
 /* 리스트 추가 */
-
-
-
 .community-post-list{
   list-style:none;
 }
@@ -208,11 +160,11 @@
 .community-createdBy{
   color:black;
   font-size:15px;
+  font-weight:bold;
 }
 
 .community-createdAt{
   color:black;
-  margin:3vw;
   font-size:15px;
 }
 
@@ -306,8 +258,6 @@
     position: relative;
   }
   
-  
-  
   .freeboard{
     width:26vw;
     height:3px;
@@ -322,31 +272,7 @@
     position:relative;
     left:29vw;
   }
-  
-  .more {
-    width: 10vw;
-    height: 5vh;
-    background-color: #7267c8;
-    color: white;
-    border-radius: 20px;
-    border: none;
-    font-size: 18px;
-    position: relative;
-    right: 50px;
-  }
-  
-  .moreButton_container {
-    display: flex;
-    justify-content: flex-end;
-  }
-  
-  .community-table{
-    width:80vw;
-    margin-left:5vw;
-    /* background-color: red; */
-  }
-  
-  
+
   .preButton{
     background-image: url("../../icons/pre_arrow1.png");
     background-color: transparent;
@@ -378,29 +304,9 @@
   }
   
   
-  .community-tr{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid lightgray;
-    height:5vh;
-    width:50vw;
-  }
+
   
-  .community-left{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 5vw;
-  }
-  
-  /* .community-title{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 5px;
-    margin-left: 5vw;
-  } */
+
   .community-post-title{
     font-size:4vw;
   }

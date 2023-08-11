@@ -184,6 +184,17 @@ table {
   gap: 10px;
 }
 
+/* 추가 */
+
+.profile-img{
+  width:15px;
+  height:15px;
+  background-image: url("../../icons/Account_circle.png");
+  background-size: cover;
+  background-position: center center;
+  margin-right:2px;
+}
+
 /* 모바일 버전 */
 @media (max-width: 768px) {
   .aaa {

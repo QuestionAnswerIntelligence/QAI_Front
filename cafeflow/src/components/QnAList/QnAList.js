@@ -133,57 +133,56 @@ const QnAList = ({ chatId }) => {
           </div>
         </div>
         {/* <div className="divider1"></div> */}
-        <table>
-          <tbody>
+        <div className="divider2">
+        </div> 
+        <div className="board-container">
             {/* map 함수를 이용하여 questions에 들어가있는 배열 가져오기 */}
             {questions.map((question) => (
-              // console.log(question),
-              <tr key={question.questionId}>
-                <div className="oneTr">
-                  <div className="leftside">
-                    <td className="questionId">{question.questionId}</td>
-                    <div className="titleBox">
-                      <td className="title">
-                        <Link to={`/questions/${question.questionId}`}>
-                          {question.title}
-                        </Link>
-                      </td>
-                      <td>{question.content}</td>
+              <div>
+              <ul className="post-list" key={question.boardId}>
+                <li className="community-post-list">
+                  
+                  <div className="community-post-list-up">
+                    <div>
+                      <img className="profile-img"/>
+                      <span className="community-createdBy">{question.createdBy}</span>
+                      <span className="community-createdAt"> 작성 : {formatDate(question.createdAt)}</span>
                     </div>
-                  </div>
-                  <div className="rightside">
-                    <div className="nicknameBox">
-                      <td onClick={() => handleAuthorClick(question.createdBy)}>
-                        <h2 className="createdBy">{question.createdBy}</h2>
-                      </td>
-                      {token &&
-                        isDropdownVisible &&
-                        nickname !== question.createdBy && (
-                          <div className="dropdown">
-                            <button
-                              className="chatbutton123"
-                              onClick={() => startChat(nickname, question)}
-                            >
-                              1:1 채팅하기
-                            </button>
-                          </div>
-                        )}
+                    <div>
+                      <img className="viewCountImg" src={ViewCount}></img>
+                       <span className="viewCountSpan">{question.viewCount}</span>
                     </div>
-                    <td className="createdAt">
-                      <span className="createdBy">
-                        {formatDate(question.createdAt)}
-                      </span>
-                    </td>
-                    <td className="viewCount">
-                      <img src={ViewCount}></img>
-                      {question.viewCount}
-                    </td>
+                    
                   </div>
-                </div>
-              </tr>
+                  <div  className="community-post-list-middle">
+                    <Link to={`/questions/${question.questionId}`}>
+                        {question.title}
+                    </Link>
+                  </div>
+                  <div  className="community-post-list-down">
+
+                  </div>
+                </li>
+                
+              </ul>
+              <div className="divider2">
+              </div>  
+              </div>
+              
             ))}
-          </tbody>
-        </table>
+          <div className="pageNum">
+          {/* <button
+            className="preButton" onClick={() => setPageNum((prevPageNum) => prevPageNum - 1)}
+            disabled={pageNum === 0}
+          >
+          </button>
+          <span className="pageNumber">{pageNum+1}/300</span>
+          <button className="nextButton" onClick={() => setPageNum((prevPageNum) => prevPageNum + 1)}>
+          </button> */}
+        </div>
+        </div>
+
+            
         <div className="pageNum">
           <button
             onClick={() => setPageNum((prevPageNum) => prevPageNum - 1)}
