@@ -1,10 +1,11 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { API_URL } from "../Constant";
 import ViewCount from "../../icons/ViewCount.png";
 import "./Community.css";
+
 
 
 const Community = () => {
@@ -69,7 +70,7 @@ const Community = () => {
     const month = ("0" + (date.getMonth() + 1)).slice(-2);
     const day = ("0" + date.getDate()).slice(-2);
 
-    return `${year}-${month}-${day}`;
+    return `${year}/${month}/${day}`;
   }
 
   const handleSubmit=(e)=>{
@@ -92,21 +93,7 @@ const Community = () => {
   const handleKeyDown=(e)=>{
     e.preventDefault();
     console.log(e.key);
-    // if(e.key=='enter'){
-    //   
-    //   axios
-    //   .get(`${API_URL}/boards?page=${pageNum}&size=${size}&boardType=${type}&option=${option}&searchKeyword=${keyword}`, {
-    //     headers: {
-    //       Authorization: `Bearer ${token}`,
-    //     },
-    //   })
-    //   .then((response) => {
-    //     setposts(response.data.data.boardList);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
-    // }
+    
   }
 
   const handleInputChange=(event)=>{
@@ -175,7 +162,7 @@ const Community = () => {
                   
                   <div className="community-post-list-up">
                     <div><span className="community-createdBy">{post.createdBy}</span>
-                      <span className="community-createdAt"> 작성 일자 : {formatDate(post.createdAt)}</span>
+                      <span className="community-createdAt"> 작성 : {formatDate(post.createdAt)}</span>
                     </div>
                     <div>
                       <img className="viewCountImg" src={ViewCount}></img>
@@ -184,7 +171,9 @@ const Community = () => {
                     
                   </div>
                   <div  className="community-post-list-middle">
-                    <div className="community-title">{post.title}</div>
+                    <Link className="community-title" to={isFreeBoardClick?`/freepage/${post.boardId}`:`/sharepage/${post.boardId}`}>
+                      {post.title}
+                    </Link>
                   </div>
                   <div  className="community-post-list-down">
 
