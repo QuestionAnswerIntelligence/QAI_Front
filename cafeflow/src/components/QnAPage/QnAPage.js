@@ -25,7 +25,10 @@ const QnAPage = () => {
   const [isChecked, setIsChecked] = useState(false); // 채택하기 버튼
   const token = localStorage.getItem("jwtToken"); // JWT 토큰
   const currentUser = localStorage.getItem("nickname"); // 현재 로그인한 유저의 닉네임
+  const [adoptedId, setadoptedId] = useState(""); //채택된 답변 id저장
+  const [isadopted, setIsAdopted] = useState(false); //게시물이 체크되었는지 저장
 
+  const nickname = localStorage.getItem("nickname");
   // 페이지가 렌더링될 때, 현재 questionId에 해당하는 질문의 데이터를 가져옴
   useEffect(() => {
     axios
@@ -40,13 +43,22 @@ const QnAPage = () => {
         setContent(response.data.data.content);
         setPoint(response.data.data.point);
         setComments(response.data.data.answers); // 댓글 데이터 설정
-        console.log(response.data.data);
+        localStorage.setItem(
+          "question_createdBy",
+          response.data.data.createdBy
+        );
+        // console.log(response.data.data.questionCheck);
+        if (response.data.data.questionCheck === "채택") {
+          setIsAdopted(true);
+        }
       })
       .catch((error) => {
         console.log(error);
       });
   }, [questionId, token]);
 
+  const username = localStorage.getItem("question_createdBy");
+  // console.log("question_createdBy : "+username);
   // 날짜 형식을 YYYY-MM-DD 형태로 변환
   function formatDate(isoDateString) {
     const date = new Date(isoDateString);
@@ -94,6 +106,32 @@ const QnAPage = () => {
           console.error(error);
         });
     }
+  };
+
+  const handleAdoptionClick = (comment) => {
+    //console.log("comment : " + comment.id);
+    setadoptedId(comment.id);
+    // flag
+
+    axios
+      .post(
+        `${API_URL}/questions/answer/check?id=${comment.id}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+        // console.log(token);
+        alert("에러 발생");
+      });
   };
 
   const handleEditComment = (comment) => {
@@ -146,10 +184,10 @@ const QnAPage = () => {
     }
   }, [questionId]);
 
-  const handleAdoptionClick = () => {
-    setIsChecked(true);
-    localStorage.setItem(`isChecked_${questionId}`, "true"); // 상태를 로컬 스토리지에 저장
-  };
+  // const handleAdoptionClick = () => {
+  //   setIsChecked(true);
+  //   localStorage.setItem(`isChecked_${questionId}`, "true"); // 상태를 로컬 스토리지에 저장
+  // };
 
   // QnA 질문 수정 기능 : 현재 로그인 중인 유저의 정보와 질문 작성자의 정보가 일치해야함 보임
   const handleUpdate = () => {
@@ -219,6 +257,7 @@ const QnAPage = () => {
 
   const formattedDate = (createdAt) => {
     const date = new Date(createdAt);
+    date.setHours(date.getHours() + 9); // UTC+9로 조정
 
     // 시간대 차이를 고려해야 하기 때문에 getUTC 메서드 대신 일반 메서드를 사용합니다.
     const year = date.getFullYear();
@@ -231,79 +270,118 @@ const QnAPage = () => {
 
   return (
     <div className="a">
-      <div className="container12">
-        {editing ? (
-          <div>
-            <input value={title} onChange={(e) => setTitle(e.target.value)} />
-            <textarea
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-            />
+      {editing ? (
+        // <div className="QnAEditContainer">
+        <div className="QnAEditContainer2">
+          <h1>AI 궁금증 해결하기</h1>
+          <span>
+            <span>{nickname}</span>님의 지식공유 플랫폼 QAI에서 최고의
+            개발자들과 함께 궁금증을 해결하세요!
+          </span>
+          <form>
+            <h2>제목</h2>
             <input
-              type="number"
-              value={point}
-              onChange={(e) => setPoint(e.target.value)}
-              placeholder="내공 점수"
+              value={title}
+              className="QnAInput"
+              type="text"
+              name="title"
+              onChange={(e) => setTitle(e.target.value)}
             />
-
-            <button onClick={handleUpdate}>수정 완료</button>
-          </div>
-        ) : (
-          <div>
-            <div className="a1">
-              <h1 style={{ marginBottom: "10px" }}>Q & A</h1>
-              <span style={{ color: "gray" }}>질문하세요!</span>
+            <br />
+            <h2>본문</h2>
+            <textarea
+              className="QnAContent"
+              value={content}
+              type="text"
+              name="content"
+              onChange={(e) => setContent(e.target.value)}
+              placeholder="내용을 입력하세요!"
+            />
+            <br />
+            <h2>포인트 입력</h2>
+            <div className="PointBox">
+              <input
+                className="QnAPoint"
+                value={point}
+                placeholder="포인트를 입력해주세요"
+                type="number"
+                name="point"
+                onChange={(e) => setPoint(e.target.value)}
+              />
             </div>
-            <div className="a2">
-              <div className="a3">
-                <div className="a4">
-                  <div className="a5">
-                    <h1 style={{ margin: "0px" }}>{question.title}</h1>
-                    <span className="pointSpan">{question.point}</span>
-                  </div>
-                  <div className="a5">
-                    {currentUser == question.createdBy && (
-                      <>
-                        <button className="button" onClick={handleDelete}>
-                          삭제
-                        </button>
-                        {/* <img
+            <button className="QnASubmit" type="submit" onClick={handleUpdate}>
+              수정하기
+            </button>
+          </form>
+        </div>
+      ) : (
+        // </div>
+        <div>
+          {/* <div className="a1">
+            <h1 style={{ marginBottom: "10px" }}>Q & A</h1>
+            <span style={{ color: "gray" }}>질문하세요!</span>
+          </div> */}
+          <div className="a2">
+            <div className="a3">
+              <h1 style={{ marginBottom: "0px", fontSize: "2vw" }}>Q & A</h1>
+              <span
+                style={{
+                  color: "gray",
+                  marginBottom: "1vh",
+                  fontSize: "1.1vw",
+                }}
+              >
+                질문하세요!
+              </span>
+              <div className="a4">
+                <div className="a5">
+                  <h1 style={{ margin: "0px" }}>{question.title}</h1>
+                  <span className="pointSpan">{question.point}</span>
+                </div>
+                <div className="a5">
+                  {currentUser == question.createdBy && (
+                    <>
+                      <button className="button" onClick={handleDelete}>
+                        삭제
+                      </button>
+                      {/* <img
                           src={divider}
                           style={{ marginLeft: "10px", marginRight: "10px" }}
                         ></img> */}
-                        <button className="button" onClick={handleEdit}>
-                          수정
-                        </button>
-                      </>
-                    )}
+                      <button className="button" onClick={handleEdit}>
+                        수정
+                      </button>
+                    </>
+                  )}
+                </div>
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <div className="a6">
+                  <img
+                    src={writer1}
+                    style={{
+                      width: "30px",
+                      height: "30px",
+                    }}
+                  ></img>
+                  <p style={{ color: "#64748B" }}>{question.createdBy}</p>
+                  <p>{formatDate(question.createdAt)}</p>
+                  <div className="a7">
+                    <img
+                      style={{ width: "1.3vw", height: "1.8vh" }}
+                      src={ViewCount}
+                    ></img>
+                    <p>{question.viewCount}</p>
                   </div>
                 </div>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                  }}
-                >
-                  <div className="a6">
-                    <img
-                      src={writer1}
-                      style={{
-                        width: "30px",
-                        height: "30px",
-                      }}
-                    ></img>
-                    <p style={{ color: "#64748B" }}>{question.createdBy}</p>
-                    <p>{formatDate(question.createdAt)}</p>
-                    <div className="a7">
-                      <img
-                        style={{ width: "1.3vw", height: "1.8vh" }}
-                        src={ViewCount}
-                      ></img>
-                      <p>{question.viewCount}</p>
-                    </div>
-                  </div>
-                  {currentUser == question.createdBy && isChecked ? (
+                {
+                  currentUser == question.createdBy && isChecked ? (
                     // isChecked가 true일 때 체크 이미지와 "채택 완료" 텍스트를 보여줌
                     <div
                       style={{
@@ -321,105 +399,136 @@ const QnAPage = () => {
                       />
                       <span style={{ color: "gray" }}>채택 완료</span>
                     </div>
-                  ) : (
-                    // isChecked가 false일 때 "채택하기" 버튼을 보여줌
+                  ) : currentUser == question.createdBy &&
+                    isChecked === false ? (
                     <button onClick={handleAdoptionClick}>채택하기</button>
-                  )}
-                </div>
-                <div>
-                  <p>
-                    <b>내용 </b>: {question.content}
-                  </p>
-                </div>
-                <hr />
-                <div>
-                  {token ? (
-                    <div>
-                      <input
-                        value={comment}
-                        onChange={(e) => setComment(e.target.value)}
-                        placeholder="댓글을 입력하세요..."
-                      />
-                      <button onClick={handleComment}>입력 완료</button>
-                    </div>
                   ) : (
-                    <p>
-                      <Link to="/login">로그인</Link>을 해야합니다.
-                    </p>
-                  )}
-                  {comments &&
-                    comments.map((comment) => (
-                      <div
-                        style={{
-                          display: "flex",
-                          gap: "0.8vw",
-                          marginTop: "2vh",
-                          justifyContent: "space-between",
-                          border: "1px solid gray",
-                          padding: "10px",
-                          borderRadius: "10px",
-                        }}
-                        key={comment.id}
-                      >
-                        <span style={{ color: "black", fontSize: "15px" }}>
-                          <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                              gap: "0.1vw",
-                            }}
+                    ""
+                  )
+                  // isChecked가 false일 때 "채택하기" 버튼을 보여줌
+                }
+              </div>
+              <div>
+                <p>
+                  <b>내용 </b>: {question.content}
+                </p>
+              </div>
+              <hr />
+              <div>
+                {token ? (
+                  <div>
+                    <input
+                      value={comment}
+                      onChange={(e) => setComment(e.target.value)}
+                      placeholder="댓글을 입력하세요..."
+                    />
+                    <button onClick={handleComment}>입력 완료</button>
+                  </div>
+                ) : (
+                  <p>
+                    <Link to="/login">로그인</Link>을 해야합니다.
+                  </p>
+                )}
+                {comments &&
+                  comments.map((comment) => (
+                    <div
+                      style={{
+                        display: "flex",
+                        gap: "0.8vw",
+                        marginTop: "2vh",
+                        justifyContent: "space-between",
+                        border: "1px solid gray",
+                        padding: "10px",
+                        borderRadius: "10px",
+                      }}
+                      key={comment.id}
+                    >
+                      <span style={{ color: "black", fontSize: "15px" }}>
+                        <div
+                          style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: "0.1vw",
+                          }}
+                        >
+                          <b>{comment.createdBy}</b>
+                          {comment.content}
+                          <span style={{ color: "gray", fontSize: "11px" }}>
+                            {formattedDate(comment.createdAt)}
+                          </span>
+                        </div>
+                      </span>
+                      {currentUser === comment.createdBy && (
+                        <div className="comment-edit-delete-container">
+                          <button
+                            className="button"
+                            onClick={() => handleDeleteComment(comment.id)}
                           >
-                            <b>{comment.createdBy}</b>
-                            {comment.content}
-                            <span style={{ color: "gray", fontSize: "11px" }}>
-                              {formattedDate(comment.createdAt)}
-                            </span>
-                          </div>
-                        </span>
-                        {currentUser === comment.createdBy && (
-                          <div>
+                            삭제
+                          </button>
+                          {editingCommentId === comment.id ? (
+                            <div>
+                              <input
+                                value={editingComment}
+                                onChange={(e) =>
+                                  setEditingComment(e.target.value)
+                                }
+                                placeholder="수정할 내용을 입력하세요..."
+                              />
+                              <button onClick={handleCommentUpdate}>
+                                수정 완료
+                              </button>
+                              <button onClick={() => setEditingCommentId(null)}>
+                                취소
+                              </button>
+                            </div>
+                          ) : (
                             <button
                               className="button"
-                              onClick={() => handleDeleteComment(comment.id)}
+                              onClick={() => handleEditComment(comment)}
                             >
-                              삭제
+                              수정
                             </button>
-                            {editingCommentId === comment.id ? (
-                              <div>
-                                <input
-                                  value={editingComment}
-                                  onChange={(e) =>
-                                    setEditingComment(e.target.value)
-                                  }
-                                  placeholder="수정할 내용을 입력하세요..."
-                                />
-                                <button onClick={handleCommentUpdate}>
-                                  수정 완료
-                                </button>
-                                <button
-                                  onClick={() => setEditingCommentId(null)}
-                                >
-                                  취소
-                                </button>
-                              </div>
+                          )}
+                        </div>
+                      )}
+                      {/* 채택하기 - 리안 */}
+                      {
+                        currentUser === username &&
+                        comment.createdBy !== username ? (
+                          isadopted ? (
+                            comment.answerCheck === "채택" ? (
+                              <p className="adoptedButton">채택완료</p> //(글쓴이==유저)가 볼 때 게시물이 채택 되었을 경우
                             ) : (
-                              <button
-                                className="button"
-                                onClick={() => handleEditComment(comment)}
-                              >
-                                수정
-                              </button>
-                            )}
-                          </div>
-                        )}
-                      </div>
-                    ))}
-                </div>
+                              ""
+                            )
+                          ) : (
+                            <button
+                              className="adoptButton"
+                              onClick={() => handleAdoptionClick(comment)}
+                            >
+                              채택하기
+                            </button>
+                          )
+                        ) : //(글쓴이==유저)가 볼 때 게시물이 채택 되지 않았을 경우 채택 버튼 삽입
+                        //글쓴이와 유저가 같으면서 유저가 댓단 사람이랑 다를 경우
+                        isadopted ? (
+                          comment.answerCheck === "채택" ? (
+                            <p className="adoptedButton">채택완료</p> //글쓴이!==유저(제 3자)가 볼때 게시물이 채택 되었을 경우
+                          ) : (
+                            ""
+                          )
+                        ) : (
+                          ""
+                        ) //(글쓴이!==유저 (제 3자)가 다를 경우)
+                      }
+                    </div>
+                  ))}
               </div>
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -28,7 +28,7 @@
 .container12 {
   display: flex;
   align-items: stretch;
-  width: 60vw;
+  width: 90vw;
   height: 80vh;
   flex-direction: column;
   border: 1px solid black;
@@ -61,7 +61,7 @@
 .a1 {
   display: flex;
   flex-direction: column;
-  margin-left: 1vw;
+  margin-left: 1.5vw;
   /* position: fixed; */
 }
 
@@ -76,11 +76,10 @@
   display: flex;
   flex-direction: column;
   text-align: left;
-  width: 55vw;
+  width: 50vw;
   border: 1px solid gray;
   border-radius: 15px;
-  padding: 0 2vw 2vw 2vw;
-  margin-top: 2vh;
+  padding: 30px;
 }
 
 .a4 {
@@ -130,41 +129,6 @@
   border-radius: 5px;
   width: 5vw;
   height: 3vh;
-}
-
-.QnAEditContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 50vw;
-  height: 100vh;
-  flex-direction: column;
-  background-color: white;
-}
-
-.QnAEditContainer2 {
-  width: 60vw;
-  height: 80vh;
-  border: 1px solid lightgray;
-  /* justify-content: center; */
-  /* align-items: center; */
-  flex-direction: column;
-  display: flex;
-  margin-top: 11vh;
-  border-radius: 20px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 0 2vw 1vw 2vw;
-}
-.QnAEditContainer2 > span {
-  font-size: 22px;
-  color: gray;
-  font-weight: bold;
-}
-
-.QnAFormContainer > span > span {
-  color: gray;
-  font-size: 22px;
-  text-decoration: underline;
 }
 
 .check_img {
