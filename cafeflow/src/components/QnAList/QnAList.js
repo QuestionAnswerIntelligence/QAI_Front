@@ -19,8 +19,14 @@ const QnAList = ({ chatId }) => {
   // 시간 순 체크박스
   const [isChecked, setIsChecked] = useState(false);
 
-  const handleChange = () => {
-    setIsChecked(!isChecked);
+  const [showChatButton, setShowChatButton] = useState({}); // 1. 채팅 버튼 표시 상태를 관리하기 위한 state
+
+  // toggleChatButton 함수를 수정하여 특정 질문에 대한 상태만 변경
+  const toggleChatButton = (boardId) => {
+    setShowChatButton((prev) => ({
+      ...prev,
+      [boardId]: !prev[boardId],
+    }));
   };
 
   // Q&A 작성페이지로 이동
@@ -112,11 +118,20 @@ const QnAList = ({ chatId }) => {
             글쓰기
           </button>
         </div>
-        <span style={{ fontWeight: "bold" }}>질문하세요! </span>
+        <span
+          style={{
+            fontSize: "1.5em",
+            fontWeight: "bold",
+            color: "gray",
+            padding: "0 1.5vw",
+          }}
+        >
+          질문하세요!{" "}
+        </span>
         <div className="asd">
           <div className="searchBox">
             <input className="search" type="text" placeholder="Search"></input>
-            <div
+            {/* <div
               style={{
                 position: "relative",
                 marginTop: "3vh",
@@ -129,49 +144,48 @@ const QnAList = ({ chatId }) => {
               >
                 시간 순
               </span>
-            </div>
+            </div> */}
           </div>
         </div>
-        {/* <div className="divider1"></div> */}
-        <div className="divider2">
-        </div> 
         <div className="board-container">
-            {/* map 함수를 이용하여 questions에 들어가있는 배열 가져오기 */}
-            {questions.map((question) => (
-              <div>
+          {/* map 함수를 이용하여 questions에 들어가있는 배열 가져오기 */}
+          {questions.map((question) => (
+            <div key={question.boardId}>
               <ul className="post-list" key={question.boardId}>
                 <li className="community-post-list">
-                  
-                  <div className="community-post-list-up">
+                  <div className="QnAList2">
                     <div>
-                      <img className="profile-img"/>
-                      <span className="community-createdBy">{question.createdBy}</span>
-                      <span className="community-createdAt"> 작성 : {formatDate(question.createdAt)}</span>
+                      {/* <img className="profile-img" /> */}
+                      <h2 onClick={() => toggleChatButton(question.boardId)}>
+                        {question.createdBy}
+                      </h2>
+                      {showChatButton[question.boardId] && (
+                        <button onClick={() => startChat(nickname, question)}>
+                          1:1 채팅하기
+                        </button>
+                      )}
                     </div>
-                    <div>
+                    <div style={{ display: "flex", alignItems: "center" }}>
                       <img className="viewCountImg" src={ViewCount}></img>
-                       <span className="viewCountSpan">{question.viewCount}</span>
+                      <span className="viewCountSpan">
+                        {question.viewCount}
+                      </span>
                     </div>
-                    
                   </div>
-                  <div  className="community-post-list-middle">
+                  <div className="community-post-list-middle">
                     <Link to={`/questions/${question.questionId}`}>
-                        {question.title}
+                      {question.title}
                     </Link>
                   </div>
-                  <div  className="community-post-list-down">
-
-                  </div>
+                  <span className="QnAList-createdAt">
+                    {formatDate(question.createdAt)}
+                  </span>
                 </li>
-                
               </ul>
-              <div className="divider2">
-              </div>  
-              </div>
-              
-            ))}
+            </div>
+          ))}
           <div className="pageNum">
-          {/* <button
+            {/* <button
             className="preButton" onClick={() => setPageNum((prevPageNum) => prevPageNum - 1)}
             disabled={pageNum === 0}
           >
@@ -179,11 +193,9 @@ const QnAList = ({ chatId }) => {
           <span className="pageNumber">{pageNum+1}/300</span>
           <button className="nextButton" onClick={() => setPageNum((prevPageNum) => prevPageNum + 1)}>
           </button> */}
+          </div>
         </div>
-        </div>
-
-            
-        <div className="pageNum">
+        {/* <div className="pageNum">
           <button
             onClick={() => setPageNum((prevPageNum) => prevPageNum - 1)}
             disabled={pageNum === 0}
@@ -193,7 +205,7 @@ const QnAList = ({ chatId }) => {
           <button onClick={() => setPageNum((prevPageNum) => prevPageNum + 1)}>
             다음페이지
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );

@@ -20,15 +20,14 @@
   border-radius: 20px;
 }
 
-
-.board_list{
+.board_list {
   width: 200px;
   height: 5vh;
   background-color: #ffffff;
   color: rgb(0, 0, 0);
   border: none;
   font-size: 18px;
-  margin-top:1vh;
+  margin-top: 1vh;
 }
 
 .mycontainer {
@@ -36,11 +35,11 @@
   flex-direction: row;
   justify-content: left;
 }
-
+/* 
 .board-container{
   width:88vw;
   height:40vh;
-}
+} */
 
 .divider1 {
   display: flex;
@@ -53,25 +52,22 @@
   position: relative;
 }
 
-
-
-.freeboard{
-  width:170px;
-  height:3px;
+.freeboard {
+  width: 170px;
+  height: 3px;
   background-color: #7267c8;
-  position:relative;
-  left:10px;
+  position: relative;
+  left: 10px;
 }
-.shareboard{
-  width:170px;
-  height:3px;
+.shareboard {
+  width: 170px;
+  height: 3px;
   background-color: #7267c8;
-  position:relative;
-  left:205px;
+  position: relative;
+  left: 205px;
 }
 
-
-.preButton{
+.preButton {
   background-image: url("../../icons/pre_arrow1.png");
   background-color: transparent;
   background-size: cover;
@@ -80,7 +76,7 @@
   height: 40px;
 }
 
-.nextButton{
+.nextButton {
   background-image: url("../../icons/next_arrow1.png");
   background-color: transparent;
   background-size: cover;
@@ -89,44 +85,43 @@
   height: 40px;
 }
 
-.pageNumber{
-  color:black;
-  font-size:20px;
+.pageNumber {
+  color: black;
+  font-size: 20px;
   background-color: transparent;
 }
 
-.community-right{
+.community-right {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-right: 3vw;
 }
 
-.createdBy-box{
+.createdBy-box {
   position: relative;
 }
 
-.community-span{
-  color:gray;
-  font-size:20px;
-  margin-left:15px;
+.community-span {
+  color: gray;
+  font-size: 20px;
+  margin-left: 15px;
 }
 
-.community-content{
-  font-size:12px;
+.community-content {
+  font-size: 12px;
 }
 
-
-
-.createdBy-box,.viewCount,.createdAt{
+.createdBy-box,
+.viewCount,
+.createdAt {
   margin-right: 5vw;
 }
 
-.select-box{
-  padding:8px;
-  font-size:15px;
+.select-box {
+  padding: 8px;
+  font-size: 15px;
 }
-
 
 .post-container {
   display: flex;
@@ -134,9 +129,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 0 1.5vw;
-  
 }
-.postbutton1{
+.postbutton1 {
   width: 10vw;
   height: 5vh;
   background-color: #7267c8;
@@ -147,45 +141,44 @@
   position: relative;
   top: 26px;
 }
-.community-search{
-  height:30px;
+.community-search {
+  height: 30px;
 }
-
 
 /* 리스트 추가 */
-.community-post-list{
-  list-style:none;
+.community-post-list {
+  list-style: none;
 }
 
-.community-createdBy{
-  color:black;
-  font-size:15px;
-  font-weight:bold;
+.community-createdBy {
+  color: black;
+  font-size: 15px;
+  font-weight: bold;
 }
 
-.community-createdAt{
-  color:black;
-  font-size:15px;
+.community-createdAt {
+  color: black;
+  font-size: 15px;
 }
 
-.community-post-list-up{
-  display:flex;
+.community-post-list-up {
+  display: flex;
   justify-content: space-between;
-  margin-bottom:2px;
-  width:50vw;
+  margin-bottom: 2px;
+  width: 50vw;
 }
-.viewCountImg{
-  margin-right:10px;
-  width:15px;
-  height:15px;
-}
-
-.community-title{
-  color:black;
-  font-size:17px;
+.viewCountImg {
+  margin-right: 1vw;
+  width: 1.2em;
+  height: 1em;
 }
 
-.divider2{
+.community-title {
+  color: black;
+  font-size: 17px;
+}
+
+.divider2 {
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -194,12 +187,10 @@
   background-color: lightgray;
   margin: 12px;
   position: relative;
-  
 }
-.viewCountSpan{
-  color:black;
+.viewCountSpan {
+  color: black;
 }
-
 
 @media (max-width: 768px) {
   .a {
@@ -211,7 +202,7 @@
     flex-direction: column;
     background-color: #ffffff;
   }
-  
+
   .community-container {
     display: flex;
     align-items: stretch;
@@ -223,30 +214,28 @@
     background-color: white;
     border-radius: 20px;
   }
-  
-  
-  .board_list{
+
+  .board_list {
     width: 30vw;
     height: 5vh;
     background-color: #ffffff;
     color: rgb(0, 0, 0);
     border: none;
     font-size: 4vw;
-    margin-top:1vh;
+    margin-top: 1vh;
   }
-  
+
   .mycontainer {
     display: flex;
     flex-direction: row;
     justify-content: left;
   }
-  
+  /*   
   .board-container{
     width:88vw;
     height:40vh;
-  }
+  } */
 
-  
   .divider1 {
     display: flex;
     justify-content: flex-start;
@@ -257,104 +246,101 @@
     margin: 12px;
     position: relative;
   }
-  
-  .freeboard{
-    width:26vw;
-    height:3px;
+
+  .freeboard {
+    width: 26vw;
+    height: 3px;
     background-color: #7267c8;
-    position:relative;
-    left:1vw;
+    position: relative;
+    left: 1vw;
   }
-  .shareboard{
-    width:26vw;
-    height:3px;
+  .shareboard {
+    width: 26vw;
+    height: 3px;
     background-color: #7267c8;
-    position:relative;
-    left:29vw;
+    position: relative;
+    left: 29vw;
   }
 
-  .preButton{
+  .preButton {
     background-image: url("../../icons/pre_arrow1.png");
     background-color: transparent;
     background-size: cover;
     border: none;
     width: 40px;
     height: 40px;
-    position:relative;
-    right:5vw;
+    position: relative;
+    right: 5vw;
   }
-  
-  .nextButton{
+
+  .nextButton {
     background-image: url("../../icons/next_arrow1.png");
     background-color: transparent;
     background-size: cover;
     border: none;
     width: 40px;
     height: 40px;
-    position:relative;
-    right:5vw;
+    position: relative;
+    right: 5vw;
   }
-  
-  .pageNumber{
-    color:black;
-    font-size:20px;
+
+  .pageNumber {
+    color: black;
+    font-size: 20px;
     background-color: transparent;
-    position:relative;
-    right:5vw;
+    position: relative;
+    right: 5vw;
   }
-  
-  
 
-  
-
-  .community-post-title{
-    font-size:4vw;
+  .community-post-title {
+    font-size: 4vw;
   }
-  
-  .community-right{
+
+  .community-right {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-right: 3vw;
   }
-  
-  .createdBy-box{
+
+  .createdBy-box {
     position: relative;
   }
-  
-  .community-span{
-    color:gray;
-    font-size:2vh;
-    margin-left:15px;
-  }
-  
-  .community-content{
-    font-size:12px;
+
+  .community-span {
+    color: gray;
+    font-size: 2vh;
+    margin-left: 15px;
   }
 
-  .community-createdAt{
-    font-size:4vw;
+  .community-content {
+    font-size: 12px;
   }
-  
-  .createdBy-box,.viewCount,.createdAt{
+
+  .community-createdAt {
+    font-size: 4vw;
+  }
+
+  .createdBy-box,
+  .viewCount,
+  .createdAt {
     margin-right: 5vw;
   }
-  
-  .select-box{
-    padding:1px;
-    font-size:1.5vh;
+
+  .select-box {
+    padding: 1px;
+    font-size: 1.5vh;
     /* width:10vw; */
   }
-  .post-container{
+  .post-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     padding: 0 1.5vw;
-    
   }
 
-  .postbutton1{
+  .postbutton1 {
     width: 15vw;
     height: 5vh;
     background-color: #7267c8;
@@ -362,54 +348,53 @@
     border-radius: 20px;
     border: none;
     font-size: 1.5vh;
-    
   }
 
-  .post-container>h1{
-    font-size:5vh;
+  .post-container > h1 {
+    font-size: 5vh;
   }
 
-  .community-checkbox-span{
-    font-size:1.5vh;
+  .community-checkbox-span {
+    font-size: 1.5vh;
   }
 
-  .community-search{
-    width:10vh;
-    height:2vh;
+  .community-search {
+    width: 10vh;
+    height: 2vh;
   }
   /* 리스트 추가 */
-  .community-post-list{
-    list-style:none;
+  .community-post-list {
+    list-style: none;
   }
-  
-  .community-createdBy{
-    color:black;
-    font-size:4vw;
+
+  .community-createdBy {
+    color: black;
+    font-size: 4vw;
   }
-  
-  .community-createdAt{
-    color:black;
-    margin:3vw;
-    font-size:1.5vh;
+
+  .community-createdAt {
+    color: black;
+    margin: 3vw;
+    font-size: 1.5vh;
   }
-  
-  .community-post-list-up{
-    display:flex;
+
+  .community-post-list-up {
+    display: flex;
     justify-content: space-between;
-    margin-bottom:2px;
+    margin-bottom: 2px;
   }
-  .viewCountImg{
-    margin-right:5px;
-    width:15px;
-    height:15px;
+  .viewCountImg {
+    margin-right: 5px;
+    width: 15px;
+    height: 15px;
   }
-  
-  .community-title{
-    color:black;
-    font-size:17px;
+
+  .community-title {
+    color: black;
+    font-size: 17px;
   }
-  
-  .divider2{
+
+  .divider2 {
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -418,13 +403,10 @@
     background-color: lightgray;
     margin: 12px;
     position: relative;
-    
   }
-  .viewCountSpan{
-    color:black;
-    margin-right:5vw;
-    font-size:15px;
+  .viewCountSpan {
+    color: black;
+    margin-right: 5vw;
+    font-size: 15px;
   }
 }
-
-

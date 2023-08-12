@@ -16,6 +16,11 @@
   padding: 0 1.5vw;
 }
 
+.post-list {
+  border-top: 1px solid lightgray;
+  padding: 2vh 3vh 0 3vh;
+}
+
 .postbutton1 {
   width: 10vw;
   height: 5vh;
@@ -39,6 +44,7 @@
   background-color: white;
   border-radius: 20px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: scroll;
 }
 
 .container1 > span {
@@ -186,13 +192,29 @@ table {
 
 /* 추가 */
 
-.profile-img{
-  width:15px;
-  height:15px;
+.profile-img {
+  width: 15px;
+  height: 15px;
   background-image: url("../../icons/Account_circle.png");
   background-size: cover;
   background-position: center center;
-  margin-right:2px;
+  margin-right: 2px;
+}
+
+.QnAList2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.QnAList2 > div > h2 {
+  margin: 0px;
+  font-size: 1em;
+}
+
+.QnAList-createdAt {
+  color: gray;
+  font-size: 0.8em;
 }
 
 /* 모바일 버전 */

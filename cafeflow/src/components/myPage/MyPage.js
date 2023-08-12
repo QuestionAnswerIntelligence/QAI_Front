@@ -5,16 +5,13 @@ import { API_URL } from "../Constant";
 import "./MyPage.css";
 
 const MyPage = () => {
-  const email = localStorage.getItem("email");
-  const nickname = localStorage.getItem("nickname");
-  const token = localStorage.getItem("jwtToken");
-  const point = localStorage.getItem("point");
+  // 초기값으로 로컬 스토리지의 값을 사용
+  const [email, setEmail] = useState(localStorage.getItem("email"));
+  const [nickname, setNickname] = useState(localStorage.getItem("nickname"));
+  const [point, setPoint] = useState(localStorage.getItem("point"));
 
-  const [userInfo, setUserInfo] = useState({
-    email: "",
-    nickname: "",
-    point: 0,
-  });
+  const token = localStorage.getItem("jwtToken");
+
   useEffect(() => {
     axios
       .get(`${API_URL}/get-info?email=${email}`, {
@@ -23,14 +20,18 @@ const MyPage = () => {
         },
       })
       .then((response) => {
+        const { email, nickname, point } = response.data;
+        setEmail(email);
+        setNickname(nickname);
+        setPoint(point);
         console.log(response.data);
-        setUserInfo({ email, nickname, point });
       })
       .catch((error) => {
         console.log(error);
         console.log(token);
       });
-  }, [token]);
+  }, [token, email]); // email도 의존성 배열에 추가하여 email 값이 변경될 때마다 API 호출
+
   return (
     <div className="a">
       <div className="container1">
@@ -39,15 +40,15 @@ const MyPage = () => {
           <div>
             <h3>
               아이디
-              <div className="profileBox">{userInfo.email}</div>
+              <div className="profileBox">{email}</div>
             </h3>
             <h3>
               닉네임
-              <div className="profileBox">{userInfo.nickname}</div>
+              <div className="profileBox">{nickname}</div>
             </h3>
             <h3>
               내공 점수
-              <div className="profileBox">{userInfo.point}</div>
+              <div className="profileBox">{point}</div>
             </h3>
           </div>
         </div>
