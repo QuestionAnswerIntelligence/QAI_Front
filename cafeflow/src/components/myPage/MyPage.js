@@ -4,6 +4,8 @@ import { API_URL } from "../Constant";
 
 import "./MyPage.css";
 
+import shareIcon from "../../icons/share_android.png";
+
 const MyPage = () => {
   // 초기값으로 로컬 스토리지의 값을 사용
   const [email, setEmail] = useState(localStorage.getItem("email"));
@@ -34,9 +36,18 @@ const MyPage = () => {
 
   return (
     <div className="a">
-      <div className="container1">
+      <div className="mypage_container1">
         <div className="container">
-          <h1>내 정보</h1>
+          <div className="top-container">
+            <h1>My Page</h1>
+            <div  className="share_edit_button-container" style={{display:"flex",alignItems:"center"}}>
+              <button className="share_edit_button" style={{color:"black"}}></button>
+              <button className="share_edit_button" style={{color:"black"}}><b>편집</b></button>
+            </div>
+          </div>
+          <div className="middle-container">
+            <div className="profil-img">
+            <h1>내 정보</h1>
           <div>
             <h3>
               아이디
@@ -50,7 +61,14 @@ const MyPage = () => {
               내공 점수
               <div className="profileBox">{point}</div>
             </h3>
+            </div> 
+            <div className="imform-container">
+              
+
+            </div>
+</div>
           </div>
+          
         </div>
       </div>
     </div>
