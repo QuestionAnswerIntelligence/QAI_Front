@@ -8,9 +8,9 @@ AI 기술  Q&A 사이트
 * 2023.07.??
 
 ## 멤버 (Member)
-* **팀장** 김준영 : PM, Frontend, Design
-* **팀원** 김주영 : Frontend, Design * 2
-* **팀원** 안리안 : Frontend, Design * 0.5
+* **팀장** 김준영 : PM, Frontend
+* **팀원** 김주영 : Frontend, Design 
+* **팀원** 안리안 : Frontend, Design 
 * **팀원** 안희찬 : Backend * 2
 
 ## FrameWork
