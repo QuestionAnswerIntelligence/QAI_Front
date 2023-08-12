@@ -2,6 +2,7 @@
   position: absolute;
   left: 35%;
   top: 100px;
+  padding-top: 3vh;
 }
 
 .profileBox {
@@ -18,4 +19,42 @@
 
 .profileBox > span {
   color: black;
+}
+
+.mypage_container1{
+  display: flex;
+  align-items: stretch;
+  width: 50vw;
+  height: 80vh;
+  flex-direction: column;
+  border: 1px solid black;
+  margin-top: 4vh;
+  background-color: white;
+  border-radius: 20px;
+}
+
+
+/* 추가 */
+
+.top-container{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.share_edit_button{
+  border:1px solid black;
+  margin-left:5px;
+  border-radius:10px;
+  padding:5px;
+  width:55px;
+  height:40px;
+  background-color:white;
+}
+
+.share_edit_button-container>.share_edit_button:first-child{
+  background-image: url("../../icons/share_android.png");
+  background-repeat: no-repeat;
+  background-position:center center;
+  background-size:30px 30px;
 }
