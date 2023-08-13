@@ -13,13 +13,12 @@
 .register-form {
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 65px;
   align-items: center;
   gap: 10px;
   width: 40%; /* 원하는 너비 비율로 조정하세요. */
   background-color: white;
   border-radius: 10px;
-  border-top-color: black;
   margin-top: 100px;
 }
 

@@ -159,7 +159,7 @@ const QnAList = ({ chatId }) => {
                       <h2 onClick={() => toggleChatButton(question.boardId)}>
                         {question.createdBy}
                       </h2>
-                      {showChatButton[question.boardId] && (
+                      {token && showChatButton[question.boardId] && (
                         <button onClick={() => startChat(nickname, question)}>
                           1:1 채팅하기
                         </button>

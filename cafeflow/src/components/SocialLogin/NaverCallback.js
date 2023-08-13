@@ -6,6 +6,7 @@ import { useRecoilState, useSetRecoilState } from "recoil";
 import { tokenState, nicknameState, emailState } from "../../recoils/Recoil";
 
 const NaverCallback = () => {
+  const navigate = useNavigate();
   const [jwtToken, setJwtToken] = useRecoilState(tokenState);
   const [nickname, setNickname] = useRecoilState(nicknameState);
   const setEmail1 = useSetRecoilState(emailState);
@@ -44,6 +45,7 @@ const NaverCallback = () => {
         localStorage.setItem("jwtToken", jwtToken);
         localStorage.setItem("nickname", truncatedNickname);
         localStorage.setItem("email", email);
+        localStorage.setItem("point", point);
 
         console.log("로그인 성공!");
         console.log("Token:", jwtToken);
@@ -52,7 +54,7 @@ const NaverCallback = () => {
 
         console.log(code);
 
-        // navigate("/"); // 메인 페이지로 이동
+        navigate("/"); // 메인 페이지로 이동
       })
       .catch((err) => {});
   }, []);

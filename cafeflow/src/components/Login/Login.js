@@ -20,13 +20,9 @@ import GoogleLogin1 from "../SocialLogin/GoogleLogin";
 
 const Login = () => {
   const navigate = useNavigate();
-  const moveToRegister = () => {
-    navigate("/register");
-  };
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [point, setPoint] = useState("");
 
   const setToken = useSetRecoilState(tokenState);
   const setAge = useSetRecoilState(ageState);

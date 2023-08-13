@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import db from "../firebase";
+import user from "../../icons/user.png";
+
+import "./ChatList.css";
 
 const ChatList = () => {
   const [chatRooms, setChatRooms] = useState([]);
@@ -27,13 +30,25 @@ const ChatList = () => {
   };
 
   return (
-    <div className="a">
-      <div className="container1">
-        {chatRooms.map((chatRoom) => (
-          <div key={chatRoom.id} onClick={() => goToChatRoom(chatRoom.id)}>
-            {chatRoom.users.filter((user) => user !== currentUser).join(", ")}
-          </div>
-        ))}
+    <div className="ChatListContainer1">
+      <div className="ChatListContainer2">
+        <div className="ChatListContainer4">
+          <h1>ChatList</h1>
+          <span>채팅 목록</span>
+        </div>
+        <div className="ChatListDivider"></div>
+        <div className="ChatListContainer3">
+          {chatRooms.map((chatRoom) => (
+            <div
+              className="ChatList"
+              key={chatRoom.id}
+              onClick={() => goToChatRoom(chatRoom.id)}
+            >
+              <img src={user}></img>{" "}
+              {chatRoom.users.filter((user) => user !== currentUser).join(", ")}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
