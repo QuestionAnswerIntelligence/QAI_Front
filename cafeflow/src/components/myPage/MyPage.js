@@ -37,7 +37,7 @@ const MyPage = () => {
   return (
     <div className="a">
       <div className="mypage_container1">
-        <div className="container">
+        <div className="mypage_container2">
           <div className="top-container">
             <h1>My Page</h1>
             <div  className="share_edit_button-container" style={{display:"flex",alignItems:"center"}}>
@@ -46,29 +46,49 @@ const MyPage = () => {
             </div>
           </div>
           <div className="middle-container">
-            <div className="profil-img">
-            <h1>내 정보</h1>
-          <div>
-            <h3>
-              아이디
-              <div className="profileBox">{email}</div>
-            </h3>
-            <h3>
-              닉네임
-              <div className="profileBox">{nickname}</div>
-            </h3>
-            <h3>
-              내공 점수
-              <div className="profileBox">{point}</div>
-            </h3>
-            </div> 
-            <div className="imform-container">
+            <div className="profile-img-container">
               
-
             </div>
-</div>
-          </div>
+            <div className="info-container">
+              <div className="info">
+                <p className="label1">아이디</p>
+                <p className="label2" ><b>nickname@ai.com</b></p>
+              </div>
+              <div>
+               <p className="label1">닉네임</p>
+               <p className="label2"><b>nickname</b></p>
+              </div>
+              <div>
+                <p className="label1">포트폴리오</p>
+              </div>
+              <div className="point-container">
+                <div>
+                <p className="label1">내 포인트</p>
+                <p className="label2"><b>7800베리</b></p>
+                </div>
+                
+                <button className="charge-button">충전하기</button>
+              </div>
+             
+            </div>
           
+          </div>
+          <div className="check-outer-box" >
+            <div className="check-inner-box" style={{ }}> 
+              <p className="check-p1">내 프로필을 조회한 사람</p>
+              <p className="check-p2">5월 14일-8월 11일 동안 <span style={{color:"black"}}>674</span>명이 내 프로필을 조회했습니다.</p>
+            </div>
+          </div>
+
+          <div className="select-outer-box">
+            <div className="select-inner-box">
+              <button>프로필</button>
+              <button>게시물</button>
+              <button>답변</button>
+            </div>
+            
+          </div>
+          <div className="mypage-divider"></div>
         </div>
       </div>
     </div>

@@ -1,9 +1,3 @@
-.container {
-  position: absolute;
-  left: 35%;
-  top: 100px;
-  padding-top: 3vh;
-}
 
 .profileBox {
   width: 30vw;
@@ -23,23 +17,37 @@
 
 .mypage_container1{
   display: flex;
-  align-items: stretch;
+  align-items: center;
   width: 50vw;
   height: 80vh;
   flex-direction: column;
   border: 1px solid black;
   margin-top: 4vh;
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   border-radius: 20px;
 }
 
 
 /* 추가 */
 
+
+.mypage_container2{
+  display:flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align:center;
+  position: absolute;
+  left: 30%;
+  top: 100px;
+  padding-top: 3vh;
+  width:40%;
+  /* background-color: red; */
+}
 .top-container{
   display:flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 
 .share_edit_button{
@@ -57,4 +65,110 @@
   background-repeat: no-repeat;
   background-position:center center;
   background-size:30px 30px;
+}
+
+.middle-container{
+  display:flex;
+  justify-content: space-between;
+  text-align:left;
+  /* background-color: red; */
+  width:80%;
+  margin-top:10px;
+  margin-left:10%;
+}
+
+.info-container{
+  display:grid;
+  grid-template-columns: repeat(2,1fr);
+  gap:20px;
+  /* background-color: red; */
+}
+
+.point-container{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.profile-img-container{
+  width:100px;
+  height:100px;
+  background-image: url("../../icons/Account_circle.png");
+  background-size: 100px 100px;
+  background-repeat: no-repeat;
+  margin-right:5px;
+}
+
+.label1{
+  color:gray;
+  padding: 0;
+  margin:0;
+}
+.label2{
+  margin:0;
+  font-size:20px;
+}
+
+.charge-button{
+  background-color: transparent;
+  border-radius:7px;
+  padding:5px;
+  margin-left:10px;
+}
+
+.check-outer-box{
+  text-align: left;
+  margin-top:5vh;
+}
+
+.check-inner-box{
+  padding:10px;
+  width:70%;
+  margin-top:50px;
+  border:1px solid black;
+  
+}
+.check-p1{
+  font-size:15px;
+  font-weight: bold;
+  margin:0;
+}
+
+.check-p2{
+ color:gray;
+ font-size:15px;
+ margin:0;
+}
+
+.select-outer-box{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  margin-top:5vh;
+}
+
+.select-inner-box{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+.select-inner-box > button{
+  margin-left:10px;
+  margin-right:10px;
+  background-color: white;
+  font-size:20px;
+  border:none;
+}
+
+.mypage-divider{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 2px;
+  width: 100%;
+  background-color: lightgray;
+  margin: 12px;
+  position: relative;
 }
