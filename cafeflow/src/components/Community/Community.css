@@ -35,16 +35,7 @@
   flex-direction: row;
   justify-content: left;
 }
-<<<<<<< Updated upstream
-/* 
-.board-container{
-=======
 
-/* .board-container{
->>>>>>> Stashed changes
-  width:88vw;
-  height:40vh;
-} */
 
 .divider1 {
   display: flex;
