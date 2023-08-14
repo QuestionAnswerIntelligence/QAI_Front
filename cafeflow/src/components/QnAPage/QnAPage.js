@@ -323,11 +323,34 @@ const QnAPage = () => {
           </div> */}
           <div className="a2">
             <div className="a3">
-              <h1 style={{ marginBottom: "0px", fontSize: "2vw" }}>Q & A</h1>
+              <div className="a4" style={{ marginTop: "2vh" }}>
+                <h1
+                  style={{
+                    marginBottom: "0px",
+                    marginTop: "0px",
+                    fontSize: "2.3vw",
+                  }}
+                >
+                  Q & A
+                </h1>
+                <div className="a5">
+                  {currentUser == question.createdBy && (
+                    <>
+                      <button className="button" onClick={handleDelete}>
+                        삭제
+                      </button>
+                      <button className="button" onClick={handleEdit}>
+                        수정
+                      </button>
+                    </>
+                  )}
+                </div>
+              </div>
               <span
                 style={{
                   color: "gray",
                   marginBottom: "1vh",
+                  marginTop: "1vh",
                   fontSize: "1.1vw",
                 }}
               >
@@ -337,22 +360,6 @@ const QnAPage = () => {
                 <div className="a5">
                   <h1 style={{ margin: "0px" }}>{question.title}</h1>
                   <span className="pointSpan">{question.point}</span>
-                </div>
-                <div className="a5">
-                  {currentUser == question.createdBy && (
-                    <>
-                      <button className="button" onClick={handleDelete}>
-                        삭제
-                      </button>
-                      {/* <img
-                          src={divider}
-                          style={{ marginLeft: "10px", marginRight: "10px" }}
-                        ></img> */}
-                      <button className="button" onClick={handleEdit}>
-                        수정
-                      </button>
-                    </>
-                  )}
                 </div>
               </div>
               <div
@@ -381,21 +388,23 @@ const QnAPage = () => {
                   </div>
                 </div>
               </div>
-              <div>
-                <p>
-                  <b>내용 </b>: {question.content}
-                </p>
+              <div className="contentBox">
+                <p>{question.content}</p>
               </div>
-              <hr />
+              <div className="QnAPage-divider"></div>
+
               <div>
                 {token ? (
                   <div>
                     <input
+                      className="commentInput"
                       value={comment}
                       onChange={(e) => setComment(e.target.value)}
                       placeholder="댓글을 입력하세요..."
                     />
-                    <button onClick={handleComment}>입력 완료</button>
+                    <button className="CommentButton" onClick={handleComment}>
+                      입력 완료
+                    </button>
                   </div>
                 ) : (
                   <p>
