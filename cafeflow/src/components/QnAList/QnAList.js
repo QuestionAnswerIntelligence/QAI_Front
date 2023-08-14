@@ -20,6 +20,9 @@ const QnAList = ({ chatId }) => {
   const [isChecked, setIsChecked] = useState(false);
 
   const [showChatButton, setShowChatButton] = useState({}); // 1. 채팅 버튼 표시 상태를 관리하기 위한 state
+  const [keyword, setKeyword] = useState("");
+  const [option, setOption] = useState("제목");
+
 
   // toggleChatButton 함수를 수정하여 특정 질문에 대한 상태만 변경
   const toggleChatButton = (boardId) => {
@@ -109,6 +112,34 @@ const QnAList = ({ chatId }) => {
       });
   };
 
+  const handleSelect = (event) => {
+    setOption(event.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .get(
+        `${API_URL}/questions?page=${pageNum}&size=${size}&option=${option}&searchKeyword=${keyword}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((response) => {
+        setQuestions(response.data.data.questionList);
+        e.target.value = "";
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleInputChange = (event) => {
+    setKeyword(event.target.value);
+  };
+
   return (
     <div className="aaa">
       <div className="container11">
@@ -130,21 +161,20 @@ const QnAList = ({ chatId }) => {
         </span>
         <div className="asd">
           <div className="searchBox">
-            <input className="search" type="text" placeholder="Search"></input>
-            {/* <div
-              style={{
-                position: "relative",
-                marginTop: "3vh",
-                display: "flex",
-              }}
-            >
-              <button className="checkbox" type="checkbox"></button>
-              <span
-                style={{ color: "black", fontSize: "16px", marginLeft: "5px" }}
-              >
-                시간 순
-              </span>
-            </div> */}
+              <form onSubmit={handleSubmit}>
+                <select className="select-box" onChange={handleSelect}>
+                  <option value="제목">제목</option>
+                  <option value="내용">내용</option>
+                  <option value="제목+내용">제목+내용</option>
+                </select>
+                <input
+                  className="community-search"
+                  type="text"
+                  placeholder="Search"
+                  onChange={handleInputChange}
+                ></input>
+                
+              </form>
           </div>
         </div>
         <div className="board-container">
