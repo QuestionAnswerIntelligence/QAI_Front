@@ -11,11 +11,11 @@
 .ChatListContainer2 {
   display: flex;
   align-items: stretch;
-  width: 60vw;
+  width: 30vw;
   height: 80vh;
   flex-direction: column;
   border: 1px solid black;
-  margin-top: 4vh;
+  margin-top: 10vh;
   background-color: white;
   border-radius: 20px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
@@ -36,8 +36,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* padding: 2vw; */
-  /* border-bottom: 1px solid lightgray; */
 }
 
 .ChatListContainer4 {
@@ -56,12 +54,52 @@
 .ChatList {
   display: flex;
   align-items: center;
-  gap: 1vw;
-  width: 60vw;
+  justify-content: space-between;
+  width: 30vw;
   border-bottom: 1px solid lightgray;
-  padding: 2vh;
+  /* padding: 2vh; */
+}
+
+/* 왼쪽의 프로필 이미지와 이름을 포함하는 새로운 컨테이너 */
+.ChatList .leftContent {
+  display: flex;
+  align-items: center;
+  gap: 1vw;
+  margin-left: 1vw;
+}
+
+/* 이미지 크기 조절 */
+.ChatList .leftContent > img {
+  width: 4vh;
+}
+
+.ChatList .leftContent > span {
+  color: black;
+  font-size: 18px;
+}
+
+.CurrentMsg {
+  display: flex;
+  align-items: center;
+  gap: 1vw;
 }
 
 .ChatList > img {
   width: 4vh;
+}
+
+.ChatList > span {
+  color: black;
+  font-size: 22px;
+}
+
+.CurrentMsg > span {
+  color: black;
+  margin-right: 2vw;
+}
+
+.divide {
+  color: lightgray;
+  height: 2vh;
+  border: 1px solid;
 }
