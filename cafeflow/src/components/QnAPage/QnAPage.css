@@ -77,10 +77,11 @@
   flex-direction: column;
   text-align: left;
   width: 55vw;
+  height: 80vh;
   border: 1px solid gray;
   border-radius: 15px;
   padding: 0 2vw 2vw 2vw;
-  margin-top: 2vh;
+  margin-top: 10vh;
 }
 
 .a4 {
@@ -155,6 +156,7 @@
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   padding: 0 2vw 1vw 2vw;
 }
+
 .QnAEditContainer2 > span {
   font-size: 22px;
   color: gray;
