@@ -380,33 +380,7 @@ const QnAPage = () => {
                     <p>{question.viewCount}</p>
                   </div>
                 </div>
-                {
-                  currentUser == question.createdBy && isChecked ? (
-                    // isChecked가 true일 때 체크 이미지와 "채택 완료" 텍스트를 보여줌
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        border: "1px solid gray",
-                        borderRadius: "10px",
-                        padding: "5px",
-                      }}
-                    >
-                      <img
-                        src={check} // 체크 이미지 경로
-                        style={{ width: "25px", height: "25px" }}
-                        alt="체크"
-                      />
-                      <span style={{ color: "gray" }}>채택 완료</span>
-                    </div>
-                  ) : currentUser == question.createdBy &&
-                    isChecked === false ? (
-                    <button onClick={handleAdoptionClick}>채택하기</button>
-                  ) : (
-                    ""
-                  )
-                  // isChecked가 false일 때 "채택하기" 버튼을 보여줌
-                }
+               
               </div>
               <div>
                 <p>
