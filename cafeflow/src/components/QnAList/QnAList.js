@@ -178,35 +178,35 @@ const QnAList = ({ chatId }) => {
           {questions.map((question) => (
             <div key={question.boardId}>
               <ul className="post-list" key={question.boardId}>
-                <li className="community-post-list">
-                  <div className="QnAList2">
-                    <div>
-                      {/* <img className="profile-img" /> */}
-                      <h2 onClick={() => toggleChatButton(question.boardId)}>
-                        {question.createdBy}
-                      </h2>
-                      {token && showChatButton[question.boardId] && (
-                        <button onClick={() => startChat(nickname, question)}>
-                          1:1 채팅하기
-                        </button>
-                      )}
+                <Link to={`/questions/${question.questionId}`}>
+                  <li className="community-post-list">
+                    <div className="QnAList2">
+                      <div>
+                        {/* <img className="profile-img" /> */}
+                        <h2 onClick={() => toggleChatButton(question.boardId)}>
+                          {question.createdBy}
+                        </h2>
+                        {token && showChatButton[question.boardId] && (
+                          <button onClick={() => startChat(nickname, question)}>
+                            1:1 채팅하기
+                          </button>
+                        )}
+                      </div>
+                      <div style={{ display: "flex", alignItems: "center" }}>
+                        <img className="viewCountImg" src={ViewCount}></img>
+                        <span className="viewCountSpan">
+                          {question.viewCount}
+                        </span>
+                      </div>
                     </div>
-                    <div style={{ display: "flex", alignItems: "center" }}>
-                      <img className="viewCountImg" src={ViewCount}></img>
-                      <span className="viewCountSpan">
-                        {question.viewCount}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="community-post-list-middle">
-                    <Link to={`/questions/${question.questionId}`}>
+                    <div className="community-post-list-middle">
                       {question.title}
-                    </Link>
-                  </div>
-                  <span className="QnAList-createdAt">
-                    {formatDate(question.createdAt)}
-                  </span>
-                </li>
+                    </div>
+                    <span className="QnAList-createdAt">
+                      {formatDate(question.createdAt)}
+                    </span>
+                  </li>
+                </Link>
               </ul>
             </div>
           ))}

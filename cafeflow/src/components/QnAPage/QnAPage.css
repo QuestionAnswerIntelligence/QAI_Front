@@ -117,7 +117,7 @@
   margin-bottom: 0px;
   background-color: #564e97;
   width: 3vw;
-  height: 2.5vh;
+  height: 2.3vh;
   color: white;
   text-align: center;
   align-items: center;
@@ -191,4 +191,33 @@
   color: white;
   text-align: center;
   display: inline-block;
+}
+
+.contentBox {
+  border: 1px solid gray;
+  padding: 2vh;
+  border-radius: 10px;
+}
+
+.commentInput {
+  width: 20vw;
+  height: 3vh;
+  margin-right: 1vw;
+}
+
+.CommentButton {
+  background-color: #564e97;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  height: 3.6vh;
+}
+
+.QnAPage-divider {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 2px;
+  background-color: lightgray;
+  margin: 12px;
 }
