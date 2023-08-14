@@ -54,6 +54,7 @@ const Header = () => {
       localStorage.removeItem("id");
       localStorage.removeItem("email");
       localStorage.removeItem("jwtToken");
+      localStorage.removeItem("point");
 
       // 로그인 화면으로 돌아감
       moveToLogin();

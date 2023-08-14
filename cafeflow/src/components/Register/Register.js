@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import KakaoLogin from "../SocialLogin/KakaoLogin";
+import NaverLogin from "../SocialLogin/NaverLogin";
+import GoogleLogin1 from "../SocialLogin/GoogleLogin";
 import { API_URL } from "../Constant";
 import logo from "../../icons/Logo.png";
 import "./Register.css";
@@ -67,9 +69,9 @@ const Register = () => {
         <img src={logo}></img>
         <h2>회원가입</h2>
         <div className="button-container">
-          <button className="naver"></button>
-          <button className="kakao"></button>
-          <button className="google"></button>
+          <KakaoLogin />
+          <NaverLogin />
+          <GoogleLogin1 />
         </div>
         <div className="divider">
           <span>OR</span>

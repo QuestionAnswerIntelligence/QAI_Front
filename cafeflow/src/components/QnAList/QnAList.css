@@ -37,10 +37,10 @@
   display: flex;
   align-items: stretch;
   width: 60vw;
-  height: 85vh;
+  height: 80vh;
   flex-direction: column;
   border: 1px solid black;
-  margin-top: 11vh;
+  margin-top: 4vh;
   background-color: white;
   border-radius: 20px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
