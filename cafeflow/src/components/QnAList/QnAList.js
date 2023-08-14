@@ -23,7 +23,6 @@ const QnAList = ({ chatId }) => {
   const [keyword, setKeyword] = useState("");
   const [option, setOption] = useState("제목");
 
-
   // toggleChatButton 함수를 수정하여 특정 질문에 대한 상태만 변경
   const toggleChatButton = (boardId) => {
     setShowChatButton((prev) => ({
@@ -145,9 +144,7 @@ const QnAList = ({ chatId }) => {
       <div className="container11">
         <div className="post">
           <h1>Q & A</h1>
-          <button className="postbutton1" onClick={moveToMakeQuestion}>
-            글쓰기
-          </button>
+          <button onClick={moveToMakeQuestion}>글쓰기</button>
         </div>
         <span
           style={{
@@ -157,24 +154,23 @@ const QnAList = ({ chatId }) => {
             padding: "0 1.5vw",
           }}
         >
-          질문하세요!{" "}
+          질문하세요!
         </span>
         <div className="asd">
           <div className="searchBox">
-              <form onSubmit={handleSubmit}>
-                <select className="select-box" onChange={handleSelect}>
-                  <option value="제목">제목</option>
-                  <option value="내용">내용</option>
-                  <option value="제목+내용">제목+내용</option>
-                </select>
-                <input
-                  className="community-search"
-                  type="text"
-                  placeholder="Search"
-                  onChange={handleInputChange}
-                ></input>
-                
-              </form>
+            <form className="search" onSubmit={handleSubmit}>
+              <select className="select-box" onChange={handleSelect}>
+                <option value="제목">제목</option>
+                <option value="내용">내용</option>
+                <option value="제목+내용">제목+내용</option>
+              </select>
+              <input
+                className="QnA-search"
+                type="text"
+                placeholder="Search"
+                onChange={handleInputChange}
+              ></input>
+            </form>
           </div>
         </div>
         <div className="board-container">

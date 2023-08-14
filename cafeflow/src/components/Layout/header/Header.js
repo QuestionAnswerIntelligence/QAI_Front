@@ -82,16 +82,16 @@ const Header = () => {
     return (
       <div className={`dropdown-menu ${isDropdownVisible ? "show" : ""}`}>
         <button className="login">
-          <span>{nickname}</span>
+          <span className="span">{nickname}</span>
         </button>
         <button className="login" onClick={moveTomyPage}>
-          <span>마이페이지</span>
+          <span className="span">마이페이지</span>
         </button>
         <button className="login" onClick={moveToQnA}>
-          <span>Q&A</span>
+          <span className="span">Q&A</span>
         </button>
         <button className="login" onClick={handleLogout}>
-          <span>로그아웃</span>
+          <span className="span">로그아웃</span>
         </button>
       </div>
     );
@@ -109,16 +109,18 @@ const Header = () => {
       </div>
       <div className="header-center">
         <button>
-          <span style={{ color: "#564E97" }}>New technology</span>
+          <span className="span" style={{ color: "#564E97" }}>
+            New technology
+          </span>
         </button>
         <button onClick={moveToQnA}>
-          <span>Q&A</span>
+          <span className="span">Q&A</span>
         </button>
         <button onClick={moveToCommunity}>
-          <span>Community</span>
+          <span className="span">Community</span>
         </button>
         <button onClick={moveToChat}>
-          <span>Chat</span>
+          <span className="span">Chat</span>
         </button>
       </div>
       <div className="header-right">
@@ -127,7 +129,7 @@ const Header = () => {
             <button className="user" onClick={moveTomyPage}></button>
             <span>
               <button className="username" onClick={moveTomyPage}>
-                <span>{nickname}</span>
+                <span className="span">{nickname}</span>
               </button>
               님
             </span>
@@ -136,7 +138,7 @@ const Header = () => {
               style={{ marginLeft: "10px", marginRight: "10px" }}
             ></img>
             <button className="register" onClick={handleLogout}>
-              <span>로그아웃</span>
+              <span className="span">로그아웃</span>
             </button>
             <button className="hamburger-icon" onClick={toggleDropdown}>
               <FiMenu size={30} />
@@ -146,14 +148,14 @@ const Header = () => {
         ) : (
           <React.Fragment>
             <button className="login" onClick={moveToLogin}>
-              <span>Login</span>
+              <span className="span">Login</span>
             </button>
             <img
               src={divider}
               style={{ marginLeft: "10px", marginRight: "10px" }}
             ></img>
             <button className="register" onClick={moveToRegister}>
-              <span>Register</span>
+              <span className="span">Register</span>
             </button>
           </React.Fragment>
         )}

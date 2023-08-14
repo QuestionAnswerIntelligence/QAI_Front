@@ -16,12 +16,7 @@
   padding: 0 1.5vw;
 }
 
-.post-list {
-  border-top: 1px solid lightgray;
-  padding: 2vh 3vh 0 3vh;
-}
-
-.postbutton1 {
+.post > button {
   width: 10vw;
   height: 5vh;
   background-color: #7267c8;
@@ -30,20 +25,25 @@
   border: none;
   font-size: 18px;
   position: relative;
-  top: 26px;
+  /* top: 26px; */
+}
+
+.post-list {
+  border-top: 1px solid lightgray;
+  padding: 2vh 3vh 0 3vh;
 }
 
 .container11 {
   display: flex;
   align-items: stretch;
-  width: 60vw;
+  width: 50vw;
   height: 80vh;
   flex-direction: column;
-  border: 1px solid black;
-  margin-top: 4vh;
+  /* border: 1px solid black; */
+  margin-top: 10vh;
   background-color: white;
   border-radius: 20px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 4px 4px 4px 6px rgba(0, 0, 0, 0.1);
   overflow: scroll;
 }
 
@@ -74,11 +74,28 @@ input.search {
   justify-content: space-between;
   align-items: center;
   padding: 0 1.5vw;
+  margin-top: 1vh;
 }
 
 .searchBox > span {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
   color: black;
   font-size: 11px;
+}
+
+.QnA-search {
+  width: 30vw;
+  height: 3vh;
+  margin-left: 1vw;
+  padding-left: 1vw;
+}
+
+.search {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 th {

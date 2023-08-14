@@ -380,7 +380,6 @@ const QnAPage = () => {
                     <p>{question.viewCount}</p>
                   </div>
                 </div>
-               
               </div>
               <div>
                 <p>
