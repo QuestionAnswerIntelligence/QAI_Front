@@ -13,6 +13,7 @@ const MyPage = () => {
   const [point, setPoint] = useState(localStorage.getItem("point"));
 
   const token = localStorage.getItem("jwtToken");
+  const [state,setState]=useState("프로필");
 
   useEffect(() => {
     axios
@@ -34,6 +35,48 @@ const MyPage = () => {
       });
   }, [token, email]); // email도 의존성 배열에 추가하여 email 값이 변경될 때마다 API 호출
 
+
+  // const post_div=<div>
+  //   {posts.map((post) => (
+  //           <div>
+  //             <ul className="post-list" key={post.boardId}>
+  //               <li className="community-post-list">
+  //                 <div className="community-post-list-up">
+  //                   <div>
+  //                     <span className="community-createdBy">
+  //                       {post.createdBy}
+  //                     </span>
+  //                     <span className="community-createdAt">
+  //                       {" "}
+  //                       작성 : {formatDate(post.createdAt)}
+  //                     </span>
+  //                   </div>
+  //                   <div>
+  //                     <img className="viewCountImg" src={ViewCount}></img>
+  //                     <span className="viewCountSpan">{post.viewCount}</span>
+  //                   </div>
+  //                 </div>
+  //                 <div className="community-post-list-middle">
+  //                   <Link
+  //                     className="community-title"
+  //                     to={
+  //                       isFreeBoardClick
+  //                         ? `/freepage/${post.boardId}`
+  //                         : `/sharepage/${post.boardId}`
+  //                     }
+  //                   >
+  //                     {post.title}
+  //                   </Link>
+  //                 </div>
+  //                 <div className="community-post-list-down"></div>
+  //               </li>
+  //             </ul>
+  //             <div className="divider2"></div>
+  //           </div>
+  //         ))}
+  // </div>
+
+
   return (
     <div className="a">
       <div className="mypage_container1">
@@ -52,11 +95,11 @@ const MyPage = () => {
             <div className="info-container">
               <div className="info">
                 <p className="label1">아이디</p>
-                <p className="label2" ><b>nickname@ai.com</b></p>
+                <p className="label2" ><b>{email}</b></p>
               </div>
               <div>
                <p className="label1">닉네임</p>
-               <p className="label2"><b>nickname</b></p>
+               <p className="label2"><b>{nickname}</b></p>
               </div>
               <div>
                 <p className="label1">포트폴리오</p>
@@ -64,7 +107,7 @@ const MyPage = () => {
               <div className="point-container">
                 <div>
                 <p className="label1">내 포인트</p>
-                <p className="label2"><b>7800베리</b></p>
+                <p className="label2"><b>{point}베리</b></p>
                 </div>
                 
                 <button className="charge-button">충전하기</button>
@@ -82,13 +125,15 @@ const MyPage = () => {
 
           <div className="select-outer-box">
             <div className="select-inner-box">
-              <button>프로필</button>
-              <button>게시물</button>
-              <button>답변</button>
+              <button onClick={()=>setState("프로필")}>프로필</button>
+              <button onClick={()=>setState("게시물")}>게시물</button>
+              <button onClick={()=>setState("답변")}>답변</button>
             </div>
             
           </div>
-          <div className="mypage-divider"></div>
+          <div className="mypage-divider"><span className={state==="프로필"?"profile":state==="게시물"?"post1":"answer"}></span></div>
+          {/* {post_div} */}
+        
         </div>
       </div>
     </div>
