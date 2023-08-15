@@ -1,8 +1,28 @@
+.bodyContainer {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow: auto;
+  height: calc(100vh - 16vh);
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 8vh 20px;
+}
+
+.messageRight,
+.messageLeft {
+  display: flex;
+  position: relative;
+}
+
 .messageRight {
-  text-align: right;
+  justify-content: flex-end;
+  flex-direction: column-reverse;
+  align-items: flex-end;
 }
 
 .messageLeft {
+  justify-content: flex-start;
   text-align: left;
 }
 
@@ -12,44 +32,37 @@
   padding: 10px;
   border-radius: 10px;
   margin: 10px 0;
+  position: relative;
+  z-index: -1;
+  margin-top: 1vw;
 }
 
 .messageRight .messageBox {
-  background-color: #dcf8c6; /* light green */
-  text-align: right;
+  background-color: #e2d8fa; /* light green */
 }
 
 .messageLeft .messageBox {
-  background-color: #e7c9c9; /* white */
-  text-align: left;
+  background-color: #f0d9dc; /* white */
+  /* text-align: left; */
 }
 
 .messageSender {
   font-weight: bold;
 }
 
-.bodyContainer {
-  flex-grow: 1;
-  overflow: auto;
-  height: calc(100vh - 16vh);
-  border: 1px solid black;
-  border-radius: 20px;
-  padding: 8vh 20px;
+.timeRight,
+.timeLeft {
+  position: absolute;
+  bottom: -8px;
+  color: gray;
+  font-size: 11px;
+  z-index: -1;
 }
 
-.messageRight {
-  display: flex;
-  justify-content: flex-end;
+.timeRight {
+  /* left: 5px; */
 }
 
-.messageLeft {
-  display: flex;
-  justify-content: flex-start;
-}
-
-.timestamp {
-  position: relative;
-  top: 55px;
-  left: 10px;
-  font-size: 13px;
+.timeLeft {
+  /* right: 5px; */
 }

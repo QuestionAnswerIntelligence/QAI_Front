@@ -198,7 +198,7 @@
 
 .contentBox {
   border: 1px solid gray;
-  width: 37vw;
+  width: 35vw;
   word-wrap: break-word;
   padding-left: 1vw;
   padding-right: 1vw;
@@ -210,6 +210,7 @@
   height: 3vh;
   margin-right: 1vw;
   margin-top: 3%;
+  padding-left: 0.5vw;
 }
 
 .CommentButton {

@@ -47,14 +47,28 @@ const ChatBody = () => {
         <div
           key={index}
           className={
-            message.sender === currentUser ? "messageRight" : "messageLeft"
+            message.sender === currentUser
+              ? "messageContainerRight"
+              : "messageContainerLeft"
           }
         >
-          <div className="messageBox">
-            <div className="messageSender">{message.sender}</div>
-            <div className="messageContent">{message.content}</div>
+          <div
+            className={
+              message.sender === currentUser ? "messageRight" : "messageLeft"
+            }
+          >
+            <div className="messageBox">
+              <div className="messageSender">{message.sender}</div>
+              <div className="messageContent">{message.content}</div>
+            </div>
+            <div
+              className={
+                message.sender === currentUser ? "timeRight" : "timeLeft"
+              }
+            >
+              {formatTime(message.timestamp)}
+            </div>
           </div>
-          <div className="timestamp">{formatTime(message.timestamp)}</div>
         </div>
       ))}
     </div>
