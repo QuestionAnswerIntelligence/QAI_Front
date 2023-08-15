@@ -12,7 +12,7 @@ const ShareForm = () => {
 
   const [errors, setErrors] = useState({});
 
-  const nickname = localStorage.getItem("nickname");
+  const createdBy = localStorage.getItem("createdBy");
   const token = localStorage.getItem("jwtToken");
 
   const navigate = useNavigate();
@@ -44,7 +44,7 @@ const ShareForm = () => {
         console.log(response);
         console.log(response.data);
         alert("게시물이 성공적으로 등록되었습니다!");
-        navigate("/community");
+        navigate("/sharelist");
       })
       .catch((error) => {
         console.log(error);
@@ -69,7 +69,7 @@ const ShareForm = () => {
         </label>
 
         <br />
-        <label>작성자: {nickname}</label>
+        <label>작성자: {createdBy}</label>
         <br />
         <button type="submit">Submit</button>
       </form>
