@@ -28,7 +28,6 @@ const QnAForm = () => {
         ...errors,
         title: !formData.title ? alert("제목이 입력되지 않았습니다!") : "",
         content: !formData.content ? alert("내용이 입력되지 않았습니다!") : "",
-        point: !formData.point ? alert("포인트가 입력되지 않았습니다!") : "",
       });
       return;
     }

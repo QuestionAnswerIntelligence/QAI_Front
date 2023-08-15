@@ -20,6 +20,9 @@ const Header = () => {
   const moveToHome = () => {
     navigate("/");
   };
+  const moveToNewTec = () => {
+    navigate("/newtec_list");
+  };
   const moveToLogin = () => {
     navigate("/login");
   };
@@ -109,7 +112,11 @@ const Header = () => {
       </div>
       <div className="header-center">
         <button>
-          <span className="span" style={{ color: "#564E97" }}>
+          <span
+            onClick={moveToNewTec}
+            className="span"
+            style={{ color: "#564E97" }}
+          >
             New technology
           </span>
         </button>

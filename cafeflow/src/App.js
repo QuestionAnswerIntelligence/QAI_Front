@@ -22,6 +22,10 @@ import NaverCallback from "./components/SocialLogin/NaverCallback";
 import KakaoCallback from "./components/SocialLogin/KakaoCallback";
 import GoogleCallback from "./components/SocialLogin/GoogleCallback";
 
+import NewTec_form from "./components/NewTecboard/NewTec_form/NewTec_form";
+import NewTec_list from "./components/NewTecboard/NewTec_list/NewTec_list";
+import NewTec_page from "./components/NewTecboard/NewTec_page/NewTec_page";
+
 const App = () => {
   return (
     <RecoilRoot>
@@ -37,6 +41,7 @@ const App = () => {
           <Route path="/community" element={<Community />} />
           <Route path="/freeform" element={<FreeForm />} />
           <Route path="/freelist" element={<FreeList />} />
+
           {/* <Route path="/shareboard" element={<ShareBoard />} /> */}
           <Route path="/questions/:questionId" element={<QnAPage />} />
           <Route path="/freepage/:boardId" element={<FreePage />} />
@@ -45,6 +50,11 @@ const App = () => {
           <Route path="/sharelist" element={<ShareList />} />
           <Route path="/chats/:chatId" element={<ChatPage />} />
           <Route path="/chats" element={<ChatList />} />
+
+          <Route path="/newtec_form" element={<NewTec_form />} />
+          <Route path="/newtec_page" element={<NewTec_page />} />
+          <Route path="/newtec_list" element={<NewTec_list />} />
+
           <Route
             path="/login/oauth2/callback/naver"
             element={<NaverCallback />}
