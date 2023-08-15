@@ -28,7 +28,7 @@
 .container12 {
   display: flex;
   align-items: stretch;
-  width: 60vw;
+  width: 65vw;
   height: 80vh;
   flex-direction: column;
   border: 1px solid black;
@@ -76,7 +76,7 @@
   display: flex;
   flex-direction: column;
   text-align: left;
-  width: 55vw;
+  width: 50vw;
   height: 80vh;
   border: 1px solid gray;
   border-radius: 15px;
@@ -104,6 +104,7 @@
   align-items: center;
   gap: 15px;
   margin-bottom: 0px;
+  padding: 0 1.5vw;
 }
 
 .a7 {
@@ -125,11 +126,11 @@
 }
 
 .button {
-  margin-right: 1vw;
+  margin-right: 0.5vw;
   background-color: none;
   border: none;
   border-radius: 5px;
-  width: 5vw;
+  width: 2vw;
   height: 3vh;
 }
 
@@ -186,16 +187,21 @@
 .adoptedButton {
   border-radius: 10px;
   background-color: #8e8d9c;
-  height: 70%;
+  height: 3vh;
   width: 15%;
   color: white;
-  text-align: center;
-  display: inline-block;
+  margin: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .contentBox {
   border: 1px solid gray;
-  padding: 2vh;
+  width: 37vw;
+  word-wrap: break-word;
+  padding-left: 1vw;
+  padding-right: 1vw;
   border-radius: 10px;
 }
 
@@ -203,6 +209,7 @@
   width: 20vw;
   height: 3vh;
   margin-right: 1vw;
+  margin-top: 3%;
 }
 
 .CommentButton {
@@ -211,6 +218,30 @@
   border: none;
   border-radius: 5px;
   height: 3.6vh;
+}
+
+.commentBox {
+  display: flex;
+  width: 36vw;
+  gap: 0.8vw;
+  margin-top: 2vh;
+  justify-content: space-between;
+  align-items: flex-start; /* 내용과 버튼 영역이 상단에 정렬되도록 합니다. */
+  border: 1px solid gray;
+  padding: 10px;
+  border-radius: 10px;
+  word-wrap: break-word;
+  white-space: pre-line;
+}
+
+.comment-content {
+  flex-grow: 1; /* 가능한 많은 공간을 차지하도록 합니다. */
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-edit-delete-container {
+  flex-shrink: 0; /* 이 영역의 크기를 고정시킵니다. */
 }
 
 .QnAPage-divider {

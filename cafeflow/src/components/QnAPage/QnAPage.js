@@ -4,7 +4,6 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { API_URL } from "../Constant";
 import writer1 from "../../icons/writer1.png";
 import ViewCount from "../../icons/ViewCount.png";
-import check from "../../icons/check.png";
 
 import "./QnAPage.css";
 
@@ -315,84 +314,87 @@ const QnAPage = () => {
           </form>
         </div>
       ) : (
-        // </div>
-        <div>
-          {/* <div className="a1">
-            <h1 style={{ marginBottom: "10px" }}>Q & A</h1>
-            <span style={{ color: "gray" }}>질문하세요!</span>
-          </div> */}
-          <div className="a2">
-            <div className="a3">
-              <div className="a4" style={{ marginTop: "2vh" }}>
-                <h1
-                  style={{
-                    marginBottom: "0px",
-                    marginTop: "0px",
-                    fontSize: "2.3vw",
-                  }}
-                >
-                  Q & A
-                </h1>
-                <div className="a5">
-                  {currentUser == question.createdBy && (
-                    <>
-                      <button className="button" onClick={handleDelete}>
-                        삭제
-                      </button>
-                      <button className="button" onClick={handleEdit}>
-                        수정
-                      </button>
-                    </>
-                  )}
-                </div>
+        <div className="a2">
+          <div className="container11">
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                marginTop: "2vh",
+              }}
+            >
+              <h1
+                style={{
+                  marginBottom: "0px",
+                  marginTop: "0px",
+                  fontSize: "1.5vw",
+                  padding: "0 1.5vw",
+                }}
+              >
+                Q & A
+              </h1>
+              <div>
+                {currentUser == question.createdBy && (
+                  <>
+                    <button className="button" onClick={handleDelete}>
+                      삭제
+                    </button>
+                    <button className="button" onClick={handleEdit}>
+                      수정
+                    </button>
+                  </>
+                )}
               </div>
+            </div>
+            <div>
               <span
                 style={{
                   color: "gray",
                   marginBottom: "1vh",
                   marginTop: "1vh",
-                  fontSize: "1.1vw",
+                  fontSize: "0.8vw",
+                  padding: "0 1.5vw",
                 }}
               >
                 질문하세요!
               </span>
-              <div className="a4">
-                <div className="a5">
-                  <h1 style={{ margin: "0px" }}>{question.title}</h1>
-                  <span className="pointSpan">{question.point}</span>
-                </div>
-              </div>
+            </div>
+            <div
+              style={{
+                padding: "0 1.5vw",
+                marginLeft: "10%",
+              }}
+            >
               <div
                 style={{
                   display: "flex",
-                  justifyContent: "space-between",
                   alignItems: "center",
                 }}
               >
-                <div className="a6">
-                  <img
-                    src={writer1}
-                    style={{
-                      width: "30px",
-                      height: "30px",
-                    }}
-                  ></img>
-                  <p style={{ color: "#64748B" }}>{question.createdBy}</p>
-                  <p>{formatDate(question.createdAt)}</p>
-                  <div className="a7">
-                    <img
-                      style={{ width: "1.3vw", height: "1.8vh" }}
-                      src={ViewCount}
-                    ></img>
-                    <p>{question.viewCount}</p>
-                  </div>
-                </div>
+                <h1 style={{ margin: "0px" }}>{question.title}</h1>
+                <span className="pointSpan">{question.point}</span>
+              </div>
+              <div
+                style={{ display: "flex", alignItems: "center", gap: "10px" }}
+              >
+                <img
+                  src={writer1}
+                  style={{
+                    width: "30px",
+                    height: "30px",
+                  }}
+                ></img>
+                <p style={{ color: "#64748B" }}>{question.createdBy}</p>
+                <p>{formatDate(question.createdAt)}</p>
+                <img
+                  style={{ width: "1.3vw", height: "1.8vh" }}
+                  src={ViewCount}
+                ></img>
+                <p>{question.viewCount}</p>
               </div>
               <div className="contentBox">
                 <p>{question.content}</p>
               </div>
-              <div className="QnAPage-divider"></div>
-
               <div>
                 {token ? (
                   <div>
@@ -413,33 +415,24 @@ const QnAPage = () => {
                 )}
                 {comments &&
                   comments.map((comment) => (
-                    <div
-                      style={{
-                        display: "flex",
-                        gap: "0.8vw",
-                        marginTop: "2vh",
-                        justifyContent: "space-between",
-                        border: "1px solid gray",
-                        padding: "10px",
-                        borderRadius: "10px",
-                      }}
-                      key={comment.id}
-                    >
-                      <span style={{ color: "black", fontSize: "15px" }}>
-                        <div
-                          style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            gap: "0.1vw",
-                          }}
-                        >
-                          <b>{comment.createdBy}</b>
-                          {comment.content}
-                          <span style={{ color: "gray", fontSize: "11px" }}>
-                            {formattedDate(comment.createdAt)}
-                          </span>
-                        </div>
-                      </span>
+                    <div className="commentBox" key={comment.id}>
+                      <div className="comment-content">
+                        <span style={{ color: "black", fontSize: "15px" }}>
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                              gap: "0.1vw",
+                            }}
+                          >
+                            <b>{comment.createdBy}</b>
+                            {comment.content}
+                            <span style={{ color: "gray", fontSize: "11px" }}>
+                              {formattedDate(comment.createdAt)}
+                            </span>
+                          </div>
+                        </span>
+                      </div>
                       {currentUser === comment.createdBy && (
                         <div className="comment-edit-delete-container">
                           <button
@@ -480,7 +473,7 @@ const QnAPage = () => {
                         comment.createdBy !== username ? (
                           isadopted ? (
                             comment.answerCheck === "채택" ? (
-                              <p className="adoptedButton">채택완료</p> //(글쓴이==유저)가 볼 때 게시물이 채택 되었을 경우
+                              <div className="adoptedButton">채택완료</div> //(글쓴이==유저)가 볼 때 게시물이 채택 되었을 경우
                             ) : (
                               ""
                             )
