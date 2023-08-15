@@ -14,6 +14,15 @@ const MyPage = () => {
 
   const token = localStorage.getItem("jwtToken");
   const [state,setState]=useState("프로필");
+  const [editing,setEditing]=useState(false);
+  const [editEmail,setEditEmail]=useState(localStorage.getItem("email"));
+  const [editNickname,setEditNickName]=useState(localStorage.getItem("nickname"));
+  const [editUrl,setEditUrl]=useState("");
+  const [postState,setPostState]=useState("qna");
+  const [posts, setPosts] = useState([]);
+  const [id,setId]=useState(localStorage.getItem("email"));
+  const [type,setType]=useState("question");
+
 
   useEffect(() => {
     axios
@@ -27,56 +36,79 @@ const MyPage = () => {
         setEmail(email);
         setNickname(nickname);
         setPoint(point);
-        console.log(response.data);
+        // console.log(response.data);
       })
       .catch((error) => {
         console.log(error);
-        console.log(token);
+        // console.log(token);
       });
   }, [token, email]); // email도 의존성 배열에 추가하여 email 값이 변경될 때마다 API 호출
 
 
-  // const post_div=<div>
-  //   {posts.map((post) => (
-  //           <div>
-  //             <ul className="post-list" key={post.boardId}>
-  //               <li className="community-post-list">
-  //                 <div className="community-post-list-up">
-  //                   <div>
-  //                     <span className="community-createdBy">
-  //                       {post.createdBy}
-  //                     </span>
-  //                     <span className="community-createdAt">
-  //                       {" "}
-  //                       작성 : {formatDate(post.createdAt)}
-  //                     </span>
-  //                   </div>
-  //                   <div>
-  //                     <img className="viewCountImg" src={ViewCount}></img>
-  //                     <span className="viewCountSpan">{post.viewCount}</span>
-  //                   </div>
-  //                 </div>
-  //                 <div className="community-post-list-middle">
-  //                   <Link
-  //                     className="community-title"
-  //                     to={
-  //                       isFreeBoardClick
-  //                         ? `/freepage/${post.boardId}`
-  //                         : `/sharepage/${post.boardId}`
-  //                     }
-  //                   >
-  //                     {post.title}
-  //                   </Link>
-  //                 </div>
-  //                 <div className="community-post-list-down"></div>
-  //               </li>
-  //             </ul>
-  //             <div className="divider2"></div>
-  //           </div>
-  //         ))}
-  // </div>
+
+  const getPost=()=>{
+    axios
+      .get(`${API_URL}/member/${id}/${type}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+  const handleQnA=()=>{
+    setPostState("qna");
+    getPost();
+  }
+  const qna_div=<div style={{width:"500px",height:"500px",backgroundColor:"yellow"}}>
+
+  </div>
+    
+  const community_div=<div style={{width:"500px",height:"500px",backgroundColor:"red"}}></div>
+
+  const posts_div=<div>
+      <button onClick={handleQnA}>Q&A</button>
+      <button onClick={()=>{setPostState("community")}}>Community</button>
+      {postState==="qna"?qna_div:community_div}
+            
+  </div>
+  
+
+  const EditingChange=()=>{
+    if(editing){
+
+      axios
+      .patch(
+        `${API_URL}/update/info`,
+        {
+          nickname: editNickname,
+          email: editEmail,
+          url: editUrl,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((response) => {
+        console.log("mypage 수정 완료!");
+        console.log(response);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
 
 
+      setEditNickName(editNickname);
+      setEditEmail(editEmail);
+    }
+    setEditing(!editing);
+  }
   return (
     <div className="a">
       <div className="mypage_container1">
@@ -85,7 +117,7 @@ const MyPage = () => {
             <h1>My Page</h1>
             <div  className="share_edit_button-container" style={{display:"flex",alignItems:"center"}}>
               <button className="share_edit_button" style={{color:"black"}}></button>
-              <button className="share_edit_button" style={{color:"black"}}><b>편집</b></button>
+              <button className="share_edit_button" style={{color:"black"}} onClick={EditingChange}><b>편집</b></button>
             </div>
           </div>
           <div className="middle-container">
@@ -95,14 +127,35 @@ const MyPage = () => {
             <div className="info-container">
               <div className="info">
                 <p className="label1">아이디</p>
-                <p className="label2" ><b>{email}</b></p>
+                {editing?<input
+                              type="string"
+                              name="id"
+                              placeholder="아이디"
+                              className="editInput"
+                              value={editEmail}
+                              onChange={(e) => setEditEmail(e.target.value)} />
+                 :<p className="label2" ><b>{email}</b></p>}
+                
               </div>
               <div>
                <p className="label1">닉네임</p>
-               <p className="label2"><b>{nickname}</b></p>
+               {editing?<input
+                              type="string"
+                              name="id"
+                              placeholder="닉네임"
+                              className="editInput"
+                              value={editNickname}
+                              onChange={(e) => setEditNickName(e.target.value)} />
+                 :<p className="label2" ><b>{nickname}</b></p>}
               </div>
               <div>
+                <div>
                 <p className="label1">포트폴리오</p>
+                <a><img className="logo1"></img></a>
+                <a><img className="logo2"></img></a>
+                <a><img className="logo3"></img></a>
+                </div>
+                
               </div>
               <div className="point-container">
                 <div>
@@ -132,7 +185,7 @@ const MyPage = () => {
             
           </div>
           <div className="mypage-divider"><span className={state==="프로필"?"profile":state==="게시물"?"post1":"answer"}></span></div>
-          {/* {post_div} */}
+          {state==="게시물" ? posts_div : "" }
         
         </div>
       </div>

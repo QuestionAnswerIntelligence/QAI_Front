@@ -25,8 +25,9 @@
   margin-top: 4vh;
   background-color: rgb(255, 255, 255);
   border-radius: 20px;
-  overflow-x:hidden; 
-  overflow-y:auto; 
+  /* overflow-x:hidden; 
+  overflow-y:auto;  */
+  overflow:scroll;
 }
 
 
@@ -43,7 +44,6 @@
   top: 100px;
   padding-top: 3vh;
   width:40%;
-  /* background-color: red; */
   
 }
 .top-container{
@@ -192,4 +192,29 @@
 
 .answer{
   left: 90px;
+}
+
+.editInput{
+  width:120px;
+  height:30px;
+  border-radius:7px;
+}
+
+.logo1,.logo2,.logo3{
+  width:40px;
+  height:40px;
+  background-size: cover;
+  margin:2px;
+}
+.logo1{
+  background-image: url("../../icons/logo1.png");
+  background-repeat: no-repeat;
+}
+.logo2{
+  background-image: url("../../icons/logo2.png");
+  background-repeat: no-repeat;
+}
+.logo3{
+  background-image: url("../../icons/logo3.png");
+  background-repeat: no-repeat;
 }
