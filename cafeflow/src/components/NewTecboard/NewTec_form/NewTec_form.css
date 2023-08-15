@@ -1,0 +1,89 @@
+.NewTecForm_Container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  flex-direction: column;
+  background-color: white;
+}
+
+.QnAFormContainer {
+  width: 60vw;
+  height: 80vh;
+  border: 1px solid lightgray;
+  /* justify-content: center; */
+  /* align-items: center; */
+  flex-direction: column;
+  display: flex;
+  margin-top: 11vh;
+  border-radius: 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 0 2vw 1vw 2vw;
+}
+
+.QnAFormContainer > span {
+  font-size: 22px;
+  color: gray;
+  font-weight: bold;
+}
+
+.QnAFormContainer > span > span {
+  color: gray;
+  font-size: 22px;
+  text-decoration: underline;
+}
+
+form > h2 {
+  margin-bottom: 1vh;
+  margin-top: 1vh;
+}
+
+.QnAInput {
+  width: 35vw;
+  height: 3.35vh;
+  border-radius: 5px;
+  border: 1px solid gray;
+  padding-left: 1vw;
+}
+
+.QnAContent {
+  width: 35vw;
+  height: 35vh;
+  border-radius: 5px;
+  border: 1px solid gray;
+  padding-left: 1vw;
+  padding-top: 1vw;
+}
+
+.QnAPoint {
+  width: 10vw;
+  height: 3.35vh;
+  border-radius: 5px;
+  border: 1px solid gray;
+  padding-left: 1vw;
+}
+
+.QnASubmit {
+  display: block;
+  height: 5vh;
+  width: 100%;
+  background-color: #9e93f8;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  font-size: 18px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.PointBox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.5vw;
+  margin-bottom: 2vh;
+}
+
+.PointBox > span {
+  color: black;
+}

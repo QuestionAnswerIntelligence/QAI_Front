@@ -1,0 +1,408 @@
+.aaa {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  flex-direction: column;
+  background-color: white;
+}
+
+.post {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.5vw;
+}
+
+.post-list {
+  border-top: 1px solid lightgray;
+  padding: 2vh 3vh 0 3vh;
+}
+
+.postbutton1 {
+  width: 10vw;
+  height: 5vh;
+  background-color: #7267c8;
+  color: white;
+  border-radius: 20px;
+  border: none;
+  font-size: 18px;
+  position: relative;
+  top: 26px;
+}
+
+.container11 {
+  display: flex;
+  align-items: stretch;
+  width: 60vw;
+  height: 85vh;
+  flex-direction: column;
+  border: 1px solid black;
+  margin-top: 11vh;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: scroll;
+}
+
+.container1 > span {
+  color: gray;
+  padding: 0 1.5vw;
+  margin-top: -1.5vh;
+  margin-bottom: -1.5vh;
+}
+
+input.search {
+  padding-left: 30px; /* Adjust based on the size of your image */
+  width: 30vw;
+  height: 3.5vh;
+  margin-top: 3vh;
+  /* margin-left: 1.5vw; */
+  border-radius: 5px;
+  border: 1px solid gray;
+  /*background-image: url("../../icons/search.png");*/
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: 20px; /* Adjust based on the size of your image */
+}
+
+.searchBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.5vw;
+}
+
+.searchBox > span {
+  color: black;
+  font-size: 11px;
+}
+
+th {
+  text-decoration: underline;
+  background-color: lightgray;
+}
+
+.questionId {
+  padding: 10px;
+  width: 3vw;
+}
+
+.titleBox {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+  margin-left: 1vw;
+}
+
+.pageNum {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 75px;
+}
+
+.divider1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 1px;
+  width: 88vw;
+  background-color: lightgray;
+  margin: 12px;
+  position: relative;
+}
+
+.createdAt {
+  font-size: 13px;
+  width: 20vw;
+  max-height: 5vh;
+  gap: 10px;
+}
+
+td {
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+table {
+  border-top: 1px solid gray;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.oneTr {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid lightgray;
+  /* border-top: 1px solid lightgray; */
+}
+
+.leftside {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 1vw;
+}
+
+.rightside {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 3vw;
+}
+
+.nicknameBox {
+  position: relative;
+}
+
+.createdBy {
+  color: black;
+  font-size: 14px;
+  display: flex;
+  margin-right: 5px;
+  justify-content: center;
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 40%;
+}
+
+.checkbox {
+  width: 1.2vw;
+  height: 2.3vh;
+}
+
+.viewCount {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* 추가 */
+
+.profile-img {
+  width: 15px;
+  height: 15px;
+  /*background-image: url("../../icons/Account_circle.png");*/
+  background-size: cover;
+  background-position: center center;
+  margin-right: 2px;
+}
+
+.QnAList2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.QnAList2 > div > h2 {
+  margin: 0px;
+  font-size: 1em;
+}
+
+.QnAList-createdAt {
+  color: gray;
+  font-size: 0.8em;
+}
+
+/* 모바일 버전 */
+@media (max-width: 768px) {
+  .aaa {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    flex-direction: column;
+    background-color: white;
+  }
+
+  .post {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.5vw;
+  }
+
+  .postbutton1 {
+    width: 25vw;
+    height: 5vh;
+    background-color: #7267c8;
+    color: white;
+    border-radius: 20px;
+    border: none;
+    font-size: 18px;
+    position: relative;
+    top: 26px;
+  }
+
+  .container11 {
+    display: flex;
+    align-items: stretch;
+    width: 100vw;
+    height: 100vh;
+    flex-direction: column;
+    border: 1px solid black;
+    /* margin-top: 4vh; */
+    background-color: white;
+    border-radius: 20px;
+  }
+
+  .container1 > span {
+    color: gray;
+    padding: 0 1.5vw;
+    margin-top: -1.5vh;
+    margin-bottom: -1.5vh;
+  }
+
+  input.search {
+    padding-left: 30px; /* Adjust based on the size of your image */
+    width: 30vw;
+    height: 3.5vh;
+    margin-top: 3vh;
+    /* margin-left: 1.5vw; */
+    border-radius: 5px;
+    border: 1px solid gray;
+    /*background-image: url("../../icons/search.png");*/
+    background-position: left center;
+    background-repeat: no-repeat;
+    background-size: 20px; /* Adjust based on the size of your image */
+  }
+
+  .searchBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.5vw;
+  }
+
+  .searchBox > span {
+    color: black;
+    font-size: 11px;
+  }
+
+  th {
+    text-decoration: underline;
+    background-color: lightgray;
+  }
+
+  .questionId {
+    padding: 10px;
+    width: 3vw;
+  }
+
+  .titleBox {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    margin-left: 1vw;
+  }
+
+  .pageNum {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    /* left: 38%; */
+  }
+
+  .divider1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 1px;
+    width: 88vw;
+    background-color: lightgray;
+    margin: 12px;
+    position: relative;
+  }
+
+  .createdAt {
+    font-size: 13px;
+    width: 20vw;
+    max-height: 5vh;
+    gap: 10px;
+  }
+
+  td {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  table {
+    border-top: 1px solid gray;
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  .oneTr {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid lightgray;
+  }
+
+  .leftside {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .rightside {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3vw;
+  }
+
+  .nicknameBox {
+    position: relative;
+  }
+
+  .createdBy {
+    color: black;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .dropdown {
+    position: absolute;
+    top: 80%;
+    left: 0%;
+  }
+
+  .chatbutton123 {
+    width: 10vw;
+    height: 5vh;
+  }
+
+  .checkbox {
+    width: 1.2vw;
+    height: 2.3vh;
+  }
+
+  .viewCount {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+}
