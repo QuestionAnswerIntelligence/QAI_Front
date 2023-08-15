@@ -143,14 +143,15 @@ const QnAList = ({ chatId }) => {
     <div className="aaa">
       <div className="container11">
         <div className="post">
-          <h1>Q & A</h1>
+          <h1 style={{ margin: "0px" }}>Q & A</h1>
           <button onClick={moveToMakeQuestion}>글쓰기</button>
         </div>
         <span
           style={{
-            fontSize: "1.5em",
-            fontWeight: "bold",
             color: "gray",
+            marginBottom: "1vh",
+            // marginTop: "1vh",
+            fontSize: "0.8vw",
             padding: "0 1.5vw",
           }}
         >
@@ -178,35 +179,35 @@ const QnAList = ({ chatId }) => {
           {questions.map((question) => (
             <div key={question.boardId}>
               <ul className="post-list" key={question.boardId}>
-                <Link to={`/questions/${question.questionId}`}>
-                  <li className="community-post-list">
-                    <div className="QnAList2">
-                      <div>
-                        {/* <img className="profile-img" /> */}
-                        <h2 onClick={() => toggleChatButton(question.boardId)}>
-                          {question.createdBy}
-                        </h2>
-                        {token && showChatButton[question.boardId] && (
-                          <button onClick={() => startChat(nickname, question)}>
-                            1:1 채팅하기
-                          </button>
-                        )}
-                      </div>
-                      <div style={{ display: "flex", alignItems: "center" }}>
-                        <img className="viewCountImg" src={ViewCount}></img>
-                        <span className="viewCountSpan">
-                          {question.viewCount}
-                        </span>
-                      </div>
+                <li className="community-post-list">
+                  <div className="QnAList2">
+                    <div>
+                      {/* <img className="profile-img" /> */}
+                      <h2 onClick={() => toggleChatButton(question.boardId)}>
+                        {question.createdBy}
+                      </h2>
+                      {token && showChatButton[question.boardId] && (
+                        <button onClick={() => startChat(nickname, question)}>
+                          1:1 채팅하기
+                        </button>
+                      )}
                     </div>
-                    <div className="community-post-list-middle">
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      <img className="viewCountImg" src={ViewCount}></img>
+                      <span className="viewCountSpan">
+                        {question.viewCount}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="community-post-list-middle">
+                    <Link to={`/questions/${question.questionId}`}>
                       {question.title}
-                    </div>
-                    <span className="QnAList-createdAt">
-                      {formatDate(question.createdAt)}
-                    </span>
-                  </li>
-                </Link>
+                    </Link>
+                  </div>
+                  <span className="QnAList-createdAt">
+                    {formatDate(question.createdAt)}
+                  </span>
+                </li>
               </ul>
             </div>
           ))}

@@ -10,12 +10,12 @@ const ChatHeader = () => {
   const ChatTitle = chatId.replace(nickname, "").replace("_", ""); // ChatId에서 로그인한 사용자의 이름과 언더바를 제거
 
   const goChatList = () => {
-    navigate("/qnalist");
+    navigate("/chats");
   };
   return (
     <div className="headerContainer">
       <button className="goBack" onClick={goChatList}></button>
-      <span>{ChatTitle}</span>
+      <span style={{ color: "white", fontSize: "22px" }}>{ChatTitle}</span>
     </div>
   );
 };
