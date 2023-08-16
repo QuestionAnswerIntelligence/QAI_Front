@@ -126,7 +126,7 @@ const NewTec_list = ({ chatId }) => {
                     </div>
                     <div className="community-post-list-middle">
                       {/* <div className="NewTec-post-list-middle"> */}
-                      <Link to={`/newtecs/${newtec.newtecId}`}>
+                      <Link to={`/newtec_page/${newtec.aiInfoId}`}>
                         {newtec.title}
                       </Link>
                     </div>

@@ -52,7 +52,7 @@ const App = () => {
           <Route path="/chats/:chatId" element={<ChatPage />} />
           <Route path="/chats" element={<ChatList />} />
           <Route path="/newtec_form" element={<NewTec_form />} />
-          <Route path="/newtec_page" element={<NewTec_page />} />
+          <Route path="/newtec_page/:aiInfoId" element={<NewTec_page />} />
           <Route path="/newtec_list" element={<NewTec_list />} />
           <Route path="/store" element={<Store />} />
           <Route
