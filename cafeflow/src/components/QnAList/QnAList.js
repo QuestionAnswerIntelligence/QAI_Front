@@ -51,7 +51,7 @@ const QnAList = ({ chatId }) => {
             (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
           ); // 시간 순으로 정렬
         }
-        setQuestions(response.data.data.questionList);
+        setQuestions(questionList);
         console.log(response.data.data.questionList);
         console.log(response.data);
       })
@@ -159,7 +159,7 @@ const QnAList = ({ chatId }) => {
         </span>
         <div className="asd">
           <div className="searchBox">
-            <form className="search" onSubmit={handleSubmit}>
+            <form className="searchQnA" onSubmit={handleSubmit}>
               <select className="select-box" onChange={handleSelect}>
                 <option value="제목">제목</option>
                 <option value="내용">내용</option>
@@ -174,7 +174,7 @@ const QnAList = ({ chatId }) => {
             </form>
           </div>
         </div>
-        <div className="board-container">
+        <div>
           {/* map 함수를 이용하여 questions에 들어가있는 배열 가져오기 */}
           {questions.map((question) => (
             <div key={question.boardId}>
@@ -211,28 +211,8 @@ const QnAList = ({ chatId }) => {
               </ul>
             </div>
           ))}
-          <div className="pageNum">
-            {/* <button
-            className="preButton" onClick={() => setPageNum((prevPageNum) => prevPageNum - 1)}
-            disabled={pageNum === 0}
-          >
-          </button>
-          <span className="pageNumber">{pageNum+1}/300</span>
-          <button className="nextButton" onClick={() => setPageNum((prevPageNum) => prevPageNum + 1)}>
-          </button> */}
-          </div>
+          <div className="pageNum"></div>
         </div>
-        {/* <div className="pageNum">
-          <button
-            onClick={() => setPageNum((prevPageNum) => prevPageNum - 1)}
-            disabled={pageNum === 0}
-          >
-            이전 페이지
-          </button>
-          <button onClick={() => setPageNum((prevPageNum) => prevPageNum + 1)}>
-            다음페이지
-          </button>
-        </div> */}
       </div>
     </div>
   );

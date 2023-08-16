@@ -10,7 +10,7 @@ import "./NewTec_page.css";
 
 const NewTec_page = () => {
   const navigate = useNavigate();
-  const { newtecId } = useParams(); // 현재 URL의 파라미터 추출
+  const { aiInfoId } = useParams(); // 현재 URL의 파라미터 추출
 
   // 상태 변수들
   const [newtec, setNewTec] = useState(null); // 질문 데이터를 저장하는 상태 변수
@@ -26,12 +26,14 @@ const NewTec_page = () => {
   const currentUser = localStorage.getItem("nickname"); // 현재 로그인한 유저의 닉네임
   const [adoptedId, setadoptedId] = useState(""); //채택된 답변 id저장
   const [isadopted, setIsAdopted] = useState(false); //게시물이 체크되었는지 저장
+  const [pageNum, setPageNum] = useState(0);
+  const [size, setSize] = useState(8);
 
   const nickname = localStorage.getItem("nickname");
   // 페이지가 렌더링될 때, 현재 questionId에 해당하는 질문의 데이터를 가져옴
   useEffect(() => {
     axios
-      .get(`${API_URL}/ai-info/${newtecId}`, {
+      .get(`${API_URL}/ai-info?page=${pageNum}&size=${size}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -53,7 +55,7 @@ const NewTec_page = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, [newtecId, token]);
+  }, [aiInfoId, token]);
 
   const username = localStorage.getItem("question_createdBy");
   // console.log("question_createdBy : "+username);
@@ -70,7 +72,7 @@ const NewTec_page = () => {
   const handleDelete = () => {
     if (window.confirm("글을 삭제하시겠습니까?")) {
       axios
-        .delete(`${API_URL}/ai-info/${newtecId}`, {
+        .delete(`${API_URL}/ai-info/${aiInfoId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -176,11 +178,11 @@ const NewTec_page = () => {
 
   // 컴포넌트가 마운트되면 로컬 스토리지에서 상태를 불러옴
   useEffect(() => {
-    const savedState = localStorage.getItem(`isChecked_${newtecId}`);
+    const savedState = localStorage.getItem(`isChecked_${aiInfoId}`);
     if (savedState) {
       setIsChecked(JSON.parse(savedState));
     }
-  }, [newtecId]);
+  }, [aiInfoId]);
 
   // const handleAdoptionClick = () => {
   //   setIsChecked(true);
@@ -192,7 +194,7 @@ const NewTec_page = () => {
     if (window.confirm("질문을 수정하시겠습니까?")) {
       axios
         .patch(
-          `${API_URL}/ai-info/${newtecId}`,
+          `${API_URL}/ai-info/${aiInfoId}`,
           {
             title: title,
             content: content,
@@ -223,7 +225,7 @@ const NewTec_page = () => {
       }
       axios
         .post(
-          `${API_URL}/ai-info/answer/${newtecId}`, // 댓글을 등록하는 API의 경로
+          `${API_URL}/ai-info/answer/${aiInfoId}`, // 댓글을 등록하는 API의 경로
           {
             content: comment,
           },

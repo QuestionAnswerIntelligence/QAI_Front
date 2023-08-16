@@ -128,7 +128,6 @@ const Community = () => {
               placeholder="Search"
               onChange={handleInputChange}
             ></input>
-            
           </form>
 
           <div

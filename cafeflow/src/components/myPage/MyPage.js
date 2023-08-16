@@ -5,8 +5,11 @@ import { API_URL } from "../Constant";
 import "./MyPage.css";
 
 import shareIcon from "../../icons/share_android.png";
+import { useNavigate } from "react-router-dom";
 
 const MyPage = () => {
+  const navigate = useNavigate();
+
   // 초기값으로 로컬 스토리지의 값을 사용
   const [email, setEmail] = useState(localStorage.getItem("email"));
   const [nickname, setNickname] = useState(localStorage.getItem("nickname"));
@@ -25,6 +28,9 @@ const MyPage = () => {
   const [id, setId] = useState(localStorage.getItem("email"));
   const [type, setType] = useState("question");
 
+  const moveToStore = () => {
+    navigate("/store");
+  };
   useEffect(() => {
     axios
       .get(`${API_URL}/get-info?email=${email}`, {
@@ -207,8 +213,9 @@ const MyPage = () => {
                     <b>{point}베리</b>
                   </p>
                 </div>
-
-                <button className="charge-button">충전하기</button>
+                <button className="charge-button" onClick={moveToStore}>
+                  충전하기
+                </button>
               </div>
             </div>
           </div>
