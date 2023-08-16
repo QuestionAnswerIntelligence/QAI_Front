@@ -9,6 +9,7 @@ const NewTec_form = () => {
   const [formData, setFormData] = useState({
     title: "",
     content: "",
+    url: [], // Initialize with an empty array for the URLs
   });
 
   const [errors, setErrors] = useState({});
@@ -80,7 +81,17 @@ const NewTec_form = () => {
           {errors.content && <p>{errors.content}</p>}
           <br />
 
-          {/* <span>남은 포인트 : <b>{point - }</b></span> */}
+          {/* URL 입력란 */}
+          <h2>URL</h2>
+          <input
+            className="NewTecInput"
+            type="text"
+            name="url"
+            onChange={handleChange}
+            placeholder="URL을 입력하세요! (여러 개의 URL은 쉼표로 구분)"
+          />
+          <br />
+
           {errors.point && <p>{errors.point}</p>}
           <button className="NewTecSubmit" type="submit">
             글 작성하기
