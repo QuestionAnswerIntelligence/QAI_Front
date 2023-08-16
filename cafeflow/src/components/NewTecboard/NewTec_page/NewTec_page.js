@@ -28,7 +28,7 @@ const NewTec_page = () => {
   // 페이지가 렌더링될 때, 현재 questionId에 해당하는 질문의 데이터를 가져옴
   useEffect(() => {
     axios
-      .get(`${API_URL}/ai-info?page=${pageNum}&size=${size}`, {
+      .get(`${API_URL}/ai-info/${aiInfoId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -37,15 +37,9 @@ const NewTec_page = () => {
         setNewTec(response.data.data);
         setTitle(response.data.data.title);
         setContent(response.data.data.content);
-        //setComments(response.data.data.answers); // 댓글 데이터 설정
-        localStorage.setItem(
-          "question_createdBy",
-          response.data.data.createdBy
-        );
-        // console.log(response.data.data.questionCheck);
-        if (response.data.data.questionCheck === "채택") {
-          setIsAdopted(true);
-        }
+
+        console.log("제목:", title);
+        console.log("내용:", content);
       })
       .catch((error) => {
         console.log(error);
@@ -76,37 +70,12 @@ const NewTec_page = () => {
           console.log(response);
           console.log("NewTechnology 글 삭제 완료!");
           navigate("/newtec_list");
+          console.log("제목:", title);
         })
         .catch((error) => {
           console.error(error);
         });
     }
-  };
-
-  const handleAdoptionClick = (comment) => {
-    //console.log("comment : " + comment.id);
-    //setadoptedId(comment.id);
-    // flag
-
-    axios
-      .post(
-        `${API_URL}/ai-info/answer/check?id=${comment.id}`,
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
-      .then((response) => {
-        console.log(response);
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-        // console.log(token);
-        alert("에러 발생");
-      });
   };
 
   // 수정 상태를 활성화하는 함수
@@ -132,7 +101,7 @@ const NewTec_page = () => {
     if (window.confirm("AI정보글을 수정하시겠습니까?")) {
       axios
         .patch(
-          `${API_URL}/ai-info/${aiInfoId}`,
+          `${API_URL}/admin/ai-info/update/${aiInfoId}`,
           {
             title: title,
             content: content,
@@ -146,7 +115,6 @@ const NewTec_page = () => {
         .then((response) => {
           setEditing(false); // 수정 모드 종료
           setNewTec(response.data.data); // 수정된 질문 데이터를 설정
-          console.log("NewTec 글 수정 완료!");
         })
         .catch((error) => {
           console.error(error);
