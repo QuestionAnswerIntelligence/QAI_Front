@@ -15,6 +15,11 @@ const NewTec_list = ({ chatId }) => {
   const [size, setSize] = useState(10);
   const nickname = localStorage.getItem("nickname");
 
+  const currentUser = localStorage.getItem("nickname"); // 현재 로그인한 유저의 닉네임
+  const currentUserEmail = localStorage.getItem("email"); // 현재 로그인한 유저의 아이디 (관리자 계정용 인증)
+
+  const isAdmin = currentUserEmail === "jy";
+
   // 시간 순 체크박스
   const [isChecked, setIsChecked] = useState(false);
 
@@ -50,6 +55,9 @@ const NewTec_list = ({ chatId }) => {
         // console.log(response.data.data.aiInfoList[0].title);
 
         console.log(response.data);
+
+        console.log("currentUserNickname:", currentUser);
+        console.log("currentUserEmail:", currentUserEmail);
       })
       .catch((error) => {
         console.log(error);
@@ -82,9 +90,11 @@ const NewTec_list = ({ chatId }) => {
       <div className="container11">
         <div className="post">
           <h1>New Technology</h1>
-          <button className="postbutton1" onClick={moveToMakeNewTec}>
-            나도 정보 글 쓰고 포인트 받기
-          </button>
+          {isAdmin && (
+            <button className="postbutton1" onClick={moveToMakeNewTec}>
+              정보 글 쓰기
+            </button>
+          )}
         </div>
         <span
           style={{

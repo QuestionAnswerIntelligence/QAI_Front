@@ -17,14 +17,9 @@ const NewTec_page = () => {
   const [editing, setEditing] = useState(false); // 편집 모드 상태 변수. 수정할 때 사용
   const [title, setTitle] = useState(""); // 제목을 저장하는 상태 변수
   const [content, setContent] = useState(""); // 내용을 저장하는 상태 변수
-  const [comment, setComment] = useState(""); // 댓글을 저장하는 상태 변수
-  const [comments, setComments] = useState([]); // 댓글 리스트를 저장하는 상태 변수
   const [editingCommentId, setEditingCommentId] = useState(null); // 수정 중인 댓글의 ID를 저장하는 상태
-  const [editingComment, setEditingComment] = useState(""); // 수정할 댓글의 내용을 저장하는 상태
-  const [isChecked, setIsChecked] = useState(false); // 채택하기 버튼
   const token = localStorage.getItem("jwtToken"); // JWT 토큰
   const currentUser = localStorage.getItem("nickname"); // 현재 로그인한 유저의 닉네임
-  const [adoptedId, setadoptedId] = useState(""); //채택된 답변 id저장
   const [isadopted, setIsAdopted] = useState(false); //게시물이 체크되었는지 저장
   const [pageNum, setPageNum] = useState(0);
   const [size, setSize] = useState(8);
@@ -42,7 +37,7 @@ const NewTec_page = () => {
         setNewTec(response.data.data);
         setTitle(response.data.data.title);
         setContent(response.data.data.content);
-        setComments(response.data.data.answers); // 댓글 데이터 설정
+        //setComments(response.data.data.answers); // 댓글 데이터 설정
         localStorage.setItem(
           "question_createdBy",
           response.data.data.createdBy
@@ -88,29 +83,9 @@ const NewTec_page = () => {
     }
   };
 
-  // NewTec 댓글 삭제 기능
-  const handleDeleteComment = (id) => {
-    if (window.confirm("댓글을 삭제하시겠습니까?")) {
-      axios
-        .delete(`${API_URL}/ai-info/answer/${id}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then((response) => {
-          console.log(response.data);
-          console.log("댓글 삭제 완료!");
-          setComments(comments.filter((comment) => comment.id !== id)); // 삭제된 댓글을 제외하고 댓글 리스트를 업데이트
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    }
-  };
-
   const handleAdoptionClick = (comment) => {
     //console.log("comment : " + comment.id);
-    setadoptedId(comment.id);
+    //setadoptedId(comment.id);
     // flag
 
     axios
@@ -134,43 +109,6 @@ const NewTec_page = () => {
       });
   };
 
-  const handleEditComment = (comment) => {
-    setEditingCommentId(comment.id);
-    setEditingComment(comment.content);
-  };
-
-  // NewTec 댓글 수정 기능
-  const handleCommentUpdate = () => {
-    if (window.confirm("댓글을 수정하시겠습니까?")) {
-      axios
-        .patch(
-          `${API_URL}/ai-info/answer/${editingCommentId}`, // 댓글을 수정하는 API의 경로
-          {
-            content: editingComment,
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        )
-        .then((response) => {
-          // 서버로부터 응답을 받았을 때의 처리
-          setComments(
-            comments.map((comment) =>
-              comment.id === editingCommentId ? response.data.data : comment
-            )
-          ); // 수정된 댓글을 업데이트
-          setEditingCommentId(null); // 수정 모드 종료
-          setEditingComment(""); // 수정 필드 초기화
-          console.log("NewTec 댓글 수정 완료!");
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    }
-  };
-
   // 수정 상태를 활성화하는 함수
   const handleEdit = () => {
     setEditing(true);
@@ -180,7 +118,7 @@ const NewTec_page = () => {
   useEffect(() => {
     const savedState = localStorage.getItem(`isChecked_${aiInfoId}`);
     if (savedState) {
-      setIsChecked(JSON.parse(savedState));
+      //setIsChecked(JSON.parse(savedState));
     }
   }, [aiInfoId]);
 
@@ -189,9 +127,9 @@ const NewTec_page = () => {
   //   localStorage.setItem(`isChecked_${questionId}`, "true"); // 상태를 로컬 스토리지에 저장
   // };
 
-  // QnA 질문 수정 기능 : 현재 로그인 중인 유저의 정보와 질문 작성자의 정보가 일치해야함 보임
+  // AI정보글 수정 기능 : 현재 로그인 중인 유저의 정보와 질문 작성자의 정보가 일치해야함 보임
   const handleUpdate = () => {
-    if (window.confirm("질문을 수정하시겠습니까?")) {
+    if (window.confirm("AI정보글을 수정하시겠습니까?")) {
       axios
         .patch(
           `${API_URL}/ai-info/${aiInfoId}`,
@@ -208,40 +146,7 @@ const NewTec_page = () => {
         .then((response) => {
           setEditing(false); // 수정 모드 종료
           setNewTec(response.data.data); // 수정된 질문 데이터를 설정
-          console.log("NewTec 질문 수정 완료!");
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    }
-  };
-
-  // 댓글 기능 : 댓글 입력 완료 후 사용자의 닉네임과 함께 보이도록 설정
-  const handleComment = () => {
-    if (window.confirm("댓글을 입력하시겠습니까?")) {
-      if (comment.trim() === "") {
-        alert("내용을 입력해주세요!");
-        return;
-      }
-      axios
-        .post(
-          `${API_URL}/ai-info/answer/${aiInfoId}`, // 댓글을 등록하는 API의 경로
-          {
-            content: comment,
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        )
-        .then((response) => {
-          // 서버로부터 응답을 받았을 때의 처리
-          setComment(""); // 댓글 입력 필드를 초기화
-          console.log("댓글 입력 성공!");
-          console.log(response.data);
-          console.log(response.data.data.createdBy);
-          setComments((prevComments) => [...prevComments, response.data.data]); // 새로운 댓글 추가
+          console.log("NewTec 글 수정 완료!");
         })
         .catch((error) => {
           console.error(error);
@@ -372,32 +277,6 @@ const NewTec_page = () => {
                     <p>{newtec.viewCount}</p>
                   </div>
                 </div>
-                {
-                  currentUser == newtec.createdBy && isChecked ? (
-                    // isChecked가 true일 때 체크 이미지와 "채택 완료" 텍스트를 보여줌
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        border: "1px solid gray",
-                        borderRadius: "10px",
-                        padding: "5px",
-                      }}
-                    >
-                      <img
-                        src={check} // 체크 이미지 경로
-                        style={{ width: "25px", height: "25px" }}
-                        alt="체크"
-                      />
-                      <span style={{ color: "gray" }}>채택 완료</span>
-                    </div>
-                  ) : currentUser == newtec.createdBy && isChecked === false ? (
-                    <button onClick={handleAdoptionClick}>채택하기</button>
-                  ) : (
-                    ""
-                  )
-                  // isChecked가 false일 때 "채택하기" 버튼을 보여줌
-                }
               </div>
               <div>
                 <p>
@@ -405,87 +284,7 @@ const NewTec_page = () => {
                 </p>
               </div>
               <hr />
-              <div>
-                {token ? (
-                  <div>
-                    <input
-                      value={comment}
-                      onChange={(e) => setComment(e.target.value)}
-                      placeholder="댓글을 입력하세요..."
-                    />
-                    <button onClick={handleComment}>입력 완료</button>
-                  </div>
-                ) : (
-                  <p>
-                    <Link to="/login">로그인</Link>을 해야합니다.
-                  </p>
-                )}
-                {comments &&
-                  comments.map((comment) => (
-                    <div
-                      style={{
-                        display: "flex",
-                        gap: "0.8vw",
-                        marginTop: "2vh",
-                        justifyContent: "space-between",
-                        border: "1px solid gray",
-                        padding: "10px",
-                        borderRadius: "10px",
-                      }}
-                      key={comment.id}
-                    >
-                      <span style={{ color: "black", fontSize: "15px" }}>
-                        <div
-                          style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            gap: "0.1vw",
-                          }}
-                        >
-                          <b>{comment.createdBy}</b>
-                          {comment.content}
-                          <span style={{ color: "gray", fontSize: "11px" }}>
-                            {formattedDate(comment.createdAt)}
-                          </span>
-                        </div>
-                      </span>
-                      {currentUser === comment.createdBy && (
-                        <div className="comment-edit-delete-container">
-                          <button
-                            className="button"
-                            onClick={() => handleDeleteComment(comment.id)}
-                          >
-                            삭제
-                          </button>
-                          {editingCommentId === comment.id ? (
-                            <div>
-                              <input
-                                value={editingComment}
-                                onChange={(e) =>
-                                  setEditingComment(e.target.value)
-                                }
-                                placeholder="수정할 내용을 입력하세요..."
-                              />
-                              <button onClick={handleCommentUpdate}>
-                                수정 완료
-                              </button>
-                              <button onClick={() => setEditingCommentId(null)}>
-                                취소
-                              </button>
-                            </div>
-                          ) : (
-                            <button
-                              className="button"
-                              onClick={() => handleEditComment(comment)}
-                            >
-                              수정
-                            </button>
-                          )}
-                        </div>
-                      )}
-                    </div>
-                  ))}
-              </div>
+              <div></div>
             </div>
           </div>
         </div>
