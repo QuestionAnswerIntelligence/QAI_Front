@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useRef } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import KakaoLogin from "../SocialLogin/KakaoLogin";
@@ -7,6 +7,10 @@ import GoogleLogin1 from "../SocialLogin/GoogleLogin";
 import { API_URL } from "../Constant";
 import logo from "../../icons/Logo.png";
 import "./Register.css";
+import { useSetRecoilState } from "recoil";
+import {
+  imgUrlState,
+} from "../../recoils/Recoil";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -17,6 +21,11 @@ const Register = () => {
   const [age, setAge] = useState("");
   const [errorMessage, setErrorMessage] = useState(null); // 에러 메시지 상태
   const isFormFilled = email && password && nickname && age; // 모든 필드가 채워져 있는지 확인하는 상태 변수
+// 추가
+  const [directoryName,setDirectoryName]=useState("profile");
+  const [imgFile, setImgFile] = useState("");
+  const imgRef = useRef();
+  const setImgUrl = useSetRecoilState(imgUrlState);
 
   const handleRegister = (event) => {
     event.preventDefault();
@@ -43,12 +52,14 @@ const Register = () => {
       return;
     }
 
+   
     axios
       .post(`${API_URL}/sign-up`, {
         email: email,
         password: password,
         nickname: nickname,
         age: age,
+        url:localStorage.getItem("imageUrl")
       })
       .then((response) => {
         console.log(response);
@@ -62,7 +73,45 @@ const Register = () => {
         console.log(error.response);
         alert("회원가입에 실패했습니다.");
       });
+
+    
   };
+
+
+
+  const saveImgFile = () => {
+    const file = imgRef.current.files[0];
+    const reader = new FileReader(); // 파일마다 새로운 FileReader 객체 생성
+    
+    reader.onloadend = () => {
+      setImgFile(reader.result);
+    };
+    
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+
+    if (file) {
+      const formData = new FormData();
+      formData.append("image", file);
+      formData.append("directoryName", directoryName);
+      axios
+        .post(`${API_URL}/upload/image`, formData)
+        .then((response) => {
+          const imgUrl=response.data.data.imageUrl;
+          // console.log(response.data.data.imageUrl);
+          localStorage.setItem("imageUrl", imgUrl);
+          console.log(localStorage.getItem("imageUrl"));
+          setImgUrl(imgUrl);
+          console.log("이미지 업로드 완료되었습니다.");
+        })
+        .catch((error) => {
+          console.error("이미지 업로드 중 에러:", error);
+        });
+    }
+    
+}
+  
   return (
     <div className="register-container">
       <form className="register-form">
@@ -129,6 +178,23 @@ const Register = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
+        {/* 추가 */}
+        <img src={imgFile?imgFile:`/imges/icon/user.png`}
+              alt="프로필 이미지"
+          />
+          <form className="form-signup">
+            
+            <label className="signup-profileImg-label" htmlFor="profileImg">프로필 이미지 추가</label>
+            <input 
+            className="signup-profileImg-input"
+            type="file"
+            accept="image/*"
+            id="profileImg"
+            onChange={saveImgFile}
+            // onChange={(event)=>{alert(event.target.files[0].name)}}
+            ref={imgRef}
+            />
+          </form>
         <div>
           <p style={{ margin: "0px", fontSize: "11px", color: "gray" }}>
             By creating an account, you agree to the Terms of use and Privacy
@@ -163,6 +229,8 @@ const Register = () => {
             </a>
           </p>
         </div>
+        
+
       </form>
     </div>
   );

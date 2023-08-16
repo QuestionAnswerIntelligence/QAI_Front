@@ -207,3 +207,18 @@
   background-image: url("../../icons/logo3.png");
   background-repeat: no-repeat;
 }
+/* ------------------------- */
+/* // label태그 */
+.signup-profileImg-label {
+  margin: 5px 0 20px 0;
+  font-weight: bold;
+  font-size: 13px;
+  color: #0095f6;
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* // input태그 */
+.form-signup input[type="file"] {
+  display: none;
+}
