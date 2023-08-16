@@ -87,13 +87,13 @@ input.search {
 }
 
 .QnA-search {
-  width: 30vw;
+  width: 20vw;
   height: 3vh;
   margin-left: 1vw;
   padding-left: 1vw;
 }
 
-.search {
+.searchQnA {
   display: flex;
   flex-direction: row;
   align-items: center;

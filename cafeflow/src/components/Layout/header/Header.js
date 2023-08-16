@@ -35,6 +35,7 @@ const Header = () => {
   const moveToQnA = () => {
     navigate("/qnalist");
   };
+
   const moveToCommunity = () => {
     navigate("/community");
     //navigate("/freelist");

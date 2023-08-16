@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { API_URL } from "../../Constant";
-import db from "../../firebase";
 import "./NewTec_list.css";
 import ViewCount from "../../../icons/ViewCount.png";
 
@@ -43,10 +42,13 @@ const NewTec_list = ({ chatId }) => {
         },
       })
       .then((response) => {
-        let newtecList = response.data.data.newtecList;
+        console.log(response.data);
+        console.log("게시글을 불러옵니다!");
+        let aiInfoList = response.data.data.aiInfoList;
 
-        setNewTecs(response.data.data.newtecList);
-        console.log(response.data.data.newtecList);
+        setNewTecs(aiInfoList);
+        // console.log(response.data.data.aiInfoList[0].title);
+
         console.log(response.data);
       })
       .catch((error) => {
@@ -92,25 +94,11 @@ const NewTec_list = ({ chatId }) => {
             padding: "0 1.5vw",
           }}
         >
-          새로운 AI정보를 확인하세요!{" "}
+          새로운 AI정보를 확인하세요!
         </span>
         <div className="asd">
           <div className="searchBox">
             <input className="search" type="text" placeholder="Search"></input>
-            {/* <div
-              style={{
-                position: "relative",
-                marginTop: "3vh",
-                display: "flex",
-              }}
-            >
-              <button className="checkbox" type="checkbox"></button>
-              <span
-                style={{ color: "black", fontSize: "16px", marginLeft: "5px" }}
-              >
-                시간 순
-              </span>
-            </div> */}
           </div>
         </div>
         <div className="board-container">
@@ -118,56 +106,40 @@ const NewTec_list = ({ chatId }) => {
           {newtecs &&
             newtecs.map((newtec) => (
               <div key={newtec.boardId}>
-                <ul className="post-list" key={newtec?.boardId}>
-                  <li className="NewTec-post-list">
-                    <div className="NewTecList2">
+                <ul className="post-list" key={newtec.boardId}>
+                  {/* <li className="NewTec-post-list"> */}
+                  <li className="community-post-list">
+                    <div className="QnAList2">
+                      {/* <div className="NewTecList2"> */}
                       <div>
                         {/* <img className="profile-img" /> */}
-                        <h2 onClick={() => toggleChatButton(newtec?.boardId)}>
-                          {newtec?.createdBy}
+                        <h2 onClick={() => toggleChatButton(newtec.boardId)}>
+                          {newtec.createdBy}
                         </h2>
                       </div>
                       <div style={{ display: "flex", alignItems: "center" }}>
                         <img className="viewCountImg" src={ViewCount}></img>
                         <span className="viewCountSpan">
-                          {newtec?.viewCount}
+                          {newtec.viewCount}
                         </span>
                       </div>
                     </div>
-                    <div className="NewTec-post-list-middle">
-                      <Link to={`/newtecs/${newtec?.newtecId}`}>
-                        {newtec?.title}
+                    <div className="community-post-list-middle">
+                      {/* <div className="NewTec-post-list-middle"> */}
+                      <Link to={`/newtecs/${newtec.newtecId}`}>
+                        {newtec.title}
                       </Link>
                     </div>
-                    <span className="NewTecList-createdAt">
-                      {formatDate(newtec?.createdAt)}
+                    <span className="QnAList-createdAt">
+                      {/* <span className="NewTecList-createdAt"> */}
+                      {formatDate(newtec.createdAt)}
                     </span>
                   </li>
                 </ul>
               </div>
             ))}
-          <div className="pageNum">
-            {/* <button
-            className="preButton" onClick={() => setPageNum((prevPageNum) => prevPageNum - 1)}
-            disabled={pageNum === 0}
-          >
-          </button>
-          <span className="pageNumber">{pageNum+1}/300</span>
-          <button className="nextButton" onClick={() => setPageNum((prevPageNum) => prevPageNum + 1)}>
-          </button> */}
-          </div>
+          <div className="pageNum"></div>
         </div>
-        {/* <div className="pageNum">
-          <button
-            onClick={() => setPageNum((prevPageNum) => prevPageNum - 1)}
-            disabled={pageNum === 0}
-          >
-            이전 페이지
-          </button>
-          <button onClick={() => setPageNum((prevPageNum) => prevPageNum + 1)}>
-            다음페이지
-          </button>
-        </div> */}
       </div>
     </div>
   );

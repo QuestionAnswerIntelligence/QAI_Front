@@ -21,6 +21,7 @@ import SharePage from "./components/Community/ShareBoard/SharePage/SharePage";
 import NaverCallback from "./components/SocialLogin/NaverCallback";
 import KakaoCallback from "./components/SocialLogin/KakaoCallback";
 import GoogleCallback from "./components/SocialLogin/GoogleCallback";
+import Store from "./components/Store/Store";
 
 import NewTec_form from "./components/NewTecboard/NewTec_form/NewTec_form";
 import NewTec_list from "./components/NewTecboard/NewTec_list/NewTec_list";
@@ -50,11 +51,10 @@ const App = () => {
           <Route path="/sharelist" element={<ShareList />} />
           <Route path="/chats/:chatId" element={<ChatPage />} />
           <Route path="/chats" element={<ChatList />} />
-
           <Route path="/newtec_form" element={<NewTec_form />} />
           <Route path="/newtec_page" element={<NewTec_page />} />
           <Route path="/newtec_list" element={<NewTec_list />} />
-
+          <Route path="/store" element={<Store />} />
           <Route
             path="/login/oauth2/callback/naver"
             element={<NaverCallback />}

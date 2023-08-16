@@ -20,12 +20,10 @@
   width: 50vw;
   height: 80vh;
   flex-direction: column;
-  border: 1px solid black;
-  margin-top: 4vh;
+  margin-top: 10vh;
+  box-shadow: 4px 4px 4px 6px rgba(0, 0, 0, 0.1);
   background-color: rgb(255, 255, 255);
   border-radius: 20px;
-  /* overflow-x:hidden; 
-  overflow-y:auto;  */
   overflow: scroll;
 }
 
@@ -38,10 +36,10 @@
   text-align: center;
   position: absolute;
   left: 30%;
-  top: 100px;
   padding-top: 3vh;
   width: 40%;
 }
+
 .top-container {
   display: flex;
   justify-content: space-between;
@@ -50,7 +48,7 @@
 }
 
 .share_edit_button {
-  border: 1px solid black;
+  border: 1px solid lightgray;
   margin-left: 5px;
   border-radius: 10px;
   padding: 5px;
@@ -81,8 +79,6 @@
 
 .point-container {
   display: flex;
-  /* justify-content: center; */
-  align-items: center;
 }
 
 .profile-img-container {
@@ -91,7 +87,6 @@
   height: 150px;
   background-size: 150px 150px;
   background-repeat: no-repeat;
-  margin-right: 5px;
 }
 
 .label1 {
@@ -107,8 +102,11 @@
 .charge-button {
   background-color: transparent;
   border-radius: 7px;
-  padding: 5px;
-  margin-left: 10px;
+  position: relative;
+  left: 40px;
+  width: 5vw;
+  height: 3vh;
+  border: 1px solid gray;
 }
 
 .check-outer-box {
