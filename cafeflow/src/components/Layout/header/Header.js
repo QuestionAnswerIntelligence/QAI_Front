@@ -16,6 +16,7 @@ const Header = () => {
   const [nickname, setNickname] = useRecoilState(nicknameState);
 
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+  const [imgUrl,setImgUrl]=useState(localStorage.getItem("imageUrl"));
 
   const moveToHome = () => {
     navigate("/");
@@ -134,7 +135,7 @@ const Header = () => {
       <div className="header-right">
         {jwtToken ? (
           <React.Fragment>
-            <button className="user" onClick={moveTomyPage}></button>
+            <button className="user" onClick={moveTomyPage} style={{ backgroundImage: `url('${imgUrl}')`, border:"1px solid black", borderRadius:"50px", backgroundPosition:"center"}}></button>
             <span>
               <button className="username" onClick={moveTomyPage}>
                 <span className="span">{nickname}</span>

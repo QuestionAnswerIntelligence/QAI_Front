@@ -80,7 +80,7 @@
 }
 
 .user {
-  background-image: url("../../../icons/user100.png");
+  /* background-image: url("../../../icons/user100.png"); */
   background-color: #0d0d2b;
   background-size: cover;
   border: none;

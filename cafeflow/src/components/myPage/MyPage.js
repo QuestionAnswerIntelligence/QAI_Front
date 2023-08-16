@@ -1,30 +1,34 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useRef } from "react";
 import { API_URL } from "../Constant";
 
 import "./MyPage.css";
 
 import shareIcon from "../../icons/share_android.png";
 import { useNavigate } from "react-router-dom";
-
+import { useRecoilState } from "recoil";
+import { nicknameState } from "../../recoils/Recoil";
 const MyPage = () => {
   const navigate = useNavigate();
 
   // 초기값으로 로컬 스토리지의 값을 사용
   const [email, setEmail] = useState(localStorage.getItem("email"));
-  const [nickname, setNickname] = useState(localStorage.getItem("nickname"));
+  // const [nickname, setNickname] = useState(localStorage.getItem("nickname"));
   const [point, setPoint] = useState(localStorage.getItem("point"));
 
   const token = localStorage.getItem("jwtToken");
-  const [state, setState] = useState("프로필");
-  const [editing, setEditing] = useState(false);
-  const [editEmail, setEditEmail] = useState(localStorage.getItem("email"));
-  const [editNickname, setEditNickName] = useState(
-    localStorage.getItem("nickname")
-  );
-  const [editUrl, setEditUrl] = useState("");
-  const [postState, setPostState] = useState("qna");
+
+  const [state,setState]=useState("프로필");
+  const [editing,setEditing]=useState(false);
+  const [editEmail,setEditEmail]=useState(localStorage.getItem("email"));
+  const [editNickname,setEditNickName]=useState(localStorage.getItem("nickname"));
+  // 추가
+  const [imgUrl,setImgUrl]=useState(localStorage.getItem("imageUrl"));
+  const [editUrl,setEditUrl]=useState("");
+  const [postState,setPostState]=useState("qna");
   const [posts, setPosts] = useState([]);
+  const [nickname, setNickname] = useRecoilState(nicknameState);
+
   const [id, setId] = useState(localStorage.getItem("email"));
   const [type, setType] = useState("question");
 
@@ -81,21 +85,18 @@ const MyPage = () => {
     ></div>
   );
 
-  const posts_div = (
+  const posts_div = 
     <div>
       <button onClick={handleQnA}>Q&A</button>
-      <button
-        onClick={() => {
-          setPostState("community");
-        }}
-      >
-        Community
-      </button>
-      {postState === "qna" ? qna_div : community_div}
-    </div>
-  );
-  const EditingChange = () => {
-    if (editing) {
+
+      <button onClick={()=>{setPostState("community")}}>Community</button>
+      {postState==="qna"?qna_div:community_div}
+            
+  </div>
+  
+
+  const EditingChange=()=>{
+    if(editing){
       axios
         .patch(
           `${API_URL}/update/info`,
@@ -113,6 +114,7 @@ const MyPage = () => {
         .then((response) => {
           console.log("mypage 수정 완료!");
           console.log(response);
+          // localStorage.setItem("nickname",nickname)
 
           // API 호출 후 반환된 값(또는 수정된 값)으로 상태를 업데이트합니다.
           // 이 부분은 서버의 응답에 따라 달라질 수 있습니다.
@@ -130,8 +132,24 @@ const MyPage = () => {
         });
     }
     setEditing(!editing);
-  };
 
+  }
+  // const [imgFile, setImgFile] = useState("");
+  // const imgRef = useRef();
+
+  // const saveImgFile = () => {
+  //   const file = imgRef.current.files[0];
+    
+  //   const reader = new FileReader(); // 파일마다 새로운 FileReader 객체 생성
+    
+  //   reader.onloadend = () => {
+  //     setImgFile(reader.result);
+  //   };
+    
+  //   if (file) {
+  //     reader.readAsDataURL(file);
+  //   }
+  // }
   return (
     <div className="a">
       <div className="mypage_container1">
@@ -156,7 +174,26 @@ const MyPage = () => {
             </div>
           </div>
           <div className="middle-container">
-            <div className="profile-img-container"></div>
+
+            <div className="profile-img-container" style={{ backgroundImage: `url('${imgUrl}')`, border:"5px solid black", borderRadius:"50px" , backgroundPosition:"center"}}>
+              
+            </div>
+            {/* <img src={imgFile?imgFile:`/imges/icon/user.png`}
+            alt="프로필 이미지"
+            /> */}
+            {/* <form className="form-signup">
+              
+              <label className="signup-profileImg-label" htmlFor="profileImg">프로필 이미지 추가</label>
+              <input 
+              className="signup-profileImg-input"
+              type="file"
+              accept="image/*"
+              id="profileImg"
+              // onChange={saveImgFile}
+              onChange={(event)=>{alert(event.target.files[0].name)}}
+              ref={imgRef}
+              />
+            </form> */}
             <div className="info-container">
               <div className="info">
                 <p className="label1">아이디</p>
