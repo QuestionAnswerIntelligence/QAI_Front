@@ -6,6 +6,8 @@ import writer1 from "../../../icons/writer1.png";
 import ViewCount from "../../../icons/ViewCount.png";
 import check from "../../../icons/check.png";
 
+import { useRecoilState } from "recoil";
+
 import "./NewTec_page.css";
 
 const NewTec_page = () => {
@@ -24,6 +26,9 @@ const NewTec_page = () => {
   const [pageNum, setPageNum] = useState(0);
   const [size, setSize] = useState(8);
 
+  const [imgUrl, setImgUrl] = useState(localStorage.getItem("imageUrl"));
+  const [editUrl, setEditUrl] = useState("");
+
   const nickname = localStorage.getItem("nickname");
   // 페이지가 렌더링될 때, 현재 questionId에 해당하는 질문의 데이터를 가져옴
   useEffect(() => {
@@ -38,8 +43,10 @@ const NewTec_page = () => {
         setTitle(response.data.data.title);
         setContent(response.data.data.content);
 
-        console.log("제목:", title);
-        console.log("내용:", content);
+        // console.log("제목:", title);
+        // console.log("내용:", content);
+
+        console.log(response.data.data);
       })
       .catch((error) => {
         console.log(error);
@@ -143,7 +150,6 @@ const NewTec_page = () => {
   return (
     <div className="a">
       {editing ? (
-        // <div className="QnAEditContainer">
         <div className="NewTecEditContainer2">
           <h1>AI 정보 얻기</h1>
           <span>
@@ -170,7 +176,6 @@ const NewTec_page = () => {
               placeholder="내용을 입력하세요!"
             />
             <br />
-
             <button
               className="NewTecSubmit"
               type="submit"
@@ -251,8 +256,17 @@ const NewTec_page = () => {
                   <b>내용 </b>: {newtec.content}
                 </p>
               </div>
+              <div
+                className="profile-img-container"
+                style={{
+                  backgroundImage: `url('${imgUrl}')`,
+                  border: "5px solid black",
+                  borderRadius: "50px",
+                  backgroundPosition: "center",
+                }}
+              ></div>
+
               <hr />
-              <div></div>
             </div>
           </div>
         </div>

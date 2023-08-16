@@ -1,9 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import axios from "axios";
 import { API_URL } from "../../Constant";
 import { useNavigate } from "react-router-dom";
+import { useSetRecoilState } from "recoil"; //이미지 업로드 용
 
 import "./NewTec_form.css";
+
+import {
+  //이미지 업로드 용
+  imgUrlState2,
+} from "../../../recoils/Recoil";
 
 const NewTec_form = () => {
   const [formData, setFormData] = useState({
@@ -13,8 +19,12 @@ const NewTec_form = () => {
   });
 
   const [errors, setErrors] = useState({});
-
   const navigate = useNavigate();
+
+  const [imgFile, setImgFile] = useState(""); //이미지추가
+  const imgRef = useRef();
+  const setImgUrl = useSetRecoilState(imgUrlState2); //설정할때는 set 그냥 쓸 때는 걍
+  const [directoryName, setDirectoryName] = useState("aiinfo");
 
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
@@ -37,17 +47,51 @@ const NewTec_form = () => {
         headers: {
           Authorization: `Bearer ${token}`,
         },
+        url: localStorage.getItem("imageUrl2"),
       })
       .then((response) => {
-        console.log(response);
-        console.log(response.data);
-        alert("AI기술 소개 글이 성공적으로 등록 되었습니다!");
+        // console.log(response);
+        // console.log(response.data);
+        // alert("AI기술 소개 글이 성공적으로 등록 되었습니다!");
         navigate("/newtec_list");
       })
       .catch((error) => {
         console.log(error);
         console.log(error.message);
       });
+  };
+
+  const saveImgFile = () => {
+    const file = imgRef.current.files[0];
+    const reader = new FileReader(); // 파일마다 새로운 FileReader 객체 생성
+
+    reader.onloadend = () => {
+      setImgFile(reader.result);
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+
+    if (file) {
+      const formData = new FormData();
+      formData.append("image", imgRef.current.files);
+      formData.append("directoryName", directoryName);
+      axios
+        .post(`${API_URL}/upload/image`, formData)
+        .then((response) => {
+          const imgUrl2 = response.data.data.imageUrl;
+          // console.log(response.data.data.imageUrl);
+          localStorage.setItem("imageUrl2", imgUrl2);
+          console.log(localStorage.getItem("imageUrl2"));
+          // console.log(response.data);
+          setImgUrl(imgUrl2);
+          console.log("이미지 업로드 완료되었습니다.");
+        })
+        .catch((error) => {
+          console.error("이미지 업로드 중 에러:", error);
+        });
+    }
   };
 
   // 초기값으로 로컬 스토리지의 값을 사용
@@ -82,15 +126,30 @@ const NewTec_form = () => {
           <br />
 
           {/* URL 입력란 */}
-          <h2>URL</h2>
-          <input
-            className="NewTecInput"
-            type="text"
-            name="url"
-            onChange={handleChange}
-            placeholder="URL을 입력하세요! (여러 개의 URL은 쉼표로 구분)"
+          <img
+            src={imgFile ? imgFile : `/imges/icon/user.png`}
+            alt="프로필 이미지"
           />
-          <br />
+          <form className="form-signup">
+            <label className="signup-profileImg-label" htmlFor="profileImg">
+              프로필 이미지 추가
+            </label>
+            <input
+              className="signup-profileImg-input"
+              type="file"
+              accept="image/*"
+              id="profileImg"
+              onChange={saveImgFile}
+              // onChange={(event)=>{alert(event.target.files[0].name)}}
+              ref={imgRef}
+            />
+          </form>
+          <div>
+            <p style={{ margin: "0px", fontSize: "11px", color: "gray" }}>
+              By creating an account, you agree to the Terms of use and Privacy
+              Policy.
+            </p>
+          </div>
 
           {errors.point && <p>{errors.point}</p>}
           <button className="NewTecSubmit" type="submit">

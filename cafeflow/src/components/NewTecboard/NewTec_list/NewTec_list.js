@@ -11,7 +11,7 @@ const NewTec_list = ({ chatId }) => {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const token = localStorage.getItem("jwtToken");
   const [newtecs, setNewTecs] = useState([]);
-  const [pageNum, setPageNum] = useState(0);
+  const [pageNum, setPageNum] = useState(2);
   const [size, setSize] = useState(10);
   const nickname = localStorage.getItem("nickname");
 
