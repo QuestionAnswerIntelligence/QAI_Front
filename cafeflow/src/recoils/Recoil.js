@@ -25,7 +25,12 @@ export const nicknameState = atom({
   default: null,
 });
 
-export const imgUrlState=atom({
+export const imgUrlState = atom({
   key: "imgUrlState",
-  default : null,
+  default: null,
+});
+
+export const imgUrlState2 = atom({
+  key: "imgUrlState2",
+  default: null,
 });

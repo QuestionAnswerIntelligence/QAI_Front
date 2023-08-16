@@ -34,7 +34,7 @@ const Home = () => {
             <span>지금 바로 로그인하기 </span>
             <img
               src={arrow}
-              style={{ marginLeft: "10px", width: "25px", height: "25px" }}
+              style={{ marginLeft: "12px", width: "25px", height: "25px" }}
             ></img>
           </button>
         </div>
