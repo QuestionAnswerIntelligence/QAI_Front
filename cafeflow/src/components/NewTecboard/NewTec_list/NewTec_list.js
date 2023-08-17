@@ -4,6 +4,8 @@ import { useNavigate, Link } from "react-router-dom";
 import { API_URL } from "../../Constant";
 import "./NewTec_list.css";
 import ViewCount from "../../../icons/ViewCount.png";
+import { newTecImgUrlState } from "../../../recoils/Recoil";
+import { useRecoilState } from "recoil";
 
 const NewTec_list = ({ chatId }) => {
   const navigate = useNavigate();
@@ -14,6 +16,7 @@ const NewTec_list = ({ chatId }) => {
   const [pageNum, setPageNum] = useState(0);
   const [size, setSize] = useState(10);
   const nickname = localStorage.getItem("nickname");
+  const [imgUrl, setImgUrl] = useRecoilState(newTecImgUrlState);
 
   const currentUser = localStorage.getItem("nickname"); // 현재 로그인한 유저의 닉네임
   const currentUserEmail = localStorage.getItem("email"); // 현재 로그인한 유저의 아이디 (관리자 계정용 인증)
@@ -50,7 +53,8 @@ const NewTec_list = ({ chatId }) => {
         console.log(response.data);
         console.log("게시글을 불러옵니다!");
         let aiInfoList = response.data.data.aiInfoList;
-
+        setImgUrl(response.data.data.url);
+        console.log(response.data.data);
         setNewTecs(aiInfoList);
         // console.log(response.data.data.aiInfoList[0].title);
 
@@ -145,6 +149,15 @@ const NewTec_list = ({ chatId }) => {
                       {formatDate(newtec.createdAt)}
                     </span>
                   </li>
+                  <div
+                    className="profile-img-container"
+                    style={{
+                      backgroundImage: `url('${newtec.url}')`,
+                      border: "5px solid black",
+                      borderRadius: "50px",
+                      backgroundPosition: "center",
+                    }}
+                  ></div>
                 </ul>
               </div>
             ))}

@@ -6,7 +6,7 @@ import writer1 from "../../../icons/writer1.png";
 import ViewCount from "../../../icons/ViewCount.png";
 import check from "../../../icons/check.png";
 
-import { useRecoilState, } from "recoil";
+import { useRecoilState } from "recoil";
 import { newTecImgUrlState } from "../../../recoils/Recoil";
 import "./NewTec_page.css";
 
@@ -27,8 +27,6 @@ const NewTec_page = () => {
   const [size, setSize] = useState(8);
   const [imgUrl, setImgUrl] = useRecoilState(newTecImgUrlState);
 
-
-  
   const [editUrl, setEditUrl] = useState("");
 
   const nickname = localStorage.getItem("nickname");

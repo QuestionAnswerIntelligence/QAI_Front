@@ -4,14 +4,14 @@
   width: 100%;
   display: flex;
   justify-content: space-around;
-  align-items: center; /* Flex items를 수직 중앙에 배치 */
+  align-items: center;
   background-color: #0d0d2b;
   z-index: 100;
 }
 
 .header-left {
   display: flex;
-  align-items: center; /* 프로젝트 명과 버튼들을 수직 중앙에 배치 */
+  align-items: center;
   gap: 20px;
 }
 
@@ -26,7 +26,7 @@
 }
 
 .header-left h2 {
-  margin-right: 40px; /* 프로젝트 명과 버튼들 사이의 여백을 추가 */
+  margin-right: 40px;
 }
 
 .header-center {
@@ -39,11 +39,17 @@
   background-color: #0d0d2b;
   color: white;
   border: none;
+  transition: color 0.3s, font-size 0.3s;
+}
+
+.header-center > button:hover {
+  color: #564e97;
+  font-size: 90px;
 }
 
 .header-right {
   display: flex;
-  align-items: center; /* 로그인/로그아웃 버튼을 수직 중앙에 배치 */
+  align-items: center;
   gap: 10px;
 }
 
@@ -63,7 +69,8 @@
 }
 
 .span {
-  font-size: 18px;
+  font-size: 20px;
+  font-weight: bold;
   color: white;
 }
 
@@ -81,7 +88,6 @@
 }
 
 .user {
-  /* background-image: url("../../../icons/user100.png"); */
   background-color: #0d0d2b;
   background-size: cover;
   border: none;
@@ -131,8 +137,8 @@
 
 .dropdown-menu {
   position: fixed;
-  top: 50px; /* 헤더의 바로 아래에 위치하도록 설정 */
-  right: 20px; /* 오른쪽에서 50px 떨어져 위치하도록 설정 */
+  top: 50px;
+  right: 20px;
   display: flex;
   flex-direction: column;
   background-color: white;
@@ -141,8 +147,8 @@
   padding: 10px;
   gap: 20px;
   background-color: #564e97;
-  z-index: 100; /* 다른 요소들 위에 나타나도록 z-index를 높게 설정 */
-  transition: top 1s ease-in-out; /* 애니메이션 효과 추가 */
+  z-index: 100;
+  transition: top 1s ease-in-out;
 }
 
 .dropdown-menu.show {
