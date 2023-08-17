@@ -4,7 +4,11 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { FiMenu } from "react-icons/fi"; // 햄버거 메뉴 아이콘
 import { MdClose } from "react-icons/md"; // 메뉴 닫기 아이콘
 
-import { tokenState, nicknameState,imgUrlState } from "../../../recoils/Recoil";
+import {
+  tokenState,
+  nicknameState,
+  imgUrlState,
+} from "../../../recoils/Recoil";
 import userDefaultImg from "../../../icons/Account_circle.png";
 
 import "./Header.css";
@@ -15,10 +19,9 @@ const Header = () => {
   const navigate = useNavigate();
   const [jwtToken, setJwtToken] = useRecoilState(tokenState);
   const [nickname, setNickname] = useRecoilState(nicknameState);
-  
 
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
-  const [imgUrl,setImgUrl]=useRecoilState(imgUrlState);
+  const [imgUrl, setImgUrl] = useRecoilState(imgUrlState);
 
   const moveToHome = () => {
     navigate("/");
@@ -118,11 +121,7 @@ const Header = () => {
       </div>
       <div className="header-center">
         <button>
-          <span
-            onClick={moveToNewTec}
-            className="span"
-            style={{ color: "#564E97" }}
-          >
+          <span onClick={moveToNewTec} className="span">
             New technology
           </span>
         </button>
@@ -139,7 +138,25 @@ const Header = () => {
       <div className="header-right">
         {jwtToken ? (
           <React.Fragment>
-            <button className="user" onClick={moveTomyPage} style={imgUrl===null?{backgroundImage: `url('${userDefaultImg}')`, backgroundPosition:"center"}:{backgroundImage: `url('${imgUrl}')`, border:"1px solid black", borderRadius:"50px" , backgroundPosition:"center",width:"50px",height:"50px"}}></button>
+            <button
+              className="user"
+              onClick={moveTomyPage}
+              style={
+                imgUrl === null
+                  ? {
+                      backgroundImage: `url('${userDefaultImg}')`,
+                      backgroundPosition: "center",
+                    }
+                  : {
+                      backgroundImage: `url('${imgUrl}')`,
+                      border: "1px solid black",
+                      borderRadius: "50px",
+                      backgroundPosition: "center",
+                      width: "50px",
+                      height: "50px",
+                    }
+              }
+            ></button>
             <span>
               <button className="username" onClick={moveTomyPage}>
                 <span className="span">{nickname}</span>

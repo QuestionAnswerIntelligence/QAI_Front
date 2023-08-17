@@ -6,6 +6,16 @@ import layer2 from "../../icons/layer2.png";
 import character from "../../icons/character.png";
 import arrow from "../../icons/Arrow.png";
 import "./Home.css";
+<head>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
+    rel="stylesheet"
+  />
+</head>;
 
 const Home = () => {
   const navigate = useNavigate();
@@ -18,14 +28,21 @@ const Home = () => {
     <div>
       <div className="main">
         <div className="explain">
-          <h1>
+          <head>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+            />
+          </head>
+
+          <h1 class="animate__animated animate__fadeInLeftBig">
             매일 쏟아지는 AI 신기술 정보와
             <br />
             명쾌한 답변을
             <br />
             실시간으로 받아보세요
           </h1>
-          <span>
+          <span class="animate__animated animate__fadeIn animate__delay-1s">
             매일 00개의 Q&A와 신기술 업데이트를 받아보세요
             <br />
             해당 부분은 위 소개에 대한 부속 설명을 적는 곳입니다
@@ -49,8 +66,9 @@ const Home = () => {
         </div> */}
         </div>
       </div>
-      <div className="aa" style={{ backgroundColor: "white" }}></div>
-      <div className="aa" style={{ backgroundColor: "yellow" }}></div>
+
+      <div className="main2"></div>
+      <div className="main3"></div>
       <div className="aa" style={{ backgroundColor: "green" }}></div>
     </div>
   );
