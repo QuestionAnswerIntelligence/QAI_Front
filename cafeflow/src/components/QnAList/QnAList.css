@@ -29,9 +29,41 @@
   /* top: 26px; */
 }
 
-.post-list {
-  border-top: 1px solid lightgray;
-  padding: 2vh 3vh 0 3vh;
+.post2 {
+  margin-right: -30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 1vw;
+  margin-top: 1vh;
+}
+
+.post2 > button {
+  width: 3vw;
+  height: 4vh;
+  background-color: #423c7d;
+  color: white;
+  border-radius: 15px;
+  border: none;
+  font-size: 18px;
+  position: relative;
+  /* top: 26px; */
+}
+
+.test {
+  width: 100%;
+  padding: 2vh 5vh 0 4vh;
+}
+
+.fixed-list {
+  display: flex;
+  align-items: center;
+  border-top: 2px solid lightgray;
+}
+
+.column {
+  flex-direction: column;
 }
 
 .container11 {

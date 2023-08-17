@@ -83,7 +83,7 @@
 }
 
 .profile-img-container {
-  background-image: url("../../icons/Account_circle.png");
+  /* background-image: url("../../icons/Account_circle.png"); */
   width: 150px;
   height: 150px;
   background-size: 150px 150px;

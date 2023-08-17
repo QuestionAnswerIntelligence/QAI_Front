@@ -22,6 +22,7 @@ const QnAList = ({ chatId }) => {
   const [showChatButton, setShowChatButton] = useState({}); // 1. 채팅 버튼 표시 상태를 관리하기 위한 state
   const [keyword, setKeyword] = useState("");
   const [option, setOption] = useState("제목");
+  const [checkStatus, setCheckStatus] = useState("채택전");
 
   // toggleChatButton 함수를 수정하여 특정 질문에 대한 상태만 변경
   const toggleChatButton = (boardId) => {
@@ -39,11 +40,14 @@ const QnAList = ({ chatId }) => {
   // page
   useEffect(() => {
     axios
-      .get(`${API_URL}/questions?page=${pageNum}&size=${size}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      .get(
+        `${API_URL}/questions?page=${pageNum}&size=${size}&checkStatus=${checkStatus}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((response) => {
         let questionList = response.data.data.questionList;
         if (isChecked) {
@@ -178,37 +182,47 @@ const QnAList = ({ chatId }) => {
           {/* map 함수를 이용하여 questions에 들어가있는 배열 가져오기 */}
           {questions.map((question) => (
             <div key={question.boardId}>
-              <ul className="post-list" key={question.boardId}>
-                <li className="community-post-list">
-                  <div className="QnAList2">
-                    <div>
-                      {/* <img className="profile-img" /> */}
-                      <h2 onClick={() => toggleChatButton(question.boardId)}>
-                        {question.createdBy}
-                      </h2>
-                      {token && showChatButton[question.boardId] && (
-                        <button onClick={() => startChat(nickname, question)}>
-                          1:1 채팅하기
-                        </button>
-                      )}
-                    </div>
-                    <div style={{ display: "flex", alignItems: "center" }}>
-                      <img className="viewCountImg" src={ViewCount}></img>
-                      <span className="viewCountSpan">
-                        {question.viewCount}
-                      </span>
-                    </div>
+              <div className="fixed-list">
+                <div claaName="column">
+                  <div className="post2">
+                    <button onClick={moveToMakeQuestion}>200</button>
                   </div>
-                  <div className="community-post-list-middle">
-                    <Link to={`/questions/${question.questionId}`}>
-                      {question.title}
-                    </Link>
+                  <div className="post2">
+                    <button onClick={moveToMakeQuestion}>200</button>
                   </div>
-                  <span className="QnAList-createdAt">
-                    {formatDate(question.createdAt)}
-                  </span>
-                </li>
-              </ul>
+                </div>
+                <ul className="test" key={question.boardId}>
+                  <li className="community-post-list">
+                    <div className="QnAList2">
+                      <div>
+                        {/* <img className="profile-img" /> */}
+                        <h2 onClick={() => toggleChatButton(question.boardId)}>
+                          {question.createdBy}
+                        </h2>
+                        {token && showChatButton[question.boardId] && (
+                          <button onClick={() => startChat(nickname, question)}>
+                            1:1 채팅하기
+                          </button>
+                        )}
+                      </div>
+                      <div style={{ display: "flex", alignItems: "center" }}>
+                        <img className="viewCountImg" src={ViewCount}></img>
+                        <span className="viewCountSpan">
+                          {question.viewCount}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="community-post-list-middle">
+                      <Link to={`/questions/${question.questionId}`}>
+                        {question.title}
+                      </Link>
+                    </div>
+                    <span className="QnAList-createdAt">
+                      {formatDate(question.createdAt)}
+                    </span>
+                  </li>
+                </ul>
+              </div>
             </div>
           ))}
           <div className="pageNum"></div>
