@@ -142,7 +142,7 @@ const QnAList = ({ chatId }) => {
   const handleInputChange = (event) => {
     setKeyword(event.target.value);
   };
-
+  console.log(questions);
   return (
     <div className="aaa">
       <div className="container11">
@@ -179,17 +179,20 @@ const QnAList = ({ chatId }) => {
           </div>
         </div>
         <div>
+          <button>채택 전</button>
+          <button>채택 완료</button>
+        </div>
+        <div>
           {/* map 함수를 이용하여 questions에 들어가있는 배열 가져오기 */}
           {questions.map((question) => (
             <div key={question.boardId}>
               <div className="fixed-list">
-                <div claaName="column">
-                  <div className="post2">
-                    <button onClick={moveToMakeQuestion}>200</button>
-                  </div>
-                  <div className="post2">
-                    <button onClick={moveToMakeQuestion}>200</button>
-                  </div>
+                <div className="questionId-div">
+                  {question.questionId}
+                </div>
+                <div claaName="point_answerCnt_container">
+                    <div className="answerCnt">답변 {question.answerCnt}</div>
+                    <div className="point">{question.point}</div>
                 </div>
                 <ul className="test" key={question.boardId}>
                   <li className="community-post-list">
