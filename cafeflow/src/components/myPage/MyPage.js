@@ -10,6 +10,8 @@ import { useRecoilState } from "recoil";
 import { useSetRecoilState,useRecoilValue  } from "recoil";
 import { nicknameState } from "../../recoils/Recoil";
 import userDefaultImg from "../../icons/Account_circle.png";
+import share_img from "../../icons/share_android.png"
+import share_img_editing from "../../icons/editing_share_button.png"
 import {
   imgUrlState,
 } from "../../recoils/Recoil";
@@ -184,14 +186,14 @@ const MyPage = () => {
       <div className="mypage_container1">
         <div className="mypage_container2">
           <div className="top-container">
-            <h1>My Page</h1>
+            <p style={editing?{color:"gray",fontSize:"50px"}:{color:"black" ,fontSize:"50px"}}><b>My Page</b></p>
             <div
               className="share_edit_button-container"
               style={{ display: "flex", alignItems: "center" }}
             >
               <button
                 className="share_edit_button"
-                style={{ color: "black" }}
+                style={editing?{backgroundImage: `url('${share_img_editing}')`}:{backgroundImage:`url('${share_img}')`}}
               ></button>
               <button
                 className="share_edit_button"

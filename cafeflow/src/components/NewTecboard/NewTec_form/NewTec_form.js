@@ -52,7 +52,7 @@ const NewTec_form = () => {
       .then((response) => {
         // console.log(response);
         // console.log(response.data);
-        // alert("AI기술 소개 글이 성공적으로 등록 되었습니다!");
+        alert("AI기술 소개 글이 성공적으로 등록 되었습니다!");
         navigate("/newtec_list");
       })
       .catch((error) => {

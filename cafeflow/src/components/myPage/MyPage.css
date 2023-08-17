@@ -67,15 +67,16 @@
 
 .middle-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   text-align: left;
-  margin-top: 1vh;
+  margin-top: 5vh;
 }
 
 .info-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
+  margin-left:10%;
 }
 
 .point-container {
