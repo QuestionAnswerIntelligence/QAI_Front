@@ -6,6 +6,7 @@
   justify-content: space-around;
   align-items: center; /* Flex items를 수직 중앙에 배치 */
   background-color: #0d0d2b;
+  z-index: 100;
 }
 
 .header-left {
