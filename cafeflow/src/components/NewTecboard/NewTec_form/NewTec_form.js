@@ -8,7 +8,7 @@ import "./NewTec_form.css";
 
 import {
   //이미지 업로드 용
-  imgUrlState2,
+  newTecImgUrlState,
 } from "../../../recoils/Recoil";
 
 const NewTec_form = () => {
@@ -23,7 +23,7 @@ const NewTec_form = () => {
 
   const [imgFile, setImgFile] = useState(""); //이미지추가
   const imgRef = useRef();
-  const setImgUrl = useSetRecoilState(imgUrlState2); //설정할때는 set 그냥 쓸 때는 걍
+  const setImgUrl = useSetRecoilState(newTecImgUrlState); //설정할때는 set 그냥 쓸 때는 걍
   const [directoryName, setDirectoryName] = useState("aiinfo");
 
   const handleChange = (event) => {
@@ -58,9 +58,9 @@ const NewTec_form = () => {
       })
       .then((response) => {
         // console.log(response);
-        // console.log(response.data);
+        console.log(response.data);
         alert("AI기술 소개 글이 성공적으로 등록 되었습니다!");
-        navigate("/newtec_list");
+        // navigate("/newtec_list");
       })
       .catch((error) => {
         console.log(error);
@@ -88,10 +88,7 @@ const NewTec_form = () => {
         .post(`${API_URL}/upload/image`, formData)
         .then((response) => {
           const imgUrl2 = response.data.data.imageUrl;
-          // console.log(response.data.data.imageUrl);
           localStorage.setItem("imageUrl2", imgUrl2);
-          // console.log(localStorage.getItem("imageUrl"));
-          // console.log(response.data);
           setImgUrl(imgUrl2);
           console.log("이미지 업로드 완료되었습니다.");
         })
@@ -137,17 +134,16 @@ const NewTec_form = () => {
             src={imgFile ? imgFile : `/imges/icon/user.png`}
             alt="프로필 이미지"
           />
-          <form className="form-signup">
-            <label className="signup-profileImg-label" htmlFor="profileImg">
+          <form className="form-NewTec-img">
+            <label className="NewTec-Img-label" htmlFor="newTech-postimg">
               프로필 이미지 추가
             </label>
             <input
-              className="signup-profileImg-input"
+              className="newTechImg-input"
               type="file"
               accept="image/*"
-              id="profileImg"
+              id="newTech-postimg"
               onChange={saveImgFile}
-              // onChange={(event)=>{alert(event.target.files[0].name)}}
               ref={imgRef}
             />
           </form>

@@ -51,7 +51,7 @@ const Register = () => {
       return;
     }
 
-    console.log("logo" + imgUrlState);
+    
 
     axios
       .post(`${API_URL}/sign-up`, {
