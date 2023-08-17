@@ -26,7 +26,7 @@ const NewTec_page = () => {
   const [pageNum, setPageNum] = useState(0);
   const [size, setSize] = useState(8);
 
-  const [imgUrl, setImgUrl] = useState(localStorage.getItem("imageUrl"));
+  const [imgUrl, setImgUrl] = useState("");
   const [editUrl, setEditUrl] = useState("");
 
   const nickname = localStorage.getItem("nickname");
@@ -42,6 +42,7 @@ const NewTec_page = () => {
         setNewTec(response.data.data);
         setTitle(response.data.data.title);
         setContent(response.data.data.content);
+        //setImgUrl(response.)
 
         // console.log("제목:", title);
         // console.log("내용:", content);
