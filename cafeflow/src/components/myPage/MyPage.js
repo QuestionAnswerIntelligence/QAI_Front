@@ -7,8 +7,12 @@ import "./MyPage.css";
 import shareIcon from "../../icons/share_android.png";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
+import { useSetRecoilState,useRecoilValue  } from "recoil";
 import { nicknameState } from "../../recoils/Recoil";
-import  myimgUrl  from "../../icons/Account_circle.png"
+import userDefaultImg from "../../icons/Account_circle.png";
+import {
+  imgUrlState,
+} from "../../recoils/Recoil";
 const MyPage = () => {
   const navigate = useNavigate();
 
@@ -24,14 +28,19 @@ const MyPage = () => {
   const [editEmail,setEditEmail]=useState(localStorage.getItem("email"));
   const [editNickname,setEditNickName]=useState(localStorage.getItem("nickname"));
   // 추가
-  const [imgUrl,setImgUrl]=useState(localStorage.getItem("imageUrl"));
-  const [editUrl,setEditUrl]=useState("");
+  
+  const setEditImgUrl = useSetRecoilState(imgUrlState);
+  const [imgUrl,setImgUrl]=useState(useRecoilValue(imgUrlState));
   const [postState,setPostState]=useState("qna");
   const [posts, setPosts] = useState([]);
   const [nickname, setNickname] = useRecoilState(nicknameState);
+  const [imgFile, setImgFile] = useState("");
+  const imgRef = useRef();
+  const [directoryName,setDirectoryName]=useState("profile");
 
   const [id, setId] = useState(localStorage.getItem("email"));
   const [type, setType] = useState("question");
+ 
 
   const moveToStore = () => {
     navigate("/store");
@@ -94,7 +103,7 @@ const MyPage = () => {
       {postState==="qna"?qna_div:community_div}
             
   </div>
-  
+  // console.log("imgUrl" + imgUrl);
 
   const EditingChange=()=>{
     if(editing){
@@ -104,7 +113,7 @@ const MyPage = () => {
           {
             nickname: editNickname,
             email: editEmail,
-            // url: editUrl,
+            url: imgUrl,
           },
           {
             headers: {
@@ -122,6 +131,7 @@ const MyPage = () => {
           // 아래는 예시로, 서버가 수정된 값을 반환한다고 가정하였습니다.
           setNickname(editNickname);
           setEmail(editEmail);
+          setEditImgUrl(imgUrl);
 
           // 로컬 스토리지의 값을 업데이트하는 것도 좋은 방법입니다.
           localStorage.setItem("nickname", editNickname);
@@ -132,25 +142,43 @@ const MyPage = () => {
           console.log(token);
         });
     }
+
+
     setEditing(!editing);
 
   }
-  // const [imgFile, setImgFile] = useState("");
-  // const imgRef = useRef();
 
-  // const saveImgFile = () => {
-  //   const file = imgRef.current.files[0];
+  const saveImgFile = () => {
+    const file = imgRef.current.files[0];
+    const reader = new FileReader(); // 파일마다 새로운 FileReader 객체 생성
     
-  //   const reader = new FileReader(); // 파일마다 새로운 FileReader 객체 생성
+    reader.onloadend = () => {
+      setImgFile(reader.result);
+    };
     
-  //   reader.onloadend = () => {
-  //     setImgFile(reader.result);
-  //   };
-    
-  //   if (file) {
-  //     reader.readAsDataURL(file);
-  //   }
-  // }
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+
+    if (file) {
+      const formData = new FormData();
+      formData.append("image", file);
+      formData.append("directoryName", directoryName);
+      axios
+        .post(`${API_URL}/upload/image`, formData)
+        .then((response) => {
+          const imgUrl1=response.data.data.imageUrl;
+          localStorage.setItem("imageUrl1", imgUrl1);
+          // console.log(localStorage.getItem("imageUrl"));
+          setImgUrl(imgUrl1);
+          console.log("이미지 업로드 완료되었습니다.");
+        })
+        .catch((error) => {
+          console.error("이미지 업로드 중 에러:", error);
+        });
+    }
+  }
+  
   return (
     <div className="a">
       <div className="mypage_container1">
@@ -175,43 +203,36 @@ const MyPage = () => {
             </div>
           </div>
           <div className="middle-container">
-
-            <div className="profile-img-container" style={{ backgroundImage: `url('${imgUrl}')`, border:"5px solid black", borderRadius:"50px" , backgroundPosition:"center"}}>
+            <div>
+              {editing ? <div><img style={{width:"200px",height:"200px"}} src={imgFile?imgFile:imgUrl===null?userDefaultImg:imgUrl}
+                  alt="프로필 이미지"
+                  />
+                  <form className="form-edit">
+                    
+                    <label className="edit-profileImg-label" htmlFor="profileImg">프로필 이미지 변경</label>
+                    <input 
+                    className="edit-profileImg-input"
+                    type="file"
+                    accept="image/*"
+                    id="profileImg"
+                    onChange={saveImgFile}
+                    // onChange={(event)=>{alert(event.target.files[0].name)}}
+                    ref={imgRef}
+                    />
+                  </form></div>
+                  :<div className="profile-img-container" style={imgUrl===null?{backgroundImage: `url('${userDefaultImg}')`, backgroundPosition:"center"}:{backgroundImage: `url('${imgUrl}')`, border:"5px solid black", borderRadius:"50px" , backgroundPosition:"center",width:"150px",height:"150px"}}>
+                
+                </div>}
               
+             
             </div>
-            {/* <img src={imgFile?imgFile:`/imges/icon/user.png`}
-            alt="프로필 이미지"
-            /> */}
-            {/* <form className="form-signup">
-              
-              <label className="signup-profileImg-label" htmlFor="profileImg">프로필 이미지 추가</label>
-              <input 
-              className="signup-profileImg-input"
-              type="file"
-              accept="image/*"
-              id="profileImg"
-              // onChange={saveImgFile}
-              onChange={(event)=>{alert(event.target.files[0].name)}}
-              ref={imgRef}
-              />
-            </form> */}
+            
             <div className="info-container">
               <div className="info">
                 <p className="label1">아이디</p>
-                {editing ? (
-                  <input
-                    type="string"
-                    name="id"
-                    placeholder="아이디"
-                    className="editInput"
-                    value={editEmail}
-                    onChange={(e) => setEditEmail(e.target.value)}
-                  />
-                ) : (
                   <p className="label2">
                     <b>{email}</b>
                   </p>
-                )}
               </div>
               <div>
                 <p className="label1">닉네임</p>
@@ -268,25 +289,6 @@ const MyPage = () => {
             </div>
           </div>
 
-          <div className="select-outer-box">
-            <div className="select-inner-box">
-              <button onClick={() => setState("프로필")}>프로필</button>
-              <button onClick={() => setState("게시물")}>게시물</button>
-              <button onClick={() => setState("답변")}>답변</button>
-            </div>
-          </div>
-          <div className="mypage-divider">
-            <span
-              className={
-                state === "프로필"
-                  ? "profile"
-                  : state === "게시물"
-                  ? "post1"
-                  : "answer"
-              }
-            ></span>
-          </div>
-          {state === "게시물" ? posts_div : ""}
         </div>
       </div>
     </div>

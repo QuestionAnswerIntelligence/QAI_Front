@@ -17,6 +17,7 @@
 .mypage_container1 {
   display: flex;
   align-items: center;
+  /* justify-content: center; */
   width: 50vw;
   height: 80vh;
   flex-direction: column;
@@ -24,7 +25,6 @@
   box-shadow: 4px 4px 4px 6px rgba(0, 0, 0, 0.1);
   background-color: rgb(255, 255, 255);
   border-radius: 20px;
-  overflow: scroll;
 }
 
 /* 추가 */
@@ -35,6 +35,7 @@
   flex-direction: column;
   text-align: center;
   position: absolute;
+  /* background-color: red; */
   left: 30%;
   padding-top: 3vh;
   width: 40%;
@@ -209,7 +210,8 @@
 }
 /* ------------------------- */
 /* // label태그 */
-.signup-profileImg-label {
+
+.edit-profileImg-label {
   margin: 5px 0 20px 0;
   font-weight: bold;
   font-size: 13px;
@@ -219,6 +221,6 @@
 }
 
 /* // input태그 */
-.form-signup input[type="file"] {
+.form-edit input[type="file"] {
   display: none;
 }

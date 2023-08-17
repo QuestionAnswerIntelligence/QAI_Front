@@ -5,6 +5,7 @@ import { FiMenu } from "react-icons/fi"; // 햄버거 메뉴 아이콘
 import { MdClose } from "react-icons/md"; // 메뉴 닫기 아이콘
 
 import { tokenState, nicknameState,imgUrlState } from "../../../recoils/Recoil";
+import userDefaultImg from "../../../icons/Account_circle.png";
 
 import "./Header.css";
 import Logo from "../../../icons/Logo.png";
@@ -138,7 +139,7 @@ const Header = () => {
       <div className="header-right">
         {jwtToken ? (
           <React.Fragment>
-            <button className="user" onClick={moveTomyPage} style={{ backgroundImage: `url('${imgUrl}')`, border:"1px solid black", borderRadius:"50px", backgroundPosition:"center"}}></button>
+            <button className="user" onClick={moveTomyPage} style={imgUrl===null?{backgroundImage: `url('${userDefaultImg}')`, backgroundPosition:"center"}:{backgroundImage: `url('${imgUrl}')`, border:"1px solid black", borderRadius:"50px" , backgroundPosition:"center",width:"50px",height:"50px"}}></button>
             <span>
               <button className="username" onClick={moveTomyPage}>
                 <span className="span">{nickname}</span>

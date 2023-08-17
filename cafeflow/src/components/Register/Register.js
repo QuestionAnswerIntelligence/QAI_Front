@@ -65,6 +65,7 @@ const Register = () => {
       })
       .then((response) => {
         console.log(response);
+        localStorage.setItem("imageUrl",null);
         alert("회원가입이 완료되었습니다.");
 
         /* 회원가입 성공 후 로그인 페이지로 이동 */
@@ -181,7 +182,7 @@ const Register = () => {
           />
         </div>
         {/* 추가 */}
-        <img src={imgFile?imgFile:userDefaultImg}
+        <img style={{width:"200px",height:"200px"}} src={imgFile?imgFile:userDefaultImg}
               alt="프로필 이미지"
           />
           <form className="form-signup">
