@@ -1,4 +1,4 @@
-import React, { useState,useRef } from "react";
+import React, { useState, useRef } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import KakaoLogin from "../SocialLogin/KakaoLogin";
@@ -9,9 +9,7 @@ import logo from "../../icons/Logo.png";
 import userDefaultImg from "../../icons/Account_circle.png";
 import "./Register.css";
 import { useSetRecoilState } from "recoil";
-import {
-  imgUrlState,
-} from "../../recoils/Recoil";
+import { imgUrlState } from "../../recoils/Recoil";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -22,7 +20,7 @@ const Register = () => {
   const [age, setAge] = useState("");
   const [errorMessage, setErrorMessage] = useState(null); // 에러 메시지 상태
   const isFormFilled = email && password && nickname && age; // 모든 필드가 채워져 있는지 확인하는 상태 변수
-  const [directoryName,setDirectoryName]=useState("profile");
+  const [directoryName, setDirectoryName] = useState("profile");
   const [imgFile, setImgFile] = useState("");
   const imgRef = useRef();
   const setImgUrl = useSetRecoilState(imgUrlState);
@@ -31,7 +29,7 @@ const Register = () => {
     event.preventDefault();
 
     // 유효성 검사
-    
+
     if (!nickname) {
       setErrorMessage(alert("닉네임이 입력되지 않았습니다!"));
       return;
@@ -52,20 +50,20 @@ const Register = () => {
       setErrorMessage("모든 필드를 채워주세요!");
       return;
     }
-    
-    console.log("logo"+ imgUrlState);
-   
+
+    console.log("logo" + imgUrlState);
+
     axios
       .post(`${API_URL}/sign-up`, {
         email: email,
         password: password,
         nickname: nickname,
         age: age,
-        url:localStorage.getItem("imageUrl")
+        url: localStorage.getItem("imageUrl"),
       })
       .then((response) => {
         console.log(response);
-        localStorage.setItem("imageUrl",null);
+        localStorage.setItem("imageUrl", null);
         alert("회원가입이 완료되었습니다.");
 
         /* 회원가입 성공 후 로그인 페이지로 이동 */
@@ -76,20 +74,16 @@ const Register = () => {
         console.log(error.response);
         alert("회원가입에 실패했습니다.");
       });
-
-    
   };
-
-
 
   const saveImgFile = () => {
     const file = imgRef.current.files[0];
     const reader = new FileReader(); // 파일마다 새로운 FileReader 객체 생성
-    
+
     reader.onloadend = () => {
       setImgFile(reader.result);
     };
-    
+
     if (file) {
       reader.readAsDataURL(file);
     }
@@ -101,7 +95,7 @@ const Register = () => {
       axios
         .post(`${API_URL}/upload/image`, formData)
         .then((response) => {
-          const imgUrl=response.data.data.imageUrl;
+          const imgUrl = response.data.data.imageUrl;
           // console.log(response.data.data.imageUrl);
           localStorage.setItem("imageUrl", imgUrl);
           console.log(localStorage.getItem("imageUrl"));
@@ -112,9 +106,8 @@ const Register = () => {
           console.error("이미지 업로드 중 에러:", error);
         });
     }
-    
-}
-  
+  };
+
   return (
     <div className="register-container">
       <form className="register-form">
@@ -182,13 +175,16 @@ const Register = () => {
           />
         </div>
         {/* 추가 */}
-        <img style={{width:"200px",height:"200px"}} src={imgFile?imgFile:userDefaultImg}
-              alt="프로필 이미지"
-          />
-          <form className="form-signup">
-            
-            <label className="signup-profileImg-label" htmlFor="profileImg">프로필 이미지 추가</label>
-            <input 
+        <img
+          style={{ width: "200px", height: "200px" }}
+          src={imgFile ? imgFile : userDefaultImg}
+          alt="프로필 이미지"
+        />
+        <form className="form-signup">
+          <label className="signup-profileImg-label" htmlFor="profileImg">
+            프로필 이미지 추가
+          </label>
+          <input
             className="signup-profileImg-input"
             type="file"
             accept="image/*"
@@ -196,8 +192,8 @@ const Register = () => {
             onChange={saveImgFile}
             // onChange={(event)=>{alert(event.target.files[0].name)}}
             ref={imgRef}
-            />
-          </form>
+          />
+        </form>
         <div>
           <p style={{ margin: "0px", fontSize: "11px", color: "gray" }}>
             By creating an account, you agree to the Terms of use and Privacy
@@ -232,8 +228,6 @@ const Register = () => {
             </a>
           </p>
         </div>
-        
-
       </form>
     </div>
   );

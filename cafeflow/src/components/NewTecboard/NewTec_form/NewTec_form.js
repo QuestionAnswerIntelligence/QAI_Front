@@ -15,7 +15,7 @@ const NewTec_form = () => {
   const [formData, setFormData] = useState({
     title: "",
     content: "",
-    url: [], // Initialize with an empty array for the URLs
+    url: "", // Initialize with an empty array for the URLs
   });
 
   const [errors, setErrors] = useState({});
@@ -41,9 +41,16 @@ const NewTec_form = () => {
       });
       return;
     }
+    // Get the previously uploaded image URL from localStorage
+    const uploadedImageUrl = localStorage.getItem("imageUrl2");
+    // Update formData to include the uploaded image URL
+    const updatedFormData = {
+      ...formData,
+      url: uploadedImageUrl, // Set the uploaded image URL
+    };
 
     axios
-      .post(`${API_URL}/admin/ai-info/create`, formData, {
+      .post(`${API_URL}/admin/ai-info/create`, updatedFormData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -75,7 +82,7 @@ const NewTec_form = () => {
 
     if (file) {
       const formData = new FormData();
-      formData.append("image", imgRef.current.files);
+      formData.append("image", file);
       formData.append("directoryName", directoryName);
       axios
         .post(`${API_URL}/upload/image`, formData)
@@ -83,7 +90,7 @@ const NewTec_form = () => {
           const imgUrl2 = response.data.data.imageUrl;
           // console.log(response.data.data.imageUrl);
           localStorage.setItem("imageUrl2", imgUrl2);
-          console.log(localStorage.getItem("imageUrl2"));
+          // console.log(localStorage.getItem("imageUrl"));
           // console.log(response.data);
           setImgUrl(imgUrl2);
           console.log("이미지 업로드 완료되었습니다.");
