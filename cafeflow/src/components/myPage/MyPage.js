@@ -8,6 +8,7 @@ import shareIcon from "../../icons/share_android.png";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { nicknameState } from "../../recoils/Recoil";
+import  myimgUrl  from "../../icons/Account_circle.png"
 const MyPage = () => {
   const navigate = useNavigate();
 
@@ -114,7 +115,7 @@ const MyPage = () => {
         .then((response) => {
           console.log("mypage 수정 완료!");
           console.log(response);
-          // localStorage.setItem("nickname",nickname)
+          
 
           // API 호출 후 반환된 값(또는 수정된 값)으로 상태를 업데이트합니다.
           // 이 부분은 서버의 응답에 따라 달라질 수 있습니다.
