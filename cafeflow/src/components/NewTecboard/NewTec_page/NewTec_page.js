@@ -6,8 +6,8 @@ import writer1 from "../../../icons/writer1.png";
 import ViewCount from "../../../icons/ViewCount.png";
 import check from "../../../icons/check.png";
 
-import { useRecoilState } from "recoil";
-
+import { useRecoilState, } from "recoil";
+import { newTecImgUrlState } from "../../../recoils/Recoil";
 import "./NewTec_page.css";
 
 const NewTec_page = () => {
@@ -25,8 +25,10 @@ const NewTec_page = () => {
   const [isadopted, setIsAdopted] = useState(false); //게시물이 체크되었는지 저장
   const [pageNum, setPageNum] = useState(0);
   const [size, setSize] = useState(8);
+  const [imgUrl, setImgUrl] = useRecoilState(newTecImgUrlState);
 
-  const [imgUrl, setImgUrl] = useState("");
+
+  
   const [editUrl, setEditUrl] = useState("");
 
   const nickname = localStorage.getItem("nickname");
@@ -42,12 +44,8 @@ const NewTec_page = () => {
         setNewTec(response.data.data);
         setTitle(response.data.data.title);
         setContent(response.data.data.content);
-        //setImgUrl(response.)
-
-        // console.log("제목:", title);
-        // console.log("내용:", content);
-
-        console.log(response.data.data);
+        setImgUrl(response.data.data.url);
+        console.log(response.data.data.url);
       })
       .catch((error) => {
         console.log(error);
