@@ -6,6 +6,7 @@ import NaverLogin from "../SocialLogin/NaverLogin";
 import GoogleLogin1 from "../SocialLogin/GoogleLogin";
 import { API_URL } from "../Constant";
 import logo from "../../icons/Logo.png";
+import userDefaultImg from "../../icons/Account_circle.png";
 import "./Register.css";
 import { useSetRecoilState } from "recoil";
 import {
@@ -21,7 +22,6 @@ const Register = () => {
   const [age, setAge] = useState("");
   const [errorMessage, setErrorMessage] = useState(null); // 에러 메시지 상태
   const isFormFilled = email && password && nickname && age; // 모든 필드가 채워져 있는지 확인하는 상태 변수
-// 추가
   const [directoryName,setDirectoryName]=useState("profile");
   const [imgFile, setImgFile] = useState("");
   const imgRef = useRef();
@@ -31,6 +31,7 @@ const Register = () => {
     event.preventDefault();
 
     // 유효성 검사
+    
     if (!nickname) {
       setErrorMessage(alert("닉네임이 입력되지 않았습니다!"));
       return;
@@ -51,7 +52,8 @@ const Register = () => {
       setErrorMessage("모든 필드를 채워주세요!");
       return;
     }
-
+    
+    console.log("logo"+ imgUrlState);
    
     axios
       .post(`${API_URL}/sign-up`, {
@@ -63,6 +65,7 @@ const Register = () => {
       })
       .then((response) => {
         console.log(response);
+        localStorage.setItem("imageUrl",null);
         alert("회원가입이 완료되었습니다.");
 
         /* 회원가입 성공 후 로그인 페이지로 이동 */
@@ -179,7 +182,7 @@ const Register = () => {
           />
         </div>
         {/* 추가 */}
-        <img src={imgFile?imgFile:`/imges/icon/user.png`}
+        <img style={{width:"200px",height:"200px"}} src={imgFile?imgFile:userDefaultImg}
               alt="프로필 이미지"
           />
           <form className="form-signup">

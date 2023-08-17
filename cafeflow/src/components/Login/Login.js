@@ -7,8 +7,11 @@ import {
   ageState,
   emailState,
   nicknameState,
+  // 추가
+  imgUrlState,
 } from "../../recoils/Recoil";
 import { API_URL } from "../Constant";
+
 
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
@@ -29,6 +32,9 @@ const Login = () => {
   const setEmail1 = useSetRecoilState(emailState);
   const setNickname = useSetRecoilState(nicknameState);
   const isFormFilled = email && password;
+  // 추가
+  const setImgUrl = useSetRecoilState(imgUrlState);
+
 
   const SatisfyPassword = (e) => {
     setPassword(e.target.value);
@@ -46,13 +52,14 @@ const Login = () => {
           password: password,
         })
         .then((response) => {
-          const { jwtToken, email, age, nickname, point } = response.data;
+          const { jwtToken, email, age, nickname, point,url } = response.data;
 
           console.log(response.data);
           setToken(jwtToken);
           setAge(age);
           setEmail1(email);
           setNickname(nickname);
+          setImgUrl(url);
 
           localStorage.setItem("jwtToken", jwtToken);
           localStorage.setItem("email", email);
@@ -60,7 +67,7 @@ const Login = () => {
           localStorage.setItem("age", age);
           localStorage.setItem("point", point);
 
-          console.log(point);
+          // console.log(point);
 
           alert("로그인에 성공했습니다.");
           navigate("/");
