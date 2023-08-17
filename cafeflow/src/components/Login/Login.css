@@ -3,6 +3,9 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  position: absolute;
+  width: 1920px;
+  height: 1285.36px;
   background-image: url("../../icons/backgroundRegisterLogin.png");
   background-size: cover;
   background-repeat: no-repeat;
