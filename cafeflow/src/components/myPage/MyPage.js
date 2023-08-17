@@ -39,6 +39,7 @@ const MyPage = () => {
   const [imgFile, setImgFile] = useState("");
   const imgRef = useRef();
   const [directoryName,setDirectoryName]=useState("profile");
+  const [viewCnt,setViewCnt]=useState(0);
 
   const [id, setId] = useState(localStorage.getItem("email"));
   const [type, setType] = useState("question");
@@ -55,17 +56,19 @@ const MyPage = () => {
         },
       })
       .then((response) => {
-        const { email, nickname, point } = response.data;
+        const { email, nickname, point,viewCnt } = response.data;
+        console.log(response.data);
         setEmail(email);
         setNickname(nickname);
         setPoint(point);
+        setViewCnt(viewCnt);
         // console.log(response.data);
       })
       .catch((error) => {
         console.log(error);
         // console.log(token);
       });
-  }, [token, email]); // email도 의존성 배열에 추가하여 email 값이 변경될 때마다 API 호출
+  }, [token, email,viewCnt]); // email도 의존성 배열에 추가하여 email 값이 변경될 때마다 API 호출
 
   const getPost = () => {
     axios
@@ -284,8 +287,7 @@ const MyPage = () => {
             <div className="check-inner-box" style={{}}>
               <p className="check-p1">내 프로필을 조회한 사람</p>
               <p className="check-p2">
-                5월 14일-8월 11일 동안{" "}
-                <span style={{ color: "black" }}>674</span>명이 내 프로필을
+                <span style={{ color: "black" }}>{viewCnt}</span>명이 내 프로필을
                 조회했습니다.
               </p>
             </div>

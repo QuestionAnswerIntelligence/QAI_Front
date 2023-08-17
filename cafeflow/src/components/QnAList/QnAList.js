@@ -15,6 +15,8 @@ const QnAList = ({ chatId }) => {
   const [pageNum, setPageNum] = useState(0);
   const [size, setSize] = useState(10);
   const nickname = localStorage.getItem("nickname");
+  const [isAdoptedClick,setIsAdoptedClick]=useState(false);
+  
 
   // 시간 순 체크박스
   const [isChecked, setIsChecked] = useState(false);
@@ -56,13 +58,13 @@ const QnAList = ({ chatId }) => {
           ); // 시간 순으로 정렬
         }
         setQuestions(questionList);
-        console.log(response.data.data.questionList);
+        // console.log(response.data.data.questionList);
         console.log(response.data);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, [token, pageNum, size]);
+  }, [token, pageNum, size,checkStatus]);
 
   // 날짜 형식을 YYYY-MM-DD로 변환해주는 함수
   function formatDate(isoDateString) {
@@ -85,6 +87,16 @@ const QnAList = ({ chatId }) => {
     }
   };
 
+
+  const turnState_before=()=>{
+    setIsAdoptedClick(false);
+    setCheckStatus("채택전");
+  }
+
+  const turnState_after=()=>{
+    setIsAdoptedClick(true);
+    setCheckStatus("채택");
+  }
   const startChat = (nickname, question) => {
     // 현재 로그인한 유저와 게시글 작성자의 ID를 합쳐서 채팅방 ID를 생성. 항상 동일한 순서로 합침.'_' 으로 구분
     const chatId = [nickname, question.createdBy].sort().join("_");
@@ -179,8 +191,13 @@ const QnAList = ({ chatId }) => {
           </div>
         </div>
         <div>
-          <button>채택 전</button>
-          <button>채택 완료</button>
+          <button onClick={turnState_before} className="adopted-button adopted-before-button">채택 전</button>
+          <button onClick={turnState_after} className="adopted-button adopted-after-button">채택 완료</button>
+        </div>
+        <div className="divider1">
+          <span
+            className={isAdoptedClick ? "after" : "before"}
+          ></span>
         </div>
         <div>
           {/* map 함수를 이용하여 questions에 들어가있는 배열 가져오기 */}

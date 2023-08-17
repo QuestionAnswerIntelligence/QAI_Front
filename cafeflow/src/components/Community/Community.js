@@ -17,14 +17,6 @@ const Community = () => {
   const [option, setOption] = useState("제목");
   const navigate = useNavigate();
 
-  const moveToBoard = () => {
-    if (isFreeBoardClick) {
-      navigate("/freelist");
-    } else {
-      navigate("/sharelist");
-    }
-  };
-
   useEffect(() => {
     axios
       .get(`${API_URL}/boards?page=${pageNum}&size=${size}&boardType=${type}`, {
