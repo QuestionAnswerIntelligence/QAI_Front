@@ -47,6 +47,8 @@
   height: 100vh;
   flex-direction: column;
   background-color: white;
+  background-image: url("../../../../icons/backback.png");
+  background-size: cover;
 }
 
 .post {

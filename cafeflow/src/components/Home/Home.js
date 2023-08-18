@@ -43,9 +43,9 @@ const Home = () => {
             실시간으로 받아보세요
           </h1>
           <span class="animate__animated animate__fadeIn animate__delay-1s">
-            매일 00개의 Q&A와 신기술 업데이트를 받아보세요
+            매일 Q&A와 신기술 업데이트를 받아보세요
             <br />
-            해당 부분은 위 소개에 대한 부속 설명을 적는 곳입니다
+            오픈 AI를 활용하여 프로젝트를 발전시켜보세요
           </span>
           <button className="goLogin" onClick={moveToLogin}>
             <span>지금 바로 로그인하기 </span>
@@ -66,10 +66,6 @@ const Home = () => {
         </div> */}
         </div>
       </div>
-
-      <div className="main2"></div>
-      <div className="main3"></div>
-      <div className="aa" style={{ backgroundColor: "green" }}></div>
     </div>
   );
 };

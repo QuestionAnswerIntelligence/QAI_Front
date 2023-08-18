@@ -176,8 +176,6 @@ const Header = () => {
           style={{
             width: "100px",
             height: "100px",
-            marginTop: "8px",
-            marginRight: "-7px",
           }}
           onClick={moveToHome}
         ></img>

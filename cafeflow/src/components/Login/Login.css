@@ -4,21 +4,21 @@
   justify-content: center;
   align-items: center;
   position: absolute;
-  width: 1920px;
-  height: 1285.36px;
   background-image: url("../../icons/backgroundRegisterLogin.png");
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center 100px; /* x축은 가운데, y축은 100px만큼 움직임 */
+  width: 100%;
+  /* background-position: center; */
   min-height: 100vh;
 }
 
 .login-inner-container {
   display: flex;
+  height: 80vh;
   flex-direction: column;
-  padding: 65px;
+  padding: 35px;
   align-items: center;
-  gap: 10px;
+  gap: 1px;
   width: 40%; /* 원하는 너비 비율로 조정하세요. */
   background-color: white;
   border-radius: 10px;

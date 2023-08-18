@@ -13,9 +13,9 @@
 .register-form {
   display: flex;
   flex-direction: column;
-  padding: 65px;
+  padding: 35px;
   align-items: center;
-  gap: 10px;
+  gap: 1px;
   width: 40%; /* 원하는 너비 비율로 조정하세요. */
   background-color: white;
   border-radius: 10px;
@@ -126,9 +126,9 @@
   color: #666666;
   font-family: "poppins";
 }
-.register-img{
-  width:500px;
-  height:500px;
+.register-img {
+  width: 500px;
+  height: 500px;
 }
 
 .signup-profileImg-label {

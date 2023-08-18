@@ -14,8 +14,7 @@ import { API_URL } from "../Constant";
 
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
-
-import logo from "../../icons/Logo.png";
+import LogoQAI from "../../icons/LogoQAI.png";
 import KakaoLogin from "../SocialLogin/KakaoLogin";
 import NaverLogin from "../SocialLogin/NaverLogin";
 import GoogleLogin1 from "../SocialLogin/GoogleLogin";
@@ -85,7 +84,7 @@ const Login = () => {
   return (
     <div className="login-outer-container">
       <div className="login-inner-container">
-        <img src={logo}></img>
+        <img style={{ width: "10vw" }} src={LogoQAI}></img>
         <h2>로그인</h2>
         <div className="button-container">
           <KakaoLogin />

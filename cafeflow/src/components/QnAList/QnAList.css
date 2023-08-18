@@ -299,22 +299,22 @@ th {
   font-size: 18px;
   margin-top: 1vh;
 }
-.true,.false{
- 
+.true,
+.false {
 }
-.true{
+.true {
   width: 150px;
   height: 5vh;
   background-color: #ffffff;
   color: rgb(0, 0, 0);
   font-size: 18px;
   margin-top: 1vh;
-  border-bottom:3px solid #7267c8;
-  border-top:none;
-  border-left:none;
-  border-right:none;
+  border-bottom: 3px solid #7267c8;
+  border-top: none;
+  border-left: none;
+  border-right: none;
 }
-.false{
+.false {
   width: 150px;
   height: 5vh;
   background-color: #ffffff;
@@ -322,9 +322,7 @@ th {
   border: none;
   font-size: 18px;
   margin-top: 1vh;
-  
 }
-
 
 .after {
   width: 100px;
@@ -342,36 +340,38 @@ th {
   left: 15px;
 }
 
-.writeButton{
+.writeButton {
   background-color: #7267c8;
-  color:white;
-  border:none;
-  border-radius:10px;
-  width:100px;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  width: 100px;
 }
-.writeButton:hover{
+.writeButton:hover {
   background-color: #7267c8;
-  color:rgb(108, 91, 124);
-  border:none;
-  border-radius:10px;
-  width:100px;
+  color: rgb(108, 91, 124);
+  border: none;
+  border-radius: 10px;
+  width: 100px;
 }
 
-.qna-post-list{
+.qna-post-list {
   list-style: none;
-  position:relative;
-  bottom:10px;
+  position: relative;
+  bottom: 10px;
+}
 
+.postButton {
+  width: 10vw;
+  height: 5vh;
+  background-color: #7267c8;
+  color: white;
+  border-radius: 20px;
+  border: none;
+  font-size: 18px;
+  position: relative;
 }
-.postButton{
-  border:none;
-  width:130px;
-  height:50px;
-  background-color: #423c7d;
-  border-radius:50px;
-  color:white;
-  font-size:20px;
-}
+
 /* 모바일 버전 */
 @media (max-width: 768px) {
   .aaa {

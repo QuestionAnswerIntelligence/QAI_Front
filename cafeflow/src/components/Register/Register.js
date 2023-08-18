@@ -10,6 +10,7 @@ import userDefaultImg from "../../icons/Account_circle.png";
 import "./Register.css";
 import { useSetRecoilState } from "recoil";
 import { imgUrlState } from "../../recoils/Recoil";
+import LogoQAI from "../../icons/LogoQAI.png";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -50,8 +51,6 @@ const Register = () => {
       setErrorMessage("모든 필드를 채워주세요!");
       return;
     }
-
-    
 
     axios
       .post(`${API_URL}/sign-up`, {
@@ -111,7 +110,7 @@ const Register = () => {
   return (
     <div className="register-container">
       <form className="register-form">
-        <img src={logo}></img>
+        <img style={{ width: "10vw" }} src={LogoQAI}></img>
         <h2>회원가입</h2>
         <div className="button-container">
           <KakaoLogin />
@@ -176,7 +175,7 @@ const Register = () => {
         </div>
         {/* 추가 */}
         <img
-          style={{ width: "200px", height: "200px" }}
+          style={{ width: "10vh", height: "10vh" }}
           src={imgFile ? imgFile : userDefaultImg}
           alt="프로필 이미지"
         />
