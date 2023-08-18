@@ -3,12 +3,9 @@ import React, { useEffect, useState, useRef } from "react";
 import { API_URL } from "../Constant";
 import { useNavigate } from "react-router-dom";
 import "./MyPage.css";
-import { useRecoilState } from "recoil";
-import { useSetRecoilState, useRecoilValue } from "recoil";
+import { useSetRecoilState, useRecoilValue, useRecoilState } from "recoil";
 import { nicknameState } from "../../recoils/Recoil";
 import userDefaultImg from "../../icons/Account_circle.png";
-import share_img from "../../icons/share_android.png";
-import share_img_editing from "../../icons/editing_share_button.png";
 import { imgUrlState } from "../../recoils/Recoil";
 
 const MyPage = () => {
@@ -301,7 +298,7 @@ const MyPage = () => {
                   </p>
                 )}
               </div>
-              <div>
+              {/* <div>
                 <div>
                   <p className="label1">포트폴리오</p>
                   <a>
@@ -311,7 +308,7 @@ const MyPage = () => {
                     <img className="logo2"></img>
                   </a>
                 </div>
-              </div>
+              </div> */}
               <div className="point-container">
                 <div>
                   <p className="label1">내 포인트</p>
@@ -366,9 +363,7 @@ const MyPage = () => {
           <div className="mypage-divider">
             <span
               className={
-                state === "프로필"
-                  ? "profile"
-                  : state === "QnA"
+                state === "QnA"
                   ? "Qna"
                   : state === "Community"
                   ? "Community"
@@ -406,54 +401,64 @@ const MyPage = () => {
           )} */}
           {/* QnA 부분 */}
           {state === "QnA" && (
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              {profile.list &&
-                profile.list.map((post, index) => (
-                  <div key={index} className="list">
-                    <div>
-                      <span style={{ marginRight: "2vw", marginLeft: "2vw" }}>
-                        {post.boardType}
-                      </span>
-                      <span style={{ maxWidth: "5vw" }}>
-                        {truncateString(post.title, 10)}
-                      </span>
+            <div style={{ height: "100%" }}>
+              <div
+                className="ppp"
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  overflow: "scroll",
+                  height: "100%",
+                }}
+              >
+                {profile.list &&
+                  profile.list.map((post, index) => (
+                    <div key={index} className="list">
+                      <div>
+                        <span style={{ marginRight: "2vw", marginLeft: "2vw" }}>
+                          {post.boardType}
+                        </span>
+                        <span style={{ maxWidth: "5vw" }}>
+                          {truncateString(post.title, 10)}
+                        </span>
+                      </div>
+                      <div className="time">
+                        <p>{formattedDate(post.createdAt)}</p>
+                      </div>
                     </div>
-                    <div className="time">
-                      <p>{formattedDate(post.createdAt)}</p>
-                    </div>
-                  </div>
-                ))}
+                  ))}
+              </div>
             </div>
           )}
           {/* 통합게시판 */}
           {state === "board" && (
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-              }}
-            >
-              {profile.list &&
-                profile.list.map((post, index) => (
-                  <div key={index} className="list">
-                    <div>
-                      <span style={{ marginRight: "2vw", marginLeft: "2vw" }}>
-                        {post.boardType}
-                      </span>
-                      <span style={{ maxWidth: "5vw" }}>{post.title}</span>
+            <div style={{ height: "21vh" }}>
+              <div
+                className="ppp"
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  overflow: "scroll",
+                  // height: "100%",
+                }}
+              >
+                {profile.list &&
+                  profile.list.map((post, index) => (
+                    <div key={index} className="list">
+                      <div>
+                        <span style={{ marginRight: "2vw", marginLeft: "2vw" }}>
+                          {post.boardType}
+                        </span>
+                        <span style={{ maxWidth: "5vw" }}>{post.title}</span>
+                      </div>
+                      <div className="time">
+                        <p>{formattedDate(post.createdAt)}</p>
+                      </div>
                     </div>
-                    <div className="time">
-                      <p>{formattedDate(post.createdAt)}</p>
-                    </div>
-                  </div>
-                ))}
+                  ))}
+              </div>
             </div>
           )}
           {/* Comment 부분 */}
@@ -463,29 +468,39 @@ const MyPage = () => {
                 <div style={{ borderBottom: "1px solid gray" }}>
                   <h2>Q&A</h2>
                 </div>
-                {profile.answerList &&
-                  profile.answerList.map((item, index) => (
-                    <div key={index} className="listItem">
-                      <div className="listTitle">{item.title}</div>
-                      <div className="listTime">
-                        {formattedDate(item.createdAt)}
+                <div
+                  className="ppp"
+                  style={{ overflow: "scroll", height: "80%" }}
+                >
+                  {profile.answerList &&
+                    profile.answerList.map((item, index) => (
+                      <div key={index} className="listItem">
+                        <div className="listTitle">{item.title}</div>
+                        <div className="listTime">
+                          {formattedDate(item.createdAt)}
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                </div>
               </div>
               <div className="listContainer">
                 <div style={{ borderBottom: "1px solid gray" }}>
                   <h2>Community</h2>
                 </div>
-                {profile.commentList &&
-                  profile.commentList.map((item, index) => (
-                    <div key={index} className="listItem">
-                      <div className="listTitle">{item.title}</div>
-                      <div className="listTime">
-                        {formattedDate(item.createdAt)}
+                <div
+                  className="ppp"
+                  style={{ overflow: "scroll", height: "80%" }}
+                >
+                  {profile.commentList &&
+                    profile.commentList.map((item, index) => (
+                      <div key={index} className="listItem">
+                        <div className="listTitle">{item.title}</div>
+                        <div className="listTime">
+                          {formattedDate(item.createdAt)}
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                </div>
               </div>
             </div>
           )}

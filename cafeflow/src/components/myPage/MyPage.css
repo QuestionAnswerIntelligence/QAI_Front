@@ -25,7 +25,6 @@
   box-shadow: 4px 4px 4px 6px rgba(0, 0, 0, 0.1);
   background-color: rgb(255, 255, 255);
   border-radius: 20px;
-  overflow-y: scroll;
 }
 
 .mypage_container1::-webkit-scrollbar {
@@ -52,9 +51,13 @@
   align-items: center;
   width: 100%;
 }
-
 .top-container > p {
   margin: 0px;
+}
+
+.top-container > h1 {
+  margin: 0px;
+  font-size: 42px;
 }
 
 .share_edit_button {
@@ -78,7 +81,7 @@
   display: flex;
   justify-content: flex-start;
   text-align: left;
-  margin-top: 5vh;
+  margin-top: 3vh;
 }
 
 .info-container {
@@ -99,6 +102,10 @@
   height: 150px;
   background-size: 150px 150px;
   background-repeat: no-repeat;
+}
+
+.ppp::-webkit-scrollbar {
+  display: none;
 }
 
 .label1 {

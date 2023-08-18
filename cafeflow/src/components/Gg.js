@@ -1,66 +1,102 @@
-// import React, { useState } from "react";
+// import React from "react";
 // import axios from "axios";
-// import { API_URL } from "../../../Constant";
 // import { useNavigate } from "react-router-dom";
+// import { API_URL } from "../Constant";
+// import "./Store.css";
 
-// import "./FreeForm.css";
-// const FreeForm = () => {
-//   const [formData, setFormData] = useState({
-//     title: "",
-//     content: "",
-//   });
-//   const [errors, setErrors] = useState({});
-//   const createdBy = localStorage.getItem("nickname");
+// const Store = () => {
+//   const navigate = useNavigate();
+//   const [isModalOpen, setIsModalOpen] = React.useState(false);
+//   const [redirectUrl, setRedirectUrl] = React.useState("");
+
 //   const token = localStorage.getItem("jwtToken");
 
-//   const navigate = useNavigate();
-
-//   const handleChange = (event) => {
-//     setFormData({ ...formData, [event.target.name]: event.target.value });
-//   };
-
-//   const handleSubmit = (event) => {
-//     event.preventDefault();
-//     const type = "freeBoard";
+//   const requestPayment = (price, itemName) => {
 //     axios
-//       .post(`${API_URL}/boards/create?boardType=${type}`, formData, {
-//         headers: {
-//           Authorization: `Bearer ${token}`,
+//       .post(
+//         `${API_URL}/payment/ready`,
+//         {
+//           price: price,
+//           itemName: itemName,
 //         },
-//       })
+//         { headers: { Authorization: `Bearer ${token}` } }
+//       )
 //       .then((response) => {
-//         console.log(response);
 //         console.log(response.data);
-//         alert("게시물이 성공적으로 등록되었습니다!");
-//         navigate("/community");
+//         setRedirectUrl(response.data.next_redirect_pc_url); // URL 설정
+//         setIsModalOpen(true); // 모달 창 열기
 //       })
 //       .catch((error) => {
-//         console.log(error);
-//         alert("에러 발생");
+//         console.error("Payment request error:", error);
 //       });
 //   };
 
 //   return (
-//     <div className="freeform-container">
-//       <form onSubmit={handleSubmit}>
-//         <label>
-//           제목:
-//           <input type="text" name="title" onChange={handleChange} />
-//           {errors.title && <p>{errors.title}</p>}
-//         </label>
-//         <br />
-//         <label>
-//           내용:
-//           <input type="text" name="content" onChange={handleChange} />
-//           {errors.content && <p>{errors.content}</p>}
-//         </label>
+//     <div className="a">
+//       {isModalOpen && (
+//         <div className="modal">
+//           <div className="modal-content">
+//             <button onClick={() => setIsModalOpen(false)}>닫기</button>
+//             <iframe src={redirectUrl} width="100%" height="500px"></iframe>
+//           </div>
+//         </div>
+//       )}
 
-//         <label>작성자: {createdBy}</label>
-//         <br />
-//         <button type="submit">Submit</button>
-//       </form>
+//       <div className="container11">
+//         <div style={{ display: "flex", justifyContent: "center" }}>
+//           <h1>포인트 샵</h1>
+//         </div>
+//         <div style={{ marginTop: "-7px" }}>
+//           <hr></hr>
+//         </div>
+//         <div style={{ display: "flex", justifyContent: "center" }}>
+//           <div className="pointBox">
+//             <button
+//               className="box"
+//               onClick={() => requestPayment(1000, "1000포인트")}
+//             >
+//               <p>1000 포인트</p>
+//               <span>₩1100</span>
+//             </button>
+//             <button
+//               className="box"
+//               onClick={() => requestPayment(3000, "1000포인트")}
+//             >
+//               <p>3000 포인트</p>
+//               <span>₩3300</span>
+//             </button>
+//             <button
+//               className="box"
+//               onClick={() => requestPayment(5000, "1000포인트")}
+//             >
+//               <p>5000 포인트</p>
+//               <span>₩5500</span>
+//             </button>
+//             <button
+//               className="box"
+//               onClick={() => requestPayment(10000, "1000포인트")}
+//             >
+//               <p>10000 포인트</p>
+//               <span>₩11000</span>
+//             </button>
+//             <button
+//               className="box"
+//               onClick={() => requestPayment(30000, "1000포인트")}
+//             >
+//               <p>30000 포인트</p>
+//               <span>₩33000</span>
+//             </button>
+//             <button
+//               className="box"
+//               onClick={() => requestPayment(1000000, "1000포인트")}
+//             >
+//               <p>50000 포인트</p>
+//               <span>₩55000</span>
+//             </button>
+//           </div>
+//         </div>
+//       </div>
 //     </div>
 //   );
 // };
-
-// export default FreeForm;
+// export default Store;
