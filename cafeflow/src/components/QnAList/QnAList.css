@@ -7,15 +7,15 @@
   flex-direction: column;
   background-color: white;
 }
-.questionId-div{
-  width:150px;
-  height:20px;
+.questionId-div {
+  width: 150px;
+  height: 20px;
   /* background-color: red; */
-  display:flex;
+  display: flex;
   justify-content: center;
   text-align: center;
   /* font-weight: bolder; */
-  font-size:20px;
+  font-size: 20px;
 }
 
 .point_answerCnt_container {
@@ -27,7 +27,8 @@
   margin-top: 2vh;
 }
 
-.answerCnt,.point{
+.answerCnt,
+.point {
   width: 50px;
   height: 25px;
   border-radius: 3px;
@@ -35,7 +36,7 @@
   font-size: 18px;
   position: relative;
   text-align: center;
-  font-size:12px;
+  font-size: 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -43,18 +44,17 @@
   font-weight: bold;
   /* top: 26px; */
 }
-.answerCnt{
-  position:relative;
-  bottom:3px;
-  background-color:#e0e0e0;
-  color:#7d7d7e;
-  
+.answerCnt {
+  position: relative;
+  bottom: 3px;
+  background-color: #e0e0e0;
+  color: #7d7d7e;
 }
-.point{
-  position:relative;
-  top:3px;
-  background-color:#423c7d;
-  color:white;
+.point {
+  position: relative;
+  top: 3px;
+  background-color: #423c7d;
+  color: white;
 }
 
 .post2 {
@@ -87,8 +87,7 @@
 .fixed-list {
   display: flex;
   align-items: center;
-  border-top: 2px solid lightgray;
-  
+  border-bottom: 2px solid lightgray;
 }
 
 .column {
@@ -128,6 +127,13 @@ input.search {
   background-position: left center;
   background-repeat: no-repeat;
   background-size: 20px; /* Adjust based on the size of your image */
+}
+
+.StartChatButton {
+  background-color: white;
+  border: 1px solid gray;
+  padding: 5px;
+  margin-right: 5px;
 }
 
 .searchBox {
@@ -191,9 +197,8 @@ th {
   justify-content: center;
   align-items: center;
   height: 1px;
-  width: 88vw;
+  width: 100%;
   background-color: lightgray;
-  margin: 12px;
   position: relative;
 }
 
@@ -202,19 +207,6 @@ th {
   width: 20vw;
   max-height: 5vh;
   gap: 10px;
-}
-
-td {
-  max-width: 200px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-table {
-  border-top: 1px solid gray;
-  margin-top: 10px;
-  text-align: center;
 }
 
 .oneTr {
@@ -295,8 +287,7 @@ table {
   color: gray;
   font-size: 0.8em;
 }
-
-.adopted-button{
+.adopted-button {
   width: 150px;
   height: 5vh;
   background-color: #ffffff;
@@ -305,20 +296,24 @@ table {
   font-size: 18px;
   margin-top: 1vh;
 }
-.after{
+
+.after {
   width: 100px;
   height: 3px;
   background-color: #7267c8;
   position: relative;
   left: 160px;
-
 }
-.before{
+
+.before {
   width: 100px;
   height: 3px;
   background-color: #7267c8;
   position: relative;
   left: 15px;
+}
+
+.viewCountImg1 {
 }
 /* 모바일 버전 */
 @media (max-width: 768px) {

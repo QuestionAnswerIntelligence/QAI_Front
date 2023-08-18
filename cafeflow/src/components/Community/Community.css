@@ -15,9 +15,10 @@
   height: 80vh;
   flex-direction: column;
   box-shadow: 4px 4px 4px 6px rgba(0, 0, 0, 0.1);
-  margin-top: 10vh;
+  margin-top: 11vh;
   background-color: white;
   border-radius: 20px;
+  overflow: scroll;
 }
 
 .board_list {
@@ -27,7 +28,7 @@
   color: rgb(0, 0, 0);
   border: none;
   font-size: 18px;
-  margin-top: 1vh;
+  /* margin-top: 1vh; */
 }
 
 .mycontainer {
@@ -40,10 +41,10 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  height: 3px;
-  width: 57vw;
+  height: 2px;
+  width: 100%;
   background-color: lightgray;
-  margin: 12px;
+  margin: 0px;
   position: relative;
 }
 
@@ -52,14 +53,14 @@
   height: 3px;
   background-color: #7267c8;
   position: relative;
-  left: 10px;
+  left: 2%;
 }
 .shareboard {
   width: 170px;
   height: 3px;
   background-color: #7267c8;
   position: relative;
-  left: 205px;
+  left: 22.5%;
 }
 
 .preButton {
@@ -99,8 +100,8 @@
 
 .community-span {
   color: gray;
-  font-size: 20px;
-  margin-left: 15px;
+  font-size: "0.8vw";
+  padding: 0px 1.5vw;
 }
 
 .community-content {
@@ -124,8 +125,10 @@
   justify-content: space-between;
   align-items: center;
   padding: 0 1.5vw;
+  margin-top: 2vh;
 }
-.postbutton1 {
+
+.postbutton2 {
   width: 10vw;
   height: 5vh;
   background-color: #7267c8;
@@ -134,7 +137,6 @@
   border: none;
   font-size: 18px;
   position: relative;
-  top: 26px;
 }
 .community-search {
   height: 30px;
@@ -159,13 +161,13 @@
 .community-post-list-up {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 2px;
-  width: 50vw;
 }
-.viewCountImg {
-  margin-right: 1vw;
-  width: 1.2em;
-  height: 1em;
+
+.viewCountImg1 {
+  /* margin-right: 1vw; */
+  width: 1.5vw;
 }
 
 .community-title {
@@ -185,6 +187,13 @@
 }
 .viewCountSpan {
   color: black;
+}
+
+.post-list1 {
+  /* border-top: 1px solid lightgray; */
+  border-bottom: 1px solid lightgray;
+  padding: 2vh 3vh 2vh 3vh;
+  margin: 0px;
 }
 
 @media (max-width: 768px) {

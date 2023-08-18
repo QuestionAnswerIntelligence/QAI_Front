@@ -30,12 +30,12 @@ export const imgUrlState = atom({
   default: null,
 });
 
-export const  newTecImgUrlState= atom({
+export const newTecImgUrlState = atom({
   key: "newTecImgUrlState",
   default: null,
 });
 
-
-
-
-
+export const idState = atom({
+  key: "idState",
+  default: null,
+});
