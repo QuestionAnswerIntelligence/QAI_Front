@@ -12,6 +12,7 @@ const ChatHeader = () => {
   const goChatList = () => {
     navigate("/chats");
   };
+
   return (
     <div className="headerContainer">
       <button className="goBack" onClick={goChatList}></button>

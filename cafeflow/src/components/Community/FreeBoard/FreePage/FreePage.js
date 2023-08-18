@@ -198,101 +198,103 @@ const FreePage = () => {
   };
 
   return (
-    <div className="container">
-      {editing ? (
-        <div>
-          <input value={title} onChange={(e) => setTitle(e.target.value)} />
-          <textarea
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-          />
-          <input
-            type="number"
-            value={point}
-            onChange={(e) => setPoint(e.target.value)}
-            placeholder="내공 점수"
-          />
-
-          <button onClick={handleUpdate}>수정 완료</button>
-        </div>
-      ) : (
-        <div>
-          <h2>
-            <b>제목 </b>: {freepagestate?.title}
-          </h2>
-          <p>
-            <b>내용 </b>: {freepagestate?.content}
-          </p>
-          <p>
-            <b>닉네임 또는 게시글 작성자</b> : {freepagestate?.createdBy}
-          </p>
-          <p>
-            <b>조회수</b> : {freepagestate?.viewCount}
-          </p>
-          <p>
-            <b>내공 점수 </b>: {freepagestate?.point}
-          </p>
-          <p>
-            <b>작성일자 </b>: {formatDate(freepagestate?.createdAt)}
-          </p>
-          {/* 현재 로그인 한 유저의 정보(currentUser)와 댓글 작성자(createdBy)의 정보를 */}
-          {/* 비교하여 삭제 및 수정 버튼이 보이게 함 */}
-          {currentUser === freepagestate?.createdBy && (
-            <>
-              <button onClick={handleDelete}>삭제</button>
-              <button onClick={handleEdit}>수정</button>
-            </>
-          )}
-          <hr />
-        </div>
-      )}
-      <div>
-        {token ? (
+    <div className="a">
+      <div className="container11">
+        {editing ? (
           <div>
-            <input
-              value={comment}
-              onChange={(e) => setComment(e.target.value)}
-              placeholder="댓글을 입력하세요..."
+            <input value={title} onChange={(e) => setTitle(e.target.value)} />
+            <textarea
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
             />
-            <button onClick={handleComment}>입력 완료</button>
+            <input
+              type="number"
+              value={point}
+              onChange={(e) => setPoint(e.target.value)}
+              placeholder="내공 점수"
+            />
+
+            <button onClick={handleUpdate}>수정 완료</button>
           </div>
         ) : (
-          <p>
-            <Link to="/login">로그인</Link>을 해야합니다.
-          </p>
+          <div>
+            <h2>
+              <b>제목 </b>: {freepagestate?.title}
+            </h2>
+            <p>
+              <b>내용 </b>: {freepagestate?.content}
+            </p>
+            <p>
+              <b>닉네임 또는 게시글 작성자</b> : {freepagestate?.createdBy}
+            </p>
+            <p>
+              <b>조회수</b> : {freepagestate?.viewCount}
+            </p>
+            <p>
+              <b>내공 점수 </b>: {freepagestate?.point}
+            </p>
+            <p>
+              <b>작성일자 </b>: {formatDate(freepagestate?.createdAt)}
+            </p>
+            {/* 현재 로그인 한 유저의 정보(currentUser)와 댓글 작성자(createdBy)의 정보를 */}
+            {/* 비교하여 삭제 및 수정 버튼이 보이게 함 */}
+            {currentUser === freepagestate?.createdBy && (
+              <>
+                <button onClick={handleDelete}>삭제</button>
+                <button onClick={handleEdit}>수정</button>
+              </>
+            )}
+            <hr />
+          </div>
         )}
-        {comments &&
-          comments.map((comment) => (
-            <div key={comment.id}>
-              <p>
-                <b>{comment.createdBy}</b>: {comment.content}
-              </p>
-              {currentUser === comment.createdBy && (
-                <>
-                  <button onClick={() => handleDeleteComment(comment.id)}>
-                    삭제
-                  </button>
-                  {editingCommentId === comment.id ? ( // [NEW CODE]
-                    <>
-                      <input
-                        value={editingComment}
-                        onChange={(e) => setEditingComment(e.target.value)}
-                        placeholder="수정할 내용을 입력하세요..."
-                      />
-                      <button onClick={handleCommentUpdate}>수정 완료</button>
-                      <button onClick={() => setEditingCommentId(null)}>
-                        취소
-                      </button>
-                    </>
-                  ) : (
-                    <button onClick={() => handleEditComment(comment)}>
-                      수정
-                    </button>
-                  )}
-                </>
-              )}
+        <div>
+          {token ? (
+            <div>
+              <input
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+                placeholder="댓글을 입력하세요..."
+              />
+              <button onClick={handleComment}>입력 완료</button>
             </div>
-          ))}
+          ) : (
+            <p>
+              <Link to="/login">로그인</Link>을 해야합니다.
+            </p>
+          )}
+          {comments &&
+            comments.map((comment) => (
+              <div key={comment.id}>
+                <p>
+                  <b>{comment.createdBy}</b>: {comment.content}
+                </p>
+                {currentUser === comment.createdBy && (
+                  <>
+                    <button onClick={() => handleDeleteComment(comment.id)}>
+                      삭제
+                    </button>
+                    {editingCommentId === comment.id ? ( // [NEW CODE]
+                      <>
+                        <input
+                          value={editingComment}
+                          onChange={(e) => setEditingComment(e.target.value)}
+                          placeholder="수정할 내용을 입력하세요..."
+                        />
+                        <button onClick={handleCommentUpdate}>수정 완료</button>
+                        <button onClick={() => setEditingCommentId(null)}>
+                          취소
+                        </button>
+                      </>
+                    ) : (
+                      <button onClick={() => handleEditComment(comment)}>
+                        수정
+                      </button>
+                    )}
+                  </>
+                )}
+              </div>
+            ))}
+        </div>
       </div>
     </div>
   );

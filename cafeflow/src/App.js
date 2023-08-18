@@ -11,18 +11,17 @@ import QnAList from "./components/QnAList/QnAList";
 import Community from "./components/Community/Community";
 import QnAPage from "./components/QnAPage/QnAPage";
 import FreeForm from "./components/Community/FreeBoard/FreeForm/FreeForm";
-import FreeList from "./components/Community/FreeBoard/FreeList/FreeList";
 import ChatPage from "./components/ChatPage/ChatPage";
 import ShareForm from "./components/Community/ShareBoard/ShareForm/ShareForm";
-import ShareList from "./components/Community/ShareBoard/ShareList/ShareList";
 import ChatList from "./components/ChatList/ChatList";
 import FreePage from "./components/Community/FreeBoard/FreePage/FreePage";
 import SharePage from "./components/Community/ShareBoard/SharePage/SharePage";
 import NaverCallback from "./components/SocialLogin/NaverCallback";
 import KakaoCallback from "./components/SocialLogin/KakaoCallback";
 import GoogleCallback from "./components/SocialLogin/GoogleCallback";
+import Activity from "./components/Activity/Activity";
 import Store from "./components/Store/Store";
-
+import Gg from "./components/Gg";
 import NewTec_form from "./components/NewTecboard/NewTec_form/NewTec_form";
 import NewTec_list from "./components/NewTecboard/NewTec_list/NewTec_list";
 import NewTec_page from "./components/NewTecboard/NewTec_page/NewTec_page";
@@ -36,25 +35,23 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/myPage" element={<MyPage />} />
+          <Route path="/myPage/:memberId" element={<MyPage />} />
           <Route path="/qnalist" element={<QnAList />} />
           <Route path="/qnaform" element={<QnAForm />} />
           <Route path="/community" element={<Community />} />
           <Route path="/freeform" element={<FreeForm />} />
-          <Route path="/freelist" element={<FreeList />} />
-
-          {/* <Route path="/shareboard" element={<ShareBoard />} /> */}
           <Route path="/questions/:questionId" element={<QnAPage />} />
           <Route path="/freepage/:boardId" element={<FreePage />} />
           <Route path="/sharepage/:boardId" element={<SharePage />} />
           <Route path="/shareform" element={<ShareForm />} />
-          <Route path="/sharelist" element={<ShareList />} />
           <Route path="/chats/:chatId" element={<ChatPage />} />
           <Route path="/chats" element={<ChatList />} />
           <Route path="/newtec_form" element={<NewTec_form />} />
           <Route path="/newtec_page/:aiInfoId" element={<NewTec_page />} />
           <Route path="/newtec_list" element={<NewTec_list />} />
           <Route path="/store" element={<Store />} />
+          <Route path="/gg" element={<Gg />} />
+          <Route path="/activity/:memberId" element={<Activity />} />
           <Route
             path="/login/oauth2/callback/naver"
             element={<NaverCallback />}
