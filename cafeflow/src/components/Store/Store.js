@@ -26,6 +26,9 @@ const Store = () => {
         console.log(response.data);
         setRedirectUrl(response.data.next_redirect_pc_url); // URL 설정
         setIsModalOpen(true); // 모달 창 열기
+       
+    
+       
       })
       .catch((error) => {
         console.error("Payment request error:", error);
@@ -38,7 +41,9 @@ const Store = () => {
         <div className="modal">
           <div className="modal-content">
             <button onClick={() => setIsModalOpen(false)}>닫기</button>
-            <iframe src={redirectUrl} width="100%" height="500px"></iframe>
+            <iframe target="_blank" src={redirectUrl} width="100%" height="500px"></iframe>
+            <button onClick={() => setIsModalOpen(false)}>닫기</button>
+            <iframe target="_blank" src={redirectUrl} width="100%" height="500px"></iframe>
           </div>
         </div>
       )}

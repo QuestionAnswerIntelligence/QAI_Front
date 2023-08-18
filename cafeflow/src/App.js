@@ -26,7 +26,6 @@ import Store from "./components/Store/Store";
 import NewTec_form from "./components/NewTecboard/NewTec_form/NewTec_form";
 import NewTec_list from "./components/NewTecboard/NewTec_list/NewTec_list";
 import NewTec_page from "./components/NewTecboard/NewTec_page/NewTec_page";
-
 const App = () => {
   return (
     <RecoilRoot>
