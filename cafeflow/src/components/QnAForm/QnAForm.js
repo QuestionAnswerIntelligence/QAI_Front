@@ -115,8 +115,10 @@ const QnAForm = () => {
             <span>
               내 보유 포인트 : <b>{point}P</b>
             </span>
-            {/* <span>남은 포인트 : <b>{point - }</b></span> */}
-            {errors.point && <p>{errors.point}</p>}
+            {/* <span>
+              남은 포인트 : <b>{point - point}</b>
+            </span> */}
+            {errors.point && <p>{errors.point1}</p>}
           </div>
           <button className="QnASubmit" type="submit">
             글 작성하기

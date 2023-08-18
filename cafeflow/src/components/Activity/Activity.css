@@ -1,0 +1,66 @@
+.info-container1 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2vw;
+}
+
+.list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border-bottom: 1px solid gray;
+}
+
+.list p {
+  width: 80px; /* 이 부분은 원하는 너비로 조절하세요 */
+  text-align: right;
+}
+
+.time {
+  padding-right: 2vw;
+}
+
+.category {
+  display: flex;
+  flex-direction: row;
+}
+
+/* styles.css */
+.container {
+  display: flex;
+  justify-content: space-between;
+  /* padding: 20px; */
+  /* border-bottom: 1px solid gray; */
+  margin-top: 2vh;
+}
+
+.listContainer {
+  flex: 1;
+  /* margin: 0 20px; */
+  border: 1px solid #e0e0e0;
+  /* padding: 10px; */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.listContainer > div > h2 {
+  margin: 0px;
+  padding: 1vh;
+}
+
+.listItem {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1vw;
+  padding: 1vw 1vw 0 1vw;
+}
+
+.listTitle {
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.listTime {
+  font-size: 12px;
+  color: #777;
+}

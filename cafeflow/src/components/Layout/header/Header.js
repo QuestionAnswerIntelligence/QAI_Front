@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { FiMenu } from "react-icons/fi"; // 햄버거 메뉴 아이콘
 import { MdClose } from "react-icons/md"; // 메뉴 닫기 아이콘
@@ -20,6 +20,7 @@ const Header = () => {
   const [jwtToken, setJwtToken] = useRecoilState(tokenState);
   const [nickname, setNickname] = useRecoilState(nicknameState);
 
+  const { memberId } = useParams();
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const [imgUrl, setImgUrl] = useRecoilState(imgUrlState);
 
@@ -36,7 +37,7 @@ const Header = () => {
     navigate("/register");
   };
   const moveTomyPage = () => {
-    navigate("/myPage");
+    navigate("/myPage/:memberId");
   };
   const moveToQnA = () => {
     navigate("/qnalist");
@@ -62,7 +63,7 @@ const Header = () => {
       // 삭제 및 수정 버튼이 나타나는 버그를 해결
       localStorage.removeItem("nickname");
       localStorage.removeItem("age");
-      localStorage.removeItem("id");
+      localStorage.removeItem("memberId");
       localStorage.removeItem("email");
       localStorage.removeItem("jwtToken");
       localStorage.removeItem("point");

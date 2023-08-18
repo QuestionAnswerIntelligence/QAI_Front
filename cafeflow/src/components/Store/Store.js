@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -7,10 +7,28 @@ import "./Store.css";
 
 const Store = () => {
   const navigate = useNavigate();
-  const [isModalOpen, setIsModalOpen] = React.useState(false);
-  const [redirectUrl, setRedirectUrl] = React.useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [redirectUrl, setRedirectUrl] = useState("");
 
   const token = localStorage.getItem("jwtToken");
+
+  const openPopupWindow = (url) => {
+    const width = 500;
+    const height = 500;
+    const left = (window.innerWidth - width) / 2;
+    const top = (window.innerHeight - height) / 2;
+
+    const popup = window.open(
+      url,
+      "PaymentWindow",
+      `toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, copyhistory=no, width=${width}, height=${height}, top=${top}, left=${left}`
+    );
+
+    // 팝업이 차단되었는지 확인
+    if (!popup || popup.closed || typeof popup.closed == "undefined") {
+      alert("Please disable your popup blocker and try again.");
+    }
+  };
 
   const requestPayment = (price, itemName) => {
     axios
@@ -25,10 +43,12 @@ const Store = () => {
       .then((response) => {
         console.log(response.data);
         setRedirectUrl(response.data.next_redirect_pc_url); // URL 설정
+
         setIsModalOpen(true); // 모달 창 열기
        
     
        
+
       })
       .catch((error) => {
         console.error("Payment request error:", error);
@@ -41,9 +61,12 @@ const Store = () => {
         <div className="modal">
           <div className="modal-content">
             <button onClick={() => setIsModalOpen(false)}>닫기</button>
+
             <iframe target="_blank" src={redirectUrl} width="100%" height="500px"></iframe>
             <button onClick={() => setIsModalOpen(false)}>닫기</button>
             <iframe target="_blank" src={redirectUrl} width="100%" height="500px"></iframe>
+
+
           </div>
         </div>
       )}
