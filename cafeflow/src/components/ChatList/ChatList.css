@@ -23,6 +23,10 @@
   /* padding: 0 0 0 2vh; */
 }
 
+.ChatListContainer2::-webkit-scrollbar {
+  display: none;
+}
+
 .ChatListContainer2 > div > h1 {
   margin-bottom: 0px;
 }

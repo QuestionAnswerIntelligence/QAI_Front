@@ -21,6 +21,10 @@
   overflow: scroll;
 }
 
+.community-container::-webkit-scrollbar {
+  display: none;
+}
+
 .board_list {
   width: 200px;
   height: 5vh;
