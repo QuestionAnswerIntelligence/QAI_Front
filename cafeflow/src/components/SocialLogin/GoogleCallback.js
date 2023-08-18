@@ -3,13 +3,20 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { API_URL } from "../Constant";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { tokenState, nicknameState, emailState } from "../../recoils/Recoil";
+import {
+  idState,
+  tokenState,
+  nicknameState,
+  emailState,
+} from "../../recoils/Recoil";
 
 const GoogleCallback = () => {
   const navigate = useNavigate();
 
   const [jwtToken, setJwtToken] = useRecoilState(tokenState);
   const [nickname, setNickname] = useRecoilState(nicknameState);
+  const [id, setId] = useRecoilState(idState);
+
   const setEmail1 = useSetRecoilState(emailState);
 
   useEffect(() => {
@@ -46,6 +53,7 @@ const GoogleCallback = () => {
         localStorage.setItem("nickname", truncatedNickname);
         localStorage.setItem("email", email);
         localStorage.setItem("point", point);
+        localStorage.setItem("memberId", id);
 
         console.log("로그인 성공!");
         console.log("Token:", jwtToken);

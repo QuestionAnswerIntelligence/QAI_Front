@@ -32,7 +32,11 @@
   justify-content: space-between;
   /* padding: 20px; */
   /* border-bottom: 1px solid gray; */
-  margin-top: 2vh;
+  margin-top: 1vh;
+}
+
+.container::-webkit-scrollbar {
+  display: none;
 }
 
 .listContainer {
@@ -41,6 +45,16 @@
   border: 1px solid #e0e0e0;
   /* padding: 10px; */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 25vh;
+}
+
+.listContainer > h2 {
+  margin: 0px;
+  padding: 1vh;
+}
+
+.listContainer::-webkit-scrollbar {
+  display: none;
 }
 
 .listContainer > div > h2 {

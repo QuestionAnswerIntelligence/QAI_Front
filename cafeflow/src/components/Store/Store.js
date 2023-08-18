@@ -12,23 +12,23 @@ const Store = () => {
 
   const token = localStorage.getItem("jwtToken");
 
-  const openPopupWindow = (url) => {
-    const width = 500;
-    const height = 500;
-    const left = (window.innerWidth - width) / 2;
-    const top = (window.innerHeight - height) / 2;
+  // const openPopupWindow = (url) => {
+  //   const width = 500;
+  //   const height = 500;
+  //   const left = (window.innerWidth - width) / 2;
+  //   const top = (window.innerHeight - height) / 2;
 
-    const popup = window.open(
-      url,
-      "PaymentWindow",
-      `toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, copyhistory=no, width=${width}, height=${height}, top=${top}, left=${left}`
-    );
+  //   const popup = window.open(
+  //     url,
+  //     "PaymentWindow",
+  //     `toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, copyhistory=no, width=${width}, height=${height}, top=${top}, left=${left}`
+  //   );
 
-    // 팝업이 차단되었는지 확인
-    if (!popup || popup.closed || typeof popup.closed == "undefined") {
-      alert("Please disable your popup blocker and try again.");
-    }
-  };
+  //   // 팝업이 차단되었는지 확인
+  //   if (!popup || popup.closed || typeof popup.closed == "undefined") {
+  //     alert("Please disable your popup blocker and try again.");
+  //   }
+  // };
 
   const requestPayment = (price, itemName) => {
     axios
@@ -42,8 +42,10 @@ const Store = () => {
       )
       .then((response) => {
         console.log(response.data);
-        setRedirectUrl(response.data.next_redirect_pc_url); // URL 설정
-        openPopupWindow(response.data.next_redirect_pc_url); // 팝업 창 열기
+        // setRedirectUrl(response.data.next_redirect_pc_url); // URL 설정
+        window.location.href = response.data.next_redirect_pc_url;
+        // openPopupWindow(response.data.next_redirect_pc_url); // 팝업 창 열기
+        // setIsModalOpen(true); // 모달 창 열기
       })
       .catch((error) => {
         console.error("Payment request error:", error);
@@ -56,7 +58,7 @@ const Store = () => {
         <div className="modal">
           <div className="modal-content">
             <button onClick={() => setIsModalOpen(false)}>닫기</button>
-            {/* <iframe src={redirectUrl} width="100%" height="500px"></iframe> */}
+            <iframe src={redirectUrl} width="100%" height="500px"></iframe>
           </div>
         </div>
       )}
@@ -79,35 +81,35 @@ const Store = () => {
             </button>
             <button
               className="box"
-              onClick={() => requestPayment(3000, "1000포인트")}
+              onClick={() => requestPayment(3000, "3000포인트")}
             >
               <p>3000 포인트</p>
               <span>₩3300</span>
             </button>
             <button
               className="box"
-              onClick={() => requestPayment(5000, "1000포인트")}
+              onClick={() => requestPayment(5000, "5000포인트")}
             >
               <p>5000 포인트</p>
               <span>₩5500</span>
             </button>
             <button
               className="box"
-              onClick={() => requestPayment(10000, "1000포인트")}
+              onClick={() => requestPayment(10000, "10000포인트")}
             >
               <p>10000 포인트</p>
               <span>₩11000</span>
             </button>
             <button
               className="box"
-              onClick={() => requestPayment(30000, "1000포인트")}
+              onClick={() => requestPayment(30000, "30000포인트")}
             >
               <p>30000 포인트</p>
               <span>₩33000</span>
             </button>
             <button
               className="box"
-              onClick={() => requestPayment(1000000, "1000포인트")}
+              onClick={() => requestPayment(50000, "55000포인트")}
             >
               <p>50000 포인트</p>
               <span>₩55000</span>

@@ -3,12 +3,18 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { API_URL } from "../Constant";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { tokenState, nicknameState, emailState } from "../../recoils/Recoil";
+import {
+  idState,
+  tokenState,
+  nicknameState,
+  emailState,
+} from "../../recoils/Recoil";
 
 const NaverCallback = () => {
   const navigate = useNavigate();
   const [jwtToken, setJwtToken] = useRecoilState(tokenState);
   const [nickname, setNickname] = useRecoilState(nicknameState);
+  const [id, setId] = useRecoilState(idState);
   const setEmail1 = useSetRecoilState(emailState);
 
   useEffect(() => {
@@ -17,7 +23,7 @@ const NaverCallback = () => {
     axios
       .get(`${API_URL}/login/oauth2/callback/naver`, { params: { code } })
       .then((response) => {
-        const { jwtToken, nickname, email, point } = response.data.data;
+        const { jwtToken, nickname, email, point, id } = response.data.data;
 
         console.log(point);
 
@@ -46,6 +52,7 @@ const NaverCallback = () => {
         localStorage.setItem("nickname", truncatedNickname);
         localStorage.setItem("email", email);
         localStorage.setItem("point", point);
+        localStorage.setItem("memberId", id);
 
         console.log("로그인 성공!");
         console.log("Token:", jwtToken);
