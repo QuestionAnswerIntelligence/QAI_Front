@@ -1,121 +1,283 @@
-// import React, { useState, useEffect } from "react";
 // import axios from "axios";
-// import { API_URL } from "../../../Constant";
-// import { useNavigate } from "react-router-dom";
-
-// import "./FreeForm.css";
-// const FreeForm = () => {
-//   const [formData, setFormData] = useState({
-//     title: "",
-//     content: "",
-//   });
-//   const [errors, setErrors] = useState({});
-//   const createdBy = localStorage.getItem("nickname");
-//   const token = localStorage.getItem("jwtToken");
-
+// import React, { useState, useEffect } from "react";
+// import { useNavigate, Link, useParams } from "react-router-dom";
+// import { API_URL } from "../Constant";
+// import db from "../firebase";
+// import "./QnAList.css";
+// import ViewCount from "../../icons/ViewCount.png";
+// import profileimg from "../../icons/profileConnect.png";
+// import messageimg from "../../icons/message.png";
+// const QnAList = ({ chatId }) => {
 //   const navigate = useNavigate();
 
-//   const handleChange = (event) => {
-//     setFormData({ ...formData, [event.target.name]: event.target.value });
-//   };
+//   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+//   const [questions, setQuestions] = useState([]);
+//   const [pageNum, setPageNum] = useState(0);
+//   const [size, setSize] = useState(1000);
+//   const nickname = localStorage.getItem("nickname");
+//   const [isAdoptedClick, setIsAdoptedClick] = useState(false);
 
-//   const handleSubmit = (event) => {
-//     event.preventDefault();
-//     const type = "자유게시판";
+//   const token = localStorage.getItem("jwtToken");
 
-//     if (!formData.title || !formData.content) {
-//       setErrors({
-//         ...errors,
-//         title: !formData.title ? alert("제목이 입력되지 않았습니다!") : "",
-//         content: !formData.content ? alert("내용이 입력되지 않았습니다!") : "",
-//       });
-//       return;
+//   const [showChatButton, setShowChatButton] = useState(""); // 1. 채팅 버튼 표시 상태를 관리하기 위한 state
+//   const [keyword, setKeyword] = useState("");
+//   const [option, setOption] = useState("제목");
+//   const [checkStatus, setCheckStatus] = useState("채택전");
+//   const [imgUrl, setImgUrl] = useState();
+
+//   // toggleChatButton 함수를 수정하여 특정 질문에 대한 상태만 변경
+//   const toggleChatButton = (createdBy) => {
+//     if (showChatButton === createdBy) {
+//       setShowChatButton(""); // 이미 선택된 작성자를 다시 클릭하면 버튼 숨기기
+//     } else {
+//       setShowChatButton(createdBy); // 다른 작성자를 클릭하면 해당 작성자에게 버튼 표시
 //     }
-//     axios
-//       .post(`${API_URL}/boards/create?boardType=${type}`, formData, {
-//         headers: {
-//           Authorization: `Bearer ${token}`,
-//         },
-//       })
-//       .then((response) => {
-//         console.log(response);
-//         console.log(response.data);
-//         alert("게시물이 성공적으로 등록되었습니다!");
-//         navigate("/community");
-//       })
-//       .catch((error) => console.log(error));
 //   };
 
-//   // 초기값으로 로컬 스토리지의 값을 사용
-//   const [email, setEmail] = useState(localStorage.getItem("email"));
-//   const [nickname, setNickname] = useState(localStorage.getItem("nickname"));
-//   const [point, setPoint] = useState(localStorage.getItem("point"));
+//   // Q&A 작성페이지로 이동
+//   const moveToMakeQuestion = () => {
+//     navigate("/qnaform");
+//   };
 
+//   // page
 //   useEffect(() => {
 //     axios
-//       .get(`${API_URL}/get-info?email=${email}`, {
-//         headers: {
-//           Authorization: `Bearer ${token}`,
-//         },
-//       })
+//       .get(
+//         `${API_URL}/questions?page=${pageNum}&size=${size}&checkStatus=${checkStatus}`,
+//         {
+//           headers: {
+//             Authorization: `Bearer ${token}`,
+//           },
+//         }
+//       )
 //       .then((response) => {
-//         const { email, nickname, point } = response.data;
-//         setEmail(email);
-//         setNickname(nickname);
-//         setPoint(point);
-//         console.log(response.data);
+//         let questionList = response.data.data.questionList;
+//         setQuestions(questionList);
+//         console.log(response.data.data.questionList);
+//         // console.log(response.data.data.questionList[0].memberId);
 //       })
 //       .catch((error) => {
 //         console.log(error);
-//         alert("에러 발생");
 //       });
-//   }, [token, email]); // email도 의존성 배열에 추가하여 email 값이 변경될 때마다 API 호출
+//   }, [token, pageNum, size, checkStatus]);
 
+//   // 날짜 형식을 YYYY-MM-DD로 변환해주는 함수
+//   function formatDate(isoDateString) {
+//     const date = new Date(isoDateString);
+//     const year = date.getFullYear();
+//     const month = ("0" + (date.getMonth() + 1)).slice(-2);
+//     const day = ("0" + date.getDate()).slice(-2);
+
+//     return `${year}-${month}-${day}`;
+//   }
+
+//   // 드롭다운 메뉴를 보여주거나 숨기는 함수
+//   const toggleDropdown = () => {
+//     setIsDropdownVisible(!isDropdownVisible);
+//   };
+
+//   const turnState_before = () => {
+//     setIsAdoptedClick(false);
+//     setCheckStatus("채택전");
+//   };
+
+//   const turnState_after = () => {
+//     setIsAdoptedClick(true);
+//     setCheckStatus("채택");
+//   };
+//   const startChat = (nickname, question) => {
+//     // 현재 로그인한 유저와 게시글 작성자의 ID를 합쳐서 채팅방 ID를 생성. 항상 동일한 순서로 합침.'_' 으로 구분
+//     const chatId = [nickname, question.createdBy].sort().join("_");
+
+//     // 채팅방 조회
+//     db.collection("chats")
+//       .doc(chatId)
+//       .get()
+//       .then((docSnapshot) => {
+//         if (docSnapshot.exists) {
+//           // 채팅방이 존재하면, 그 채팅방으로 이동
+//           console.log("기존 채팅방으로 이동합니다!");
+//           navigate(`/chats/${chatId}`);
+//         } else {
+//           // 채팅방이 존재하지 않으면, 새로운 채팅방을 생성
+//           db.collection("chats")
+//             .doc(chatId)
+//             .set({
+//               users: [nickname, question.createdBy],
+//               messages: [],
+//             })
+//             .then(() => {
+//               console.log("새 채팅방으로 이동합니다!");
+//               // 새로운 채팅방으로 이동
+//               navigate(`/chats/${chatId}`);
+//             });
+//         }
+//       });
+//   };
+
+//   const handleSelect = (event) => {
+//     setOption(event.target.value);
+//   };
+
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+//     axios
+//       .get(
+//         `${API_URL}/questions?page=${pageNum}&size=${size}&option=${option}&searchKeyword=${keyword}`,
+//         {
+//           headers: {
+//             Authorization: `Bearer ${token}`,
+//           },
+//         }
+//       )
+//       .then((response) => {
+//         setQuestions(response.data.data.questionList);
+//         e.target.value = "";
+//       })
+//       .catch((error) => {
+//         console.log(error);
+//       });
+//   };
+
+//   const WatchProfile = (memberId) => {
+//     // memberId를 이용하여 프로필 페이지로 이동
+//     navigate(`/activity/${memberId}`);
+//   };
+
+//   const handleInputChange = (event) => {
+//     setKeyword(event.target.value);
+//   };
+//   console.log(questions);
 //   return (
-//     <div className="QnaForm_Container">
-//       <div className="QnAFormContainer">
-//         <h1>자유게시판</h1>
-//         <span class="animate__animated animate__fadeIn animate__delay-1s">
-//           <head>
-//             <link
-//               rel="stylesheet"
-//               href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-//             />
-//           </head>
-//           <span>{nickname}</span>님, 자유게시판에서 개발자들과 소통해주세요!
-//         </span>
-//         <form onSubmit={handleSubmit}>
-//           <h2 style={{ marginTop: "2vh" }}>제목</h2>
-//           <input
-//             className="QnAInput"
-//             type="text"
-//             name="title"
-//             onChange={handleChange}
-//             placeholder="제목을 입력하세요!"
-//           />
-//           {errors.title && <p>{errors.title}</p>}
-//           <br />
-//           <h2>본문</h2>
-//           <textarea
-//             className="QnAContent"
-//             type="text"
-//             name="content"
-//             onChange={handleChange}
-//             placeholder="내용을 입력하세요!"
-//           />
-//           {errors.content && <p>{errors.content}</p>}
-//           <br />
-//           <button
-//             style={{ marginTop: "5vh" }}
-//             className="QnASubmit1"
-//             type="submit"
-//           >
-//             글 작성하기
+//     <div className="aaa">
+//       <div className="container11">
+//         <div className="post">
+//           <h1 style={{ margin: "0px" }}>Q & A</h1>
+//           <button className="postButton" onClick={moveToMakeQuestion}>
+//             글쓰기
 //           </button>
-//         </form>
+//         </div>
+//         <span
+//           style={{
+//             color: "gray",
+//             marginBottom: "1vh",
+//             // marginTop: "1vh",
+//             fontSize: "0.8vw",
+//             padding: "0 1.5vw",
+//             fontWeight: "bold",
+//           }}
+//         >
+//           질문하세요!
+//         </span>
+//         <div className="asd">
+//           <div className="searchBox">
+//             <form className="searchQnA" onSubmit={handleSubmit}>
+//               <select className="select-box" onChange={handleSelect}>
+//                 <option value="제목">제목</option>
+//                 <option value="내용">내용</option>
+//                 <option value="제목+내용">제목+내용</option>
+//               </select>
+//               <input
+//                 className="QnA-search"
+//                 type="text"
+//                 placeholder="Search"
+//                 onChange={handleInputChange}
+//               ></input>
+//             </form>
+//           </div>
+//         </div>
+//         <div>
+//           <button
+//             onClick={turnState_before}
+//             className={isAdoptedClick? "false" :"true"}
+
+//           >
+//             채택 전
+//           </button>
+//           <button
+//             onClick={turnState_after}
+//             className={isAdoptedClick? "true" :"false"}
+//           >
+//             채택 완료
+//           </button>
+//         </div>
+//         {/* <div className="divider1">
+//           <span className={isAdoptedClick ? "after" : "before"}></span>
+//         </div> */}
+//         <div>
+//           {/* map 함수를 이용하여 questions에 들어가있는 배열 가져오기 */}
+//           {questions.map((question) => (
+//             <div key={question.boardId}>
+//               <div className="fixed-list">
+//                 <div className="questionId-div">{question.questionId}</div>
+//                 <div claaName="point_answerCnt_container">
+//                   <div className="answerCnt">답변 {question.answerCnt}</div>
+//                   <div className="point">{question.point}</div>
+//                 </div>
+//                 <ul className="test" key={question.boardId}>
+//                   <li className="community-post-list">
+//                     <div className="community-post-list-middle">
+//                       <Link to={`/questions/${question.questionId}`}>
+//                         {question.title}
+//                       </Link>
+//                     </div>
+//                     <div className="QnAList2">
+//                       <div
+//                         style={{
+//                           display: "flex",
+//                           flexDirection: "row",
+//                           alignItems: "center",
+//                           gap: "1vw",
+//                         }}
+//                       >
+//                         <div
+//                           style={{cursor:"pointer"}}
+//                           onClick={() => WatchProfile(question.memberId)}
+//                         ><b>{question.createdBy}</b>
+//                         </div>
+//                         <div>
+//                           <button
+//                             className="StartChatButton"
+//                             onClick={() => WatchProfile(question.memberId)}
+//                             style={{backgroundImage: `url('${messageimg}')`,border:"none",backgroundSize:"cover",width:"20px",height:"20px",cursor:"pointer"}}
+//                           >
+//                             {/* 1:1 채팅하기 */}
+//                           </button>
+//                           {/* <button
+//                             className="StartChatButton"
+//                             onClick={() => WatchProfile(question.memberId)}
+//                             style={{backgroundImage: `url('${profileimg}')`,border:"none",backgroundSize:"cover",width:"20px",height:"20px"}}
+//                           >
+//                             프로필 보기
+//                           </button> */}
+//                         </div>
+//                       </div>
+//                       <div
+//                         style={{
+//                           display: "flex",
+//                           alignItems: "center",
+//                           gap: "0.5vw",
+//                         }}
+//                       >
+//                         <img className="viewCountImg1" src={ViewCount}></img>
+//                         <span className="viewCountSpan">
+//                           {question.viewCount}
+//                         </span>{" "}
+//                       </div>
+//                     </div>
+//                     <span className="QnAList-createdAt">
+//                       {formatDate(question.createdAt)}
+//                     </span>
+//                   </li>
+//                 </ul>
+//               </div>
+//             </div>
+//           ))}
+//           <div className="pageNum"></div>
+//         </div>
 //       </div>
 //     </div>
 //   );
 // };
 
-// export default FreeForm;
+// export default QnAList;
