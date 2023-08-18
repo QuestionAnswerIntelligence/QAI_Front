@@ -51,12 +51,8 @@ const Login = () => {
           password: password,
         })
         .then((response) => {
-<<<<<<< Updated upstream
           const { jwtToken, email, age, nickname, point, url, id } =
             response.data;
-=======
-          const { jwtToken, email, age, nickname, point, url } = response.data;
->>>>>>> Stashed changes
 
           console.log(response.data);
           setToken(jwtToken);
