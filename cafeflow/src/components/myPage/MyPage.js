@@ -310,9 +310,6 @@ const MyPage = () => {
                   <a>
                     <img className="logo2"></img>
                   </a>
-                  <a>
-                    <img className="logo3"></img>
-                  </a>
                 </div>
               </div>
               <div className="point-container">
@@ -339,7 +336,7 @@ const MyPage = () => {
           </div>
           <div className="select-outer-box">
             <div className="select-inner-box">
-              <button onClick={() => setState("프로필")}>프로필</button>
+              {/* <button onClick={() => setState("프로필")}>프로필</button> */}
               <button
                 onClick={() => {
                   setState("QnA");
@@ -382,7 +379,7 @@ const MyPage = () => {
             ></span>
           </div>
           {/* 프로필 */}
-          {state === "프로필" && (
+          {/* {state === "프로필" && (
             <div className="middle-container">
               <div className="profile-img-container"></div>
               <div className="info-container1">
@@ -406,7 +403,7 @@ const MyPage = () => {
                 </div>
               </div>
             </div>
-          )}
+          )} */}
           {/* QnA 부분 */}
           {state === "QnA" && (
             <div

@@ -218,31 +218,39 @@ const QnAList = ({ chatId }) => {
                 </div>
                 <ul className="test" key={question.boardId}>
                   <li className="community-post-list">
+                    <div className="community-post-list-middle">
+                      <Link to={`/questions/${question.questionId}`}>
+                        {question.title}
+                      </Link>
+                    </div>
                     <div className="QnAList2">
-                      <div>
-                        {nickname !== question.createdBy &&
-                          token &&
-                          showChatButton === question.createdBy && (
-                            <>
-                              <button
-                                className="StartChatButton"
-                                onClick={() => startChat(nickname, question)}
-                              >
-                                1:1 채팅하기
-                              </button>
-                              <button
-                                className="StartChatButton"
-                                onClick={() => WatchProfile(question.memberId)}
-                              >
-                                프로필 보기
-                              </button>
-                            </>
-                          )}
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          alignItems: "center",
+                          gap: "1vw",
+                        }}
+                      >
                         <h2
                           onClick={() => toggleChatButton(question.createdBy)}
                         >
                           {question.createdBy}
                         </h2>
+                        <div>
+                          <button
+                            className="StartChatButton"
+                            onClick={() => startChat(nickname, question)}
+                          >
+                            1:1 채팅하기
+                          </button>
+                          <button
+                            className="StartChatButton"
+                            onClick={() => WatchProfile(question.memberId)}
+                          >
+                            프로필 보기
+                          </button>
+                        </div>
                       </div>
                       <div
                         style={{
@@ -256,11 +264,6 @@ const QnAList = ({ chatId }) => {
                           {question.viewCount}
                         </span>{" "}
                       </div>
-                    </div>
-                    <div className="community-post-list-middle">
-                      <Link to={`/questions/${question.questionId}`}>
-                        {question.title}
-                      </Link>
                     </div>
                     <span className="QnAList-createdAt">
                       {formatDate(question.createdAt)}
