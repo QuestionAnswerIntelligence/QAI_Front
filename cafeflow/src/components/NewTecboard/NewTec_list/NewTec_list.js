@@ -16,7 +16,6 @@ const NewTec_list = ({ chatId }) => {
   const [pageNum, setPageNum] = useState(0);
   const [size, setSize] = useState(10);
   const nickname = localStorage.getItem("nickname");
-  const [imgUrl, setImgUrl] = useRecoilState(newTecImgUrlState);
 
   const currentUser = localStorage.getItem("nickname"); // 현재 로그인한 유저의 닉네임
   const currentUserEmail = localStorage.getItem("email"); // 현재 로그인한 유저의 아이디 (관리자 계정용 인증)
@@ -50,18 +49,12 @@ const NewTec_list = ({ chatId }) => {
         },
       })
       .then((response) => {
-        console.log(response.data);
+        
         console.log("게시글을 불러옵니다!");
         let aiInfoList = response.data.data.aiInfoList;
-        setImgUrl(response.data.data.url);
-        console.log(response.data.data);
+        // setImgUrl(response.data.data.url);
         setNewTecs(aiInfoList);
-        // console.log(response.data.data.aiInfoList[0].title);
-
-        console.log(response.data);
-
-        console.log("currentUserNickname:", currentUser);
-        console.log("currentUserEmail:", currentUserEmail);
+        console.log(aiInfoList);
       })
       .catch((error) => {
         console.log(error);
@@ -152,7 +145,7 @@ const NewTec_list = ({ chatId }) => {
                   <div
                     className="profile-img-container"
                     style={{
-                      backgroundImage: `url('${newtec.url}')`,
+                      backgroundImage: `url('${newtec.image}')`,
                       border: "5px solid black",
                       borderRadius: "50px",
                       backgroundPosition: "center",
