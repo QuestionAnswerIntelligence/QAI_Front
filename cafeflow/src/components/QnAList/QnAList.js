@@ -189,14 +189,13 @@ const QnAList = ({ chatId }) => {
         <div>
           <button
             onClick={turnState_before}
-            className={isAdoptedClick? "false" :"true"}
-            
+            className={isAdoptedClick ? "false" : "true"}
           >
             채택 전
           </button>
           <button
             onClick={turnState_after}
-            className={isAdoptedClick? "true" :"false"}
+            className={isAdoptedClick ? "true" : "false"}
           >
             채택 완료
           </button>
@@ -230,16 +229,24 @@ const QnAList = ({ chatId }) => {
                           gap: "1vw",
                         }}
                       >
-                        <div 
-                          style={{cursor:"pointer"}}
+                        <div
+                          style={{ cursor: "pointer" }}
                           onClick={() => WatchProfile(question.memberId)}
-                        ><b>{question.createdBy}</b>
+                        >
+                          <b>{question.createdBy}</b>
                         </div>
                         <div>
                           <button
                             className="StartChatButton"
                             onClick={() => WatchProfile(question.memberId)}
-                            style={{backgroundImage: `url('${messageimg}')`,border:"none",backgroundSize:"cover",width:"20px",height:"20px",cursor:"pointer"}}
+                            style={{
+                              backgroundImage: `url('${messageimg}')`,
+                              border: "none",
+                              backgroundSize: "cover",
+                              width: "20px",
+                              height: "20px",
+                              cursor: "pointer",
+                            }}
                           >
                             {/* 1:1 채팅하기 */}
                           </button>
