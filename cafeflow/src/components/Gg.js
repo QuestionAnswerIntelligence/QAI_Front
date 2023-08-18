@@ -1,102 +1,121 @@
-// import React from "react";
+// import React, { useState, useEffect } from "react";
 // import axios from "axios";
+// import { API_URL } from "../../../Constant";
 // import { useNavigate } from "react-router-dom";
-// import { API_URL } from "../Constant";
-// import "./Store.css";
 
-// const Store = () => {
-//   const navigate = useNavigate();
-//   const [isModalOpen, setIsModalOpen] = React.useState(false);
-//   const [redirectUrl, setRedirectUrl] = React.useState("");
-
+// import "./FreeForm.css";
+// const FreeForm = () => {
+//   const [formData, setFormData] = useState({
+//     title: "",
+//     content: "",
+//   });
+//   const [errors, setErrors] = useState({});
+//   const createdBy = localStorage.getItem("nickname");
 //   const token = localStorage.getItem("jwtToken");
 
-//   const requestPayment = (price, itemName) => {
-//     axios
-//       .post(
-//         `${API_URL}/payment/ready`,
-//         {
-//           price: price,
-//           itemName: itemName,
-//         },
-//         { headers: { Authorization: `Bearer ${token}` } }
-//       )
-//       .then((response) => {
-//         console.log(response.data);
-//         setRedirectUrl(response.data.next_redirect_pc_url); // URL 설정
-//         setIsModalOpen(true); // 모달 창 열기
-//       })
-//       .catch((error) => {
-//         console.error("Payment request error:", error);
-//       });
+//   const navigate = useNavigate();
+
+//   const handleChange = (event) => {
+//     setFormData({ ...formData, [event.target.name]: event.target.value });
 //   };
 
-//   return (
-//     <div className="a">
-//       {isModalOpen && (
-//         <div className="modal">
-//           <div className="modal-content">
-//             <button onClick={() => setIsModalOpen(false)}>닫기</button>
-//             <iframe src={redirectUrl} width="100%" height="500px"></iframe>
-//           </div>
-//         </div>
-//       )}
+//   const handleSubmit = (event) => {
+//     event.preventDefault();
+//     const type = "자유게시판";
 
-//       <div className="container11">
-//         <div style={{ display: "flex", justifyContent: "center" }}>
-//           <h1>포인트 샵</h1>
-//         </div>
-//         <div style={{ marginTop: "-7px" }}>
-//           <hr></hr>
-//         </div>
-//         <div style={{ display: "flex", justifyContent: "center" }}>
-//           <div className="pointBox">
-//             <button
-//               className="box"
-//               onClick={() => requestPayment(1000, "1000포인트")}
-//             >
-//               <p>1000 포인트</p>
-//               <span>₩1100</span>
-//             </button>
-//             <button
-//               className="box"
-//               onClick={() => requestPayment(3000, "1000포인트")}
-//             >
-//               <p>3000 포인트</p>
-//               <span>₩3300</span>
-//             </button>
-//             <button
-//               className="box"
-//               onClick={() => requestPayment(5000, "1000포인트")}
-//             >
-//               <p>5000 포인트</p>
-//               <span>₩5500</span>
-//             </button>
-//             <button
-//               className="box"
-//               onClick={() => requestPayment(10000, "1000포인트")}
-//             >
-//               <p>10000 포인트</p>
-//               <span>₩11000</span>
-//             </button>
-//             <button
-//               className="box"
-//               onClick={() => requestPayment(30000, "1000포인트")}
-//             >
-//               <p>30000 포인트</p>
-//               <span>₩33000</span>
-//             </button>
-//             <button
-//               className="box"
-//               onClick={() => requestPayment(1000000, "1000포인트")}
-//             >
-//               <p>50000 포인트</p>
-//               <span>₩55000</span>
-//             </button>
-//           </div>
-//         </div>
+//     if (!formData.title || !formData.content) {
+//       setErrors({
+//         ...errors,
+//         title: !formData.title ? alert("제목이 입력되지 않았습니다!") : "",
+//         content: !formData.content ? alert("내용이 입력되지 않았습니다!") : "",
+//       });
+//       return;
+//     }
+//     axios
+//       .post(`${API_URL}/boards/create?boardType=${type}`, formData, {
+//         headers: {
+//           Authorization: `Bearer ${token}`,
+//         },
+//       })
+//       .then((response) => {
+//         console.log(response);
+//         console.log(response.data);
+//         alert("게시물이 성공적으로 등록되었습니다!");
+//         navigate("/community");
+//       })
+//       .catch((error) => console.log(error));
+//   };
+
+//   // 초기값으로 로컬 스토리지의 값을 사용
+//   const [email, setEmail] = useState(localStorage.getItem("email"));
+//   const [nickname, setNickname] = useState(localStorage.getItem("nickname"));
+//   const [point, setPoint] = useState(localStorage.getItem("point"));
+
+//   useEffect(() => {
+//     axios
+//       .get(`${API_URL}/get-info?email=${email}`, {
+//         headers: {
+//           Authorization: `Bearer ${token}`,
+//         },
+//       })
+//       .then((response) => {
+//         const { email, nickname, point } = response.data;
+//         setEmail(email);
+//         setNickname(nickname);
+//         setPoint(point);
+//         console.log(response.data);
+//       })
+//       .catch((error) => {
+//         console.log(error);
+//         alert("에러 발생");
+//       });
+//   }, [token, email]); // email도 의존성 배열에 추가하여 email 값이 변경될 때마다 API 호출
+
+//   return (
+//     <div className="QnaForm_Container">
+//       <div className="QnAFormContainer">
+//         <h1>자유게시판</h1>
+//         <span class="animate__animated animate__fadeIn animate__delay-1s">
+//           <head>
+//             <link
+//               rel="stylesheet"
+//               href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+//             />
+//           </head>
+//           <span>{nickname}</span>님, 자유게시판에서 개발자들과 소통해주세요!
+//         </span>
+//         <form onSubmit={handleSubmit}>
+//           <h2 style={{ marginTop: "2vh" }}>제목</h2>
+//           <input
+//             className="QnAInput"
+//             type="text"
+//             name="title"
+//             onChange={handleChange}
+//             placeholder="제목을 입력하세요!"
+//           />
+//           {errors.title && <p>{errors.title}</p>}
+//           <br />
+//           <h2>본문</h2>
+//           <textarea
+//             className="QnAContent"
+//             type="text"
+//             name="content"
+//             onChange={handleChange}
+//             placeholder="내용을 입력하세요!"
+//           />
+//           {errors.content && <p>{errors.content}</p>}
+//           <br />
+//           <button
+//             style={{ marginTop: "5vh" }}
+//             className="QnASubmit1"
+//             type="submit"
+//           >
+//             글 작성하기
+//           </button>
+//         </form>
 //       </div>
 //     </div>
 //   );
 // };
-// export default Store;
+
+// export default FreeForm;
