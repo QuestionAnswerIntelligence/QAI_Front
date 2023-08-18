@@ -5,7 +5,7 @@ import KakaoLogin from "../SocialLogin/KakaoLogin";
 import NaverLogin from "../SocialLogin/NaverLogin";
 import GoogleLogin1 from "../SocialLogin/GoogleLogin";
 import { API_URL } from "../Constant";
-import LogoQAI from "../../icons/LogoQAI.png";
+import logo from "../../icons/Logo.png";
 import userDefaultImg from "../../icons/Account_circle.png";
 import "./Register.css";
 import { useSetRecoilState } from "recoil";
@@ -50,6 +50,8 @@ const Register = () => {
       setErrorMessage("모든 필드를 채워주세요!");
       return;
     }
+
+    
 
     axios
       .post(`${API_URL}/sign-up`, {
@@ -109,7 +111,7 @@ const Register = () => {
   return (
     <div className="register-container">
       <form className="register-form">
-        <img src={LogoQAI}></img>
+        <img src={logo}></img>
         <h2>회원가입</h2>
         <div className="button-container">
           <KakaoLogin />
