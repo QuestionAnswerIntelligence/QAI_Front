@@ -42,6 +42,7 @@ const Store = () => {
       )
       .then((response) => {
         console.log(response.data);
+
         // setRedirectUrl(response.data.next_redirect_pc_url); // URL 설정
         window.location.href = response.data.next_redirect_pc_url;
         // openPopupWindow(response.data.next_redirect_pc_url); // 팝업 창 열기
@@ -58,7 +59,12 @@ const Store = () => {
         <div className="modal">
           <div className="modal-content">
             <button onClick={() => setIsModalOpen(false)}>닫기</button>
-            <iframe src={redirectUrl} width="100%" height="500px"></iframe>
+            <iframe
+              target="_blank"
+              src={redirectUrl}
+              width="100%"
+              height="500px"
+            ></iframe>
           </div>
         </div>
       )}

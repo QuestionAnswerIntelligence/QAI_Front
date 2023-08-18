@@ -22,6 +22,7 @@ const QnAList = ({ chatId }) => {
   const [keyword, setKeyword] = useState("");
   const [option, setOption] = useState("제목");
   const [checkStatus, setCheckStatus] = useState("채택전");
+  const [imgUrl, setImgUrl] = useState();
 
   // toggleChatButton 함수를 수정하여 특정 질문에 대한 상태만 변경
   const toggleChatButton = (createdBy) => {
@@ -51,7 +52,6 @@ const QnAList = ({ chatId }) => {
       .then((response) => {
         let questionList = response.data.data.questionList;
         setQuestions(questionList);
-        console.log(response.data);
         console.log(response.data.data.questionList);
         // console.log(response.data.data.questionList[0].memberId);
       })
@@ -73,12 +73,6 @@ const QnAList = ({ chatId }) => {
   // 드롭다운 메뉴를 보여주거나 숨기는 함수
   const toggleDropdown = () => {
     setIsDropdownVisible(!isDropdownVisible);
-  };
-
-  const handleAuthorClick = (createdBy) => {
-    if (nickname !== createdBy) {
-      toggleDropdown();
-    }
   };
 
   const turnState_before = () => {
@@ -158,7 +152,7 @@ const QnAList = ({ chatId }) => {
       <div className="container11">
         <div className="post">
           <h1 style={{ margin: "0px" }}>Q & A</h1>
-          <button className="postbutton1" onClick={moveToMakeQuestion}>
+          <button className="postButton" onClick={moveToMakeQuestion}>
             글쓰기
           </button>
         </div>
