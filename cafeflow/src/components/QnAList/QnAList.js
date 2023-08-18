@@ -160,7 +160,7 @@ const QnAList = ({ chatId }) => {
       <div className="container11">
         <div className="post">
           <h1 style={{ margin: "0px" }}>Q & A</h1>
-          <button onClick={moveToMakeQuestion}>글쓰기</button>
+          <button className="writeButton" onClick={moveToMakeQuestion}>글쓰기</button>
         </div>
         <span
           style={{
@@ -212,7 +212,7 @@ const QnAList = ({ chatId }) => {
                     <div className="point">{question.point}</div>
                 </div>
                 <ul className="test" key={question.boardId}>
-                  <li className="community-post-list">
+                  <li className="qna-post-list">
                     <div className="QnAList2">
                       <div>
                         {/* <img className="profile-img" /> */}

@@ -320,6 +320,27 @@ table {
   position: relative;
   left: 15px;
 }
+
+.writeButton{
+  background-color: #7267c8;
+  color:white;
+  border:none;
+  border-radius:10px;
+  width:100px;
+}
+.writeButton:hover{
+  background-color: #7267c8;
+  color:rgb(108, 91, 124);
+  border:none;
+  border-radius:10px;
+  width:100px;
+}
+
+.qna-post-list{
+  list-style: none;
+  position:relative;
+  bottom:10px;
+}
 /* 모바일 버전 */
 @media (max-width: 768px) {
   .aaa {
