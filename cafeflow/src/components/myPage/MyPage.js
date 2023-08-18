@@ -21,7 +21,7 @@ const MyPage = () => {
 
   const token = localStorage.getItem("jwtToken");
 
-  const [state, setState] = useState("프로필");
+  const [state, setState] = useState("QnA");
   const [editing, setEditing] = useState(false);
   const [editEmail, setEditEmail] = useState(localStorage.getItem("email"));
   const [editNickname, setEditNickName] = useState(
@@ -298,17 +298,7 @@ const MyPage = () => {
                   </p>
                 )}
               </div>
-              {/* <div>
-                <div>
-                  <p className="label1">포트폴리오</p>
-                  <a>
-                    <img className="logo1"></img>
-                  </a>
-                  <a>
-                    <img className="logo2"></img>
-                  </a>
-                </div>
-              </div> */}
+              
               <div className="point-container">
                 <div>
                   <p className="label1">내 포인트</p>
@@ -339,6 +329,8 @@ const MyPage = () => {
                   setState("QnA");
                   setType("question");
                 }}
+                style={state==="QnA"?{borderBottom:"3px solid #7267c8",borderLeft:"none",borderRight:"none",borderTop:"none"}
+                :{width:"120px"}}
               >
                 Q&A
               </button>
@@ -347,6 +339,8 @@ const MyPage = () => {
                   setState("board");
                   setType("board");
                 }}
+                style={state==="board"?{borderBottom:"3px solid #7267c8",borderLeft:"none",borderRight:"none",borderTop:"none"}
+                :{width:"120px"}}
               >
                 Community
               </button>
@@ -355,12 +349,14 @@ const MyPage = () => {
                   setState("comment");
                   setType("comment");
                 }}
+                style={state==="comment"?{borderBottom:"3px solid #7267c8",borderLeft:"none",borderRight:"none",borderTop:"none"}
+                :{width:"120px"}}
               >
                 내가 단 댓글
               </button>
             </div>
           </div>
-          <div className="mypage-divider">
+          {/* <div className="mypage-divider">
             <span
               className={
                 state === "QnA"
@@ -372,7 +368,7 @@ const MyPage = () => {
                   : state
               }
             ></span>
-          </div>
+          </div> */}
           {/* 프로필 */}
           {/* {state === "프로필" && (
             <div className="middle-container">

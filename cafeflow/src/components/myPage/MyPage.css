@@ -69,7 +69,26 @@
   height: 40px;
   background-color: white;
 }
+.true1{
 
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  font-size: 18px;
+  margin-top: 1vh;
+  border-bottom:3px solid #7267c8;
+  border-top:none;
+  border-left:none;
+  border-right:none;
+}
+.false1{
+ 
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  font-size: 18px;
+  margin-top: 1vh;
+  border-bottom:3px solid #7267c8;
+  border:none;
+}
 .share_edit_button-container > .share_edit_button:first-child {
   /* background-image: url("../../icons/share_android.png"); */
   background-repeat: no-repeat;
