@@ -180,8 +180,8 @@
 }
 
 .profile,
-.answer,
-.Community,
+.comment,
+.board,
 .Qna {
   width: 6vw;
   height: 3px;
@@ -194,15 +194,15 @@
 }
 
 .Qna {
-  right: 17%;
+  right: 29%;
 }
 
-.Community {
-  left: 8%;
+.board {
+  right: 4%;
 }
 
-.answer {
-  left: 36%;
+.comment {
+  left: 25%;
 }
 
 .editInput {
@@ -231,8 +231,6 @@
   background-image: url("../../icons/logo3.png");
   background-repeat: no-repeat;
 }
-/* ------------------------- */
-/* // label태그 */
 
 .edit-profileImg-label {
   margin: 5px 0 20px 0;
