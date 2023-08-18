@@ -12,7 +12,7 @@
 .header-left {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 0.1px;
 }
 
 .header-left > h2 {
@@ -44,7 +44,7 @@
 
 .header-center > button:hover {
   color: #564e97;
-  font-size: 90px;
+  font-size: 35px;
 }
 
 .header-right {
@@ -58,6 +58,11 @@
   color: white;
   border: none;
 }
+.btn_login_out {
+  display: inline-block; /* 인라인 블록 요소로 표시 */
+  transition: transform 0.2s ease-in-out; /* 트랜지션 설정 */
+  font-weight: bold; /* 텍스트 굵게 표시 */
+}
 
 .register {
   background-color: #564e97;
@@ -66,12 +71,32 @@
   border: none;
   width: 130px;
   height: 50px;
+  font-size: 20px;
+  transition: transform 0.2s ease-in-out; /* 트랜지션 설정 */
+}
+
+.register:hover,
+.btn_login_out:hover {
+  animation: rotateAnimation 0.3s infinite alternate;
+}
+@keyframes rotateAnimation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-5deg); /* 왼쪽으로 5도 회전 */
+  }
 }
 
 .span {
   font-size: 20px;
   font-weight: bold;
   color: white;
+  transition: color 0.1s; /* 부드러운 색상 변화를 위한 트랜지션 효과 */
+}
+
+.span:hover {
+  color: #6565b8; /* 마우스를 올렸을 때 보라색으로 변경 */
 }
 
 .username {

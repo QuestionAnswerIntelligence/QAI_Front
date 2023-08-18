@@ -12,7 +12,7 @@ import {
 import userDefaultImg from "../../../icons/Account_circle.png";
 
 import "./Header.css";
-import Logo from "../../../icons/Logo.png";
+import LogoQAI from "../../../icons/LogoQAI.png";
 import divider from "../../../icons/Divider.png";
 
 const Header = () => {
@@ -23,6 +23,64 @@ const Header = () => {
   const { memberId } = useParams();
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const [imgUrl, setImgUrl] = useRecoilState(imgUrlState);
+
+  const [colorNewTec, setColorNewTec] = useState("white");
+  const [colorQnA, setColorQnA] = useState("white");
+  const [colorCommunity, setColorCommunity] = useState("white");
+  const [colorChat, setColorChat] = useState("white");
+  const [color, setColor] = useState("white");
+
+  const handleMouseEnterNewTec = () => {
+    setColorNewTec("#6565b8");
+    setColor("purple");
+    setTimeout(() => {
+      setColorNewTec("white");
+      setColor("white");
+    }, 1000); // 1초 후에 색을 다시 원래 색상으로 변경
+  };
+
+  const handleMouseLeaveNewTec = () => {
+    setColorNewTec("white");
+  };
+
+  const handleMouseEnterQnA = () => {
+    setColorQnA("#6565b8");
+    setColor("purple");
+    setTimeout(() => {
+      setColorQnA("white");
+      setColor("white");
+    }, 1000); // 1초 후에 색을 다시 원래 색상으로 변경
+  };
+
+  const handleMouseLeaveQnA = () => {
+    setColorQnA("white");
+  };
+
+  const handleMouseEnterCommunity = () => {
+    setColorCommunity("#6565b8");
+    setColor("purple");
+    setTimeout(() => {
+      setColorCommunity("white");
+      setColor("white");
+    }, 1000); // 1초 후에 색을 다시 원래 색상으로 변경
+  };
+
+  const handleMouseLeaveCommunity = () => {
+    setColorCommunity("white");
+  };
+
+  const handleMouseEnterChat = () => {
+    setColorChat("#6565b8");
+    setColor("purple");
+    setTimeout(() => {
+      setColorChat("white");
+      setColor("white");
+    }, 1000); // 1초 후에 색을 다시 원래 색상으로 변경
+  };
+
+  const handleMouseLeaveChat = () => {
+    setColorChat("white");
+  };
 
   const moveToHome = () => {
     navigate("/");
@@ -104,7 +162,7 @@ const Header = () => {
           <span className="span">Q&A</span>
         </button>
         <button className="login" onClick={handleLogout}>
-          <span className="span">로그아웃</span>
+          <span className="span">Logout</span>
         </button>
       </div>
     );
@@ -114,26 +172,74 @@ const Header = () => {
     <div className="header">
       <div className="header-left">
         <img
-          src={Logo}
-          style={{ width: "40px", height: "40px" }}
+          src={LogoQAI}
+          style={{
+            width: "100px",
+            height: "100px",
+            marginTop: "8px",
+            marginRight: "-7px",
+          }}
           onClick={moveToHome}
         ></img>
-        <h2 onClick={moveToHome}>AIConnectia</h2>
+        <h2
+          onClick={moveToHome}
+          style={{ fontSize: "40px", marginright: "4px" }}
+        >
+          QAI
+        </h2>
       </div>
       <div className="header-center">
         <button>
-          <span onClick={moveToNewTec} className="span">
+          <span
+            onClick={moveToNewTec}
+            className="span"
+            style={{
+              fontSize: "20px",
+              fontWeight: "bold",
+              color: colorNewTec,
+            }}
+            onMouseEnter={handleMouseEnterNewTec}
+            onMouseLeave={handleMouseLeaveNewTec}
+          >
             New technology
           </span>
         </button>
         <button onClick={moveToQnA}>
-          <span className="span">Q&A</span>
+          <span
+            onClick={moveToNewTec}
+            className="span"
+            style={{ fontSize: "20px", fontWeight: "bold", color: colorQnA }}
+            onMouseEnter={handleMouseEnterQnA}
+            onMouseLeave={handleMouseLeaveQnA}
+          >
+            Q&A
+          </span>
         </button>
         <button onClick={moveToCommunity}>
-          <span className="span">Community</span>
+          <span
+            onClick={moveToNewTec}
+            className="span"
+            style={{
+              fontSize: "20px",
+              fontWeight: "bold",
+              color: colorCommunity,
+            }}
+            onMouseEnter={handleMouseEnterCommunity}
+            onMouseLeave={handleMouseLeaveCommunity}
+          >
+            Community
+          </span>
         </button>
         <button onClick={moveToChat}>
-          <span className="span">Chat</span>
+          <span
+            onClick={moveToNewTec}
+            className="span"
+            style={{ fontSize: "20px", fontWeight: "bold", color: colorChat }}
+            onMouseEnter={handleMouseEnterChat}
+            onMouseLeave={handleMouseLeaveChat}
+          >
+            Chat
+          </span>
         </button>
       </div>
       <div className="header-right">
@@ -169,7 +275,7 @@ const Header = () => {
               style={{ marginLeft: "10px", marginRight: "10px" }}
             ></img>
             <button className="register" onClick={handleLogout}>
-              <span className="span">로그아웃</span>
+              <span className="btn_login_out">Logout</span>
             </button>
             <button className="hamburger-icon" onClick={toggleDropdown}>
               <FiMenu size={30} />
@@ -178,15 +284,15 @@ const Header = () => {
           </React.Fragment>
         ) : (
           <React.Fragment>
-            <button className="login" onClick={moveToLogin}>
-              <span className="span">Login</span>
+            <button className="register" onClick={moveToLogin}>
+              <span className="btn_login_out">Login</span>
             </button>
             <img
               src={divider}
               style={{ marginLeft: "10px", marginRight: "10px" }}
             ></img>
             <button className="register" onClick={moveToRegister}>
-              <span className="span">Register</span>
+              <span className="btn_login_out">Register</span>
             </button>
           </React.Fragment>
         )}
