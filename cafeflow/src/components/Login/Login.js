@@ -68,6 +68,7 @@ const Login = () => {
           localStorage.setItem("age", age);
           localStorage.setItem("point", point);
           localStorage.setItem("memberId", id);
+          localStorage.setItem("imageUrl",url);
 
           console.log(id);
 

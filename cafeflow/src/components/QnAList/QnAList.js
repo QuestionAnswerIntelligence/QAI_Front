@@ -5,7 +5,8 @@ import { API_URL } from "../Constant";
 import db from "../firebase";
 import "./QnAList.css";
 import ViewCount from "../../icons/ViewCount.png";
-
+import profileimg from "../../icons/profileConnect.png";
+import messageimg from "../../icons/message.png";
 const QnAList = ({ chatId }) => {
   const navigate = useNavigate();
 
@@ -188,20 +189,21 @@ const QnAList = ({ chatId }) => {
         <div>
           <button
             onClick={turnState_before}
-            className="adopted-button adopted-before-button"
+            className={isAdoptedClick? "false" :"true"}
+            
           >
             채택 전
           </button>
           <button
             onClick={turnState_after}
-            className="adopted-button adopted-after-button"
+            className={isAdoptedClick? "true" :"false"}
           >
             채택 완료
           </button>
         </div>
-        <div className="divider1">
+        {/* <div className="divider1">
           <span className={isAdoptedClick ? "after" : "before"}></span>
-        </div>
+        </div> */}
         <div>
           {/* map 함수를 이용하여 questions에 들어가있는 배열 가져오기 */}
           {questions.map((question) => (
@@ -228,24 +230,26 @@ const QnAList = ({ chatId }) => {
                           gap: "1vw",
                         }}
                       >
-                        <h2
-                          onClick={() => toggleChatButton(question.createdBy)}
-                        >
-                          {question.createdBy}
-                        </h2>
+                        <div 
+                          style={{cursor:"pointer"}}
+                          onClick={() => WatchProfile(question.memberId)}
+                        ><b>{question.createdBy}</b>
+                        </div>
                         <div>
                           <button
                             className="StartChatButton"
-                            onClick={() => startChat(nickname, question)}
+                            onClick={() => WatchProfile(question.memberId)}
+                            style={{backgroundImage: `url('${messageimg}')`,border:"none",backgroundSize:"cover",width:"20px",height:"20px",cursor:"pointer"}}
                           >
-                            1:1 채팅하기
+                            {/* 1:1 채팅하기 */}
                           </button>
-                          <button
+                          {/* <button
                             className="StartChatButton"
                             onClick={() => WatchProfile(question.memberId)}
+                            style={{backgroundImage: `url('${profileimg}')`,border:"none",backgroundSize:"cover",width:"20px",height:"20px"}}
                           >
                             프로필 보기
-                          </button>
+                          </button> */}
                         </div>
                       </div>
                       <div
